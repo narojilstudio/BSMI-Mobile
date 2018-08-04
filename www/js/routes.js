@@ -48,7 +48,7 @@ routes = [
                 
                 // Example by className
                 $(".demo").htmlfromrss(
-                  limit = 1
+                  limit = 10
                 );
 
               });
