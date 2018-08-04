@@ -26,6 +26,26 @@ routes = [
     url: './pages/about.html',
   },
   {
+    path: '/bsmiradio/',
+    url: './pages/bsmiradio.html',
+  },
+  {
+    path: '/bsmitv/',
+    url: './pages/bsmitv.html',
+      on: {
+        pageAfterIn: function test (e, page) {
+          // do something after page gets into the view
+
+            var player = videojs('example-video');
+            player.play();
+         
+        },
+        pageInit: function (e, page) {
+          // do something when page initialized
+        },
+      }
+  },
+  {
     path: '/profile/',
     url: './pages/profile.html',
   },
