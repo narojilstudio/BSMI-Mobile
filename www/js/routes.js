@@ -14,6 +14,27 @@ routes = [
   {
     path: '/photo/',
     url: './pages/photo.html',
+      on: {
+        pageAfterIn: function test (e, page) {
+          // do something after page gets into the view
+          $(document).ready(function(){
+           $(".demoig").myig(
+            ins_id = 2083561128, // your user_id
+            ins_count = 40, // Count of media to return
+            ins_token = '2083561128.d8d1d50.9283b2661f734328b4213916bc07a27b' // your token
+           );
+          });
+          $(document).ready(function(){	
+            $(".myig_popup").fancybox({
+              openEffect : 'fade',
+              closeEffect : 'fade'
+            });
+          })          
+        },
+        pageInit: function (e, page) {
+          // do something when page initialized
+        },
+      }
   },
   {
     path: '/catalog/',
@@ -91,8 +112,5 @@ routes = [
     },
   },
   // Default route (404 page). MUST BE THE LAST
-  {
-    path: '(.*)',
-    url: './pages/404.html',
-  },
+
 ];
