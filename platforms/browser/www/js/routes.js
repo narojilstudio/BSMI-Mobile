@@ -38,6 +38,28 @@ routes = [
     templateUrl: './pages/majalahload.html',
   },
   {
+    path: '/cabang/:cabangid/',
+    templateUrl: './pages/cabang.html',
+      on: {
+        pageAfterIn: function test (e, page) {
+          // do something after page gets into the view
+
+              $(document).ready(function(){
+                
+                // Example by className
+                $(".demo").htmlfromrss(
+                  limit = 1
+                );
+
+              });
+         
+        },
+        pageInit: function (e, page) {
+          // do something when page initialized
+        },
+      }
+  },
+  {
     path: '/photo/',
     url: './pages/photo.html',
       on: {

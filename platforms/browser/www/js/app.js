@@ -54,7 +54,7 @@ var catalogView = app.views.create('#view-catalog', {
 var settingsView = app.views.create('#view-settings', {
   url: '/settings/'
 });
-var settingsView = app.views.create('#view-info', {
+var infoView = app.views.create('#view-info', {
   url: '/info/'
 });
 
