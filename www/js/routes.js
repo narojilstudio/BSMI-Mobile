@@ -2,6 +2,24 @@ routes = [
   {
     path: '/',
     url: './index.html',
+      on: {
+        pageAfterIn: function test (e, page) {
+          // do something after page gets into the view
+
+              $(document).ready(function(){
+                
+                // Example by className
+                $(".demo").htmlfromrss(
+                  limit = 10
+                );
+
+              });
+         
+        },
+        pageInit: function (e, page) {
+          // do something when page initialized
+        },
+      }
   },
   {
     path: '/about/',
