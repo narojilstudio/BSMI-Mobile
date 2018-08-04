@@ -12,6 +12,14 @@ routes = [
     url: './pages/profile.html',
   },
   {
+    path: '/majalah/',
+    url: './pages/majalah.html',
+  },
+  {
+    path: '/majalahload/',
+    url: './pages/majalahload.html',
+  },
+  {
     path: '/photo/',
     url: './pages/photo.html',
       on: {
