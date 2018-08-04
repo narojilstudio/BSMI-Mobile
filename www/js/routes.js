@@ -34,8 +34,8 @@ routes = [
     url: './pages/majalah.html',
   },
   {
-    path: '/majalahload/',
-    url: './pages/majalahload.html',
+    path: '/majalahload/:majalahid/',
+    templateUrl: './pages/majalahload.html',
   },
   {
     path: '/photo/',
