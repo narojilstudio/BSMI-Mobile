@@ -56,10 +56,29 @@ routes = [
   {
     path: '/donasi/',
     url: './pages/donasi.html',
+      on: {
+        pageAfterIn: function test (e, page) {
+          // do something after page gets into the view
+
+          $(document).on("click", "#openBrowser", function() {
+              var url = $(this).attr('href');
+              window.open(url, "_blank", "location=yes");
+          })
+
+         
+        },
+        pageInit: function (e, page) {
+          // do something when page initialized
+        },
+      }
   },
   {
     path: '/video/',
     url: './pages/video.html',
+  },
+  {
+    path: '/chat/',
+    url: './pages/chat.html',
   },
   {
     path: '/majalahload/:majalahid/',
