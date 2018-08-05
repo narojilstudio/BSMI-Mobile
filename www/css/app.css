@@ -6,7 +6,7 @@
   display: none;
 }
 
-div[class*="col"] {
+.menuhome .row .col-25{
   background: #fff;
   text-align: center;
   color: #fff;
@@ -17,7 +17,22 @@ div[class*="col"] {
   font-size: 12px;
 }
 
+.donasi .row .col-50{
+  background: #fff;
+  text-align: center;
+  color: #fff;
+  border: 1px solid #ddd;
+  padding: 5px;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
 .myig_profile 
 {
 display:none;
+}
+
+.donasi
+{
+border-radius:0% 0% 0% 0%;
 }
