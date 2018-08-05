@@ -79,4 +79,3 @@ $$('#my-login-screen .login-button').on('click', function () {
 
 		});
 		
-
