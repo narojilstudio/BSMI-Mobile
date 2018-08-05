@@ -58,6 +58,10 @@ routes = [
     url: './pages/donasi.html',
   },
   {
+    path: '/video/',
+    url: './pages/video.html',
+  },
+  {
     path: '/majalahload/:majalahid/',
     templateUrl: './pages/majalahload.html',
   },
