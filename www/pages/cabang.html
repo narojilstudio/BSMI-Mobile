@@ -7,11 +7,11 @@
           <span class="ios-only">Back</span>
         </a>
       </div>
-      <div class="title">Cabang</div>
+      <div class="title">{{js 'return this.$route.params.cabangid'}}.bsmi.or.id</div>
     </div>
   </div>
   <div class="page-content">
     <!-- <iframe height="100%" src="https://drive.google.com/file/d/{{js 'return this.$route.params.majalahid'}}/preview" width="100%"></iframe> -->
-    <div class="demo" data-htmlfromrss="http://www.bsmijatim.org/feeds/posts/default?alt=rss">Loading</div>   
+    <div class="demo" data-htmlfromrss="http://feeds.feedburner.com/{{js 'return this.$route.params.feedid'}}">Loading</div>   
   </div>
 </div>

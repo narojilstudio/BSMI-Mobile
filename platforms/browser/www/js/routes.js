@@ -62,7 +62,7 @@ routes = [
     templateUrl: './pages/majalahload.html',
   },
   {
-    path: '/cabang/:cabangid/',
+    path: '/cabang/:cabangid/:feedid/',
     templateUrl: './pages/cabang.html',
       on: {
         pageAfterIn: function test (e, page) {
