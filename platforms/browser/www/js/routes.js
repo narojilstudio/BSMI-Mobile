@@ -12,8 +12,15 @@ routes = [
                 $(".demo").htmlfromrss(
                   limit = 10
                 );
-
+                
+              $(document).on("click", "#openBrowser", function() {
+                  var url = $(this).attr('href');
+                  window.open(url, "_blank", "location=yes");
+              })
+          
               });
+
+
          
         },
         pageInit: function (e, page) {
