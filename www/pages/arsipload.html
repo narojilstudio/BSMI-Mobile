@@ -1,0 +1,18 @@
+<div class="page" data-name="majalah">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Majalah</div>
+    </div>
+  </div>
+  <div class="page-content">
+    <!--<iframe height="100%" src="https://drive.google.com/file/d/{{js 'return this.$route.params.majalahid'}}/preview" width="100%"></iframe>
+    https://drive.google.com/embeddedfolderview?id=0B8duXQfBqGYYenZJTDZoSnQwNVU#list-->
+    <iframe height="100%" src="https://drive.google.com/embeddedfolderview?id={{js 'return this.$route.params.arsipid'}}#list" width="100%"></iframe>
+  </div>
+</div>

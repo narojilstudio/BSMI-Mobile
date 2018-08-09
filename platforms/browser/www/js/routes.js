@@ -92,6 +92,14 @@ routes = [
     templateUrl: './pages/majalahload.html',
   },
   {
+    path: '/arsip/',
+    url: './pages/arsip.html',
+  },
+  {
+    path: '/arsipload/:arsipid/',
+    templateUrl: './pages/arsipload.html',
+  },
+  {
     path: '/cabang/:cabangid/:feedid/',
     templateUrl: './pages/cabang.html',
       on: {
