@@ -96,6 +96,10 @@ routes = [
     url: './pages/arsip.html',
   },
   {
+    path: '/lombok/',
+    url: './pages/lombok.html',
+  },
+  {
     path: '/arsipload/:arsipid/',
     templateUrl: './pages/arsipload.html',
   },
