@@ -45,6 +45,8 @@ routes = [
 
             var player = videojs('example-video');
             player.play();
+            
+
          
         },
         pageInit: function (e, page) {
