@@ -167,6 +167,24 @@ routes = [
   {
     path: '/info/',
     url: './pages/info.html',
+      on: {
+        pageAfterIn: function test (e, page) {
+          // do something after page gets into the view
+
+          $(document).on("click", "#openBrowser", function() {
+              var url = $(this).attr('href');
+              window.open(url, "_blank", "location=yes");
+          })
+          $(document).on("click", "#inApp", function() {
+              var url = $(this).attr('href');
+              cordova.InAppBrowser.open(url, "_blank", "location=yes");
+          })
+         
+        },
+        pageInit: function (e, page) {
+          // do something when page initialized
+        },
+      }
   },
   // Page Loaders & Router
   {
