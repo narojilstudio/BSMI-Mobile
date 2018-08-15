@@ -39,7 +39,8 @@ $.fn.myig = function(g, h, j) {
             var d = '';
             $.each(c.data, function(i, a) {
                 var b = '';
-                b += (c.data[i].caption == null || c.data[i].caption == undefined ? Date(c.data[i].created_time) : c.data[i].caption.text + ' - ' + Date(c.data[i].created_time));
+                //b += (c.data[i].caption == null || c.data[i].caption == undefined ? Date(c.data[i].created_time) : c.data[i].caption.text + ' - ' + Date(c.data[i].created_time));
+                //b+=Date(c.data[i].created_time);
                 d += '<div class="user_gallery">';
                 d += '	<a href="' + c.data[i].images.standard_resolution.url.replace(/\\/, "") + '" class="myig_popup" rel="myig_popup" title="' + b + '">';
                 d += '		<img src="' + c.data[i].images.thumbnail.url.replace(/\\/, "") + '" alt="" title="' + b + '">';
