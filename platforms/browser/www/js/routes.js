@@ -175,6 +175,10 @@ routes = [
               var url = $(this).attr('href');
               window.open(url, "_blank", "location=yes");
           })
+          $(document).on("click", "#openBrowserA", function() {
+              var url = $(this).attr('href');
+              window.open(url, "_self", "location=yes");
+          })
           $(document).on("click", "#inApp", function() {
               var url = $(this).attr('href');
               cordova.InAppBrowser.open(url, "_blank", "location=yes");
