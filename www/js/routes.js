@@ -84,6 +84,18 @@ routes = [
   {
     path: '/video/',
     url: './pages/video.html',
+      on: {
+        pageAfterIn: function test (e, page) {
+          // do something after page gets into the view
+
+        onYouTubeIframeAPIReady() ;
+
+         
+        },
+        pageInit: function (e, page) {
+          // do something when page initialized
+        },
+      }
   },
   {
     path: '/chat/',

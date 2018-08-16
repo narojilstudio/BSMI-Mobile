@@ -27,9 +27,20 @@
   <script src="js/my-instagram-gallery.js"></script>
   <link type="text/css" rel="stylesheet" href="js/htmlfromrss.css" />
   <link type="text/css" rel="stylesheet" href="js/my-instagram-gallery.css" />
-		<link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"/>
-		<script src="js/jquery.fancybox.min.js"></script>
-      <link rel="stylesheet" href="css/app.css">
+	<link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"/>
+	<script src="js/jquery.fancybox.min.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <link href="css/mylist-player.css" rel="stylesheet">
+  <script src="js/mylist-player.js" defer></script>
+     <script type="text/javascript">
+        var playListID = ["PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs"];
+        var apiKey = "AIzaSyBMRyIdlgyAKIoKe9ptUZgejHZQB3RWumY";
+        var autoPlayNext = 1;
+        var showPlayerControls = 1;
+        var showVideoInfo = 0;
+        var showRelatedVideos = 0;
+        var showTitlesInList = 1;
+    </script>
 </head>
 <body class="color-theme-red">
   <div id="app">
@@ -157,7 +168,8 @@
               <div class="col-25"><a href="/photo/" class="item-content item-link"><img src="img/128x128/folder.png" width="100%"/><b>photo</b></a></div>
               <div class="col-25"><a href="http://bsmi.stream/" id="openBrowser" class="item-content item-link"><img src="img/128x128/calendar_empty.png" width="100%"/><b>bsmi tv</b></a></div>
               <div class="col-25"><a href="/bsmiradio/" class="item-content item-link"><img src="img/128x128/rss.png" width="100%"/><b>radio</b></a></div>
-              <div class="col-25"><a href="/profile/" class="item-content item-link"><img src="img/128x128/user.png" width="100%"/><b>profile</b></a></div>
+              
+              <div class="col-25"><a href="/video/" class="item-content item-link"><img src="img/128x128/refresh.png" width="100%"/><b>video</b></a></div>
             </div>
 
             
@@ -166,7 +178,7 @@
               <div class="accordion-item-toggle"><center><i class="f7-icons">chevron_down</i></center></div>
               <div class="accordion-item-content">
                 <div class="row">
-                <div class="col-25"><a href="/video/" class="item-content item-link"><img src="img/128x128/refresh.png" width="100%"/><b>video</b></a></div>
+                <div class="col-25"><a href="/profile/" class="item-content item-link"><img src="img/128x128/user.png" width="100%"/><b>profile</b></a></div>
                 <div class="col-25"><a href="/about/" class="item-content item-link"><img src="img/128x128/info.png" width="100%"/><b>about</b></a></div>
                 <div class="col-25"><a href="//" class="item-content item-link"><img src="img/128x128/comments.png" width="100%"/><b>chat</b></a></div>
                 <div class="col-25"><a href="//" class="item-content item-link"><img src="img/128x128/users.png" width="100%"/><b>relawan</b></a></div>
@@ -194,6 +206,7 @@
                   <div class="card-footer"><a href="https://kitabisa.com/gempalombokdarurat" id="openBrowser">Klik untuk <button class="col button button-fill color-blue">Donasi via KITABISA</button></a><center><a href="#" >Terkumpul<br>Rp 702.192</a><center></div>
                 </div>
             </div>
+            
             
             <div class="block">
             <img src="img/pedulilombok.jpg" width="100%"/>
