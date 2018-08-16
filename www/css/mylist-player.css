@@ -72,7 +72,8 @@ each thumbnail image in the playlist */
     position: fixed;
     top:0px;
     width: 100%;
-    height: 100%;
+    height: 80%;
+
 }
 
 .show-mlvp {
@@ -125,7 +126,7 @@ each thumbnail image in the playlist */
 	height:130px;
 	/*background:yellow;*/
 	float:left;
-	background:url(img/logo512.png);
+	background-image:url(img/logo512.png);
 }
 
 .thumb img {
