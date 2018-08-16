@@ -59,7 +59,8 @@ each thumbnail image in the playlist */
     /*position: fixed;*/
     padding-bottom: 52%;
     padding-top: 38px; 
-    height: 0; 
+    height: 100%;
+    width:100%; 
     display: none;
     /*visibility: hidden;*/
     /*z-index: 998;*/
@@ -69,9 +70,9 @@ each thumbnail image in the playlist */
 .mlvp-container object,
 .mlvp-container embed {
     position: fixed;
-    top:90px;
-    width: 90%;
-    height: 50%;
+    top:0px;
+    width: 100%;
+    height: 100%;
 }
 
 .show-mlvp {
@@ -121,8 +122,10 @@ each thumbnail image in the playlist */
 	overflow:hidden;
 	
 	width:150px;
+	height:130px;
 	/*background:yellow;*/
 	float:left;
+	background:url(img/logo512.png);
 }
 
 .thumb img {
@@ -216,7 +219,7 @@ each thumbnail image in the playlist */
   position: fixed;
   padding: 0;
   right: 24px;
-  top: 50px;
+  top: 70px;
   z-index:999;
   cursor: pointer;
 }
