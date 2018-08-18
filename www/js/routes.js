@@ -148,7 +148,7 @@ routes = [
           $(document).ready(function(){
            $(".demoig").myig(
             ins_id = 2083561128, // your user_id
-            ins_count = 40, // Count of media to return
+            ins_count = 24, // Count of media to return
             ins_token = '2083561128.d8d1d50.9283b2661f734328b4213916bc07a27b' // your token
            );
           });
