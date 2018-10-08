@@ -22,7 +22,7 @@
                 if (e < f) {
                     var b = a.channel.item.pubDate,
                         desk = a.channel.item.description;
-                    s += '<li><div class="title"><a href="' + a.channel.item.link + '" target="_BLANK" >' + a.channel.item.title + '</a></div>';
+                    s += '<li><div class="title"><a class="openBrowser" href="' + a.channel.item.link + '" target="_BLANK" >' + a.channel.item.title + '</a></div>';
                     s += (b != null && b != undefined ? '<div class="date">' + relative_time(b) + '</div>' : '');
                     s += (desk != null && desk != undefined ? '<div class="post">' + desk.replace('align="left"', '') + '</div>' : '')
                 }
