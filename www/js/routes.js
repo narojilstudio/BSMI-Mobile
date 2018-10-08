@@ -118,7 +118,7 @@ routes = [
     templateUrl: './pages/arsipload.html',
   },
   {
-    path: '/cabang/:cabangid/:feedid/',
+    path: '/cabang/:cabangssl/:cabangid/:feedid/',
     templateUrl: './pages/cabang.html',
       on: {
         pageAfterIn: function test (e, page) {

@@ -8,11 +8,11 @@
         </a>
       </div>
       <img class="logotitle" src="img/logo50bulat.png"/>
-      <div class="title">{{js 'return this.$route.params.cabangid'}}.bsmi.or.id</div>
+      <div class="title">{{js 'return this.$route.params.cabangid'}}</div>
     </div>
   </div>
   <div class="page-content">
-    <!-- <iframe height="100%" src="https://drive.google.com/file/d/{{js 'return this.$route.params.majalahid'}}/preview" width="100%"></iframe> -->
-    <div class="demo" data-htmlfromrss="http://feeds.feedburner.com/{{js 'return this.$route.params.feedid'}}">Loading</div>   
+    <iframe height="100%" src="{{js 'return this.$route.params.cabangssl'}}://{{js 'return this.$route.params.cabangid'}}" width="100%"></iframe>
+    <!--<div class="demo" data-htmlfromrss="http://feeds.feedburner.com/{{js 'return this.$route.params.feedid'}}">Loading</div> -->   
   </div>
 </div>
