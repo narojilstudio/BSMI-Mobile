@@ -89,7 +89,7 @@ $(document).ready(function(){
       date_time('timepanelmasehi');
       date_time_hijri('timepanelhijri');
       
-      $.getJSON('http://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/autogempa.xml&callback=?', function(data){
+      $.getJSON('https://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/autogempa.xml&callback=?', function(data){
         $('#gempaterkini').html(data.contents);
       });
 });
