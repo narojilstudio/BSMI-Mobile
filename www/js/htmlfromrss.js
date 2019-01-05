@@ -8,27 +8,38 @@
  $.fn.htmlfromrss = function(f) {
     $(this).each(function(i, a) {
         $(this).html('<div class="htmlfromrss"><ul id="htmlfromrss' + i + '"></ul></div>');
-        rsstohtml('SELECT channel.item FROM feednormalizer WHERE url ="' + $(this).data('htmlfromrss') + '"', i)
+        rsstohtml($(this).data('htmlfromrss'), i)
     });
 
     function rsstohtml(d, i) {
-        $.ajax({
-            url: 'https://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent(d) + '&format=json&diagnostics=false&callback=?',
-            crossDomain: true,
-            dataType: 'json'
-        }).done(function(c) {
-            var s = "";
-            $.each(c.query.results.rss, function(e, a) {
-                if (e < f) {
-                    var b = a.channel.item.pubDate,
-                        desk = a.channel.item.description;
-                    s += '<li><div class="title"><a class="openBrowser" href="' + a.channel.item.link + '" target="_BLANK" >' + a.channel.item.title + '</a></div>';
-                    s += (b != null && b != undefined ? '<div class="date">' + relative_time(b) + '</div>' : '');
-                    s += (desk != null && desk != undefined ? '<div class="post">' + desk.replace('align="left"', '') + '</div>' : '')
-                }
-            });
-            $('.htmlfromrss ul#htmlfromrss' + i).html(s)
-        })
+	//feed to parse
+      var feed = "https://api.allorigins.ml/get?url="+d;
+	
+      $.ajax(feed, {
+        dataType:"json",
+        success:function(data) {
+          xmlDoc = $.parseXML( data.contents ),
+          $xml = $( xmlDoc ),
+          //$("#div1").append($xml.text());
+          $($xml).find("item").each(function () { // or "item" or whatever suits your feed
+            var el = $(this);
+            //console.log("------------------------");
+            //console.log("title      : " + el.find("title").text());
+            //console.log("link       : " + el.find("link").text());
+            //console.log("date       : " + el.find("pubDate").text());
+            //console.log("description: " + el.find("description").text());
+            $title = el.find("title").text();
+            $link = el.find("link").text();
+            $pubDate = el.find("pubDate").text();
+            $description = el.find("description").text();
+            $('.htmlfromrss ul#htmlfromrss' + i).append("<div class='card'><div class='card-header'><a class='openBrowser' target='_blank' href='"+$link+"' >"+$title+"</a></div><div class='card-footer'>"+relative_time($pubDate)+"</div><div class='card-content card-content-padding'>"+$description+"</div></div>");
+            //$('.htmlfromrss ul#htmlfromrss' + i).html(s)
+          });
+      
+
+        }	
+      });
+	
     }
 
     function relative_time(x) {
@@ -47,19 +58,19 @@
         d = (d < 2) ? 2 : d;
         var r = '';
         if (d < 60) {
-            r = 'Just now'
+            r = 'Baru saja dipublikasikan'
         } else if (d < 120) {
             r = 'a min'
         } else if (d < (45 * 60)) {
-            r = (parseInt(d / 60, 10)).toString() + ' mins ago'
+            r = (parseInt(d / 60, 10)).toString() + ' menit yang lalu'
         } else if (d < (2 * 60 * 60)) {
             r = 'an hr'
         } else if (d < (24 * 60 * 60)) {
-            r = '' + (parseInt(d / 3600, 10)).toString() + ' hrs ago'
+            r = '' + (parseInt(d / 3600, 10)).toString() + ' jam yang lalu'
         } else if (d < (48 * 60 * 60)) {
             r = 'a day'
         } else {
-            r = (parseInt(d / 86400, 10)).toString() + ' days ago'
+            r = (parseInt(d / 86400, 10)).toString() + ' hari yang lalu'
         }
         return (r.match('NaN') ? x : r)
     }
