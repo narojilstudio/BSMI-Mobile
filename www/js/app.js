@@ -75,6 +75,7 @@ $$('#my-login-screen .login-button').on('click', function () {
 });
 
 $(document).ready(function(){
+       $.ajaxSetup({ cache: false });
 			
 			// Example by className
 			$(".demo").htmlfromrss(
@@ -88,7 +89,23 @@ $(document).ready(function(){
       
       date_time('timepanelmasehi');
       date_time_hijri('timepanelhijri');
-      
+
+
+      $.getJSON('https://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/lastgempadirasakan.xml&callback=?', function(data){
+        //$('#gempaterkini').html(data.contents);
+        xmlDoc = $.parseXML( data.contents ),
+        $xml = $( xmlDoc ),
+        $tanggal = $xml.find( "Tanggal" ).text();
+        $jam = $xml.find( "Jam" ).text();
+        $keterangan = $xml.find( "Keterangan" ).text();
+        $magnitude = $xml.find( "Magnitude" ).text();
+        $kedalaman = $xml.find( "Kedalaman" ).text();
+        $dirasakan = $xml.find( "Dirasakan" ).text();
+        $lintang = $xml.find( "Lintang" ).text();
+        $bujur = $xml.find( "Bujur" ).text();
+        $( "#gempadirasakan" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+"</br>Koordinat : "+$lintang+ " - "+$bujur+"</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Keterangan : "+$keterangan+"</br>Dirasakan : "+$dirasakan );
+      });
+            
       $.getJSON('https://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/autogempa.xml&callback=?', function(data){
         //$('#gempaterkini').html(data.contents);
         xmlDoc = $.parseXML( data.contents ),
