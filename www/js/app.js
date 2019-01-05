@@ -89,23 +89,8 @@ $(document).ready(function(){
       date_time('timepanelmasehi');
       date_time_hijri('timepanelhijri');
       
-      $("#gempaterkini").append("<ul></ul>");
-      $.ajax({
-        type: "GET",
-        url: "http://data.bmkg.go.id/autogempa.xml",
-        dataType: "xml",
-        success: function(xml){
-        $( "#gempaterkini" ).append( "Tanggal : " + $(xml).find('Tanggal').text() +"</br>");
-        $( "#gempaterkini" ).append( "Jam : " + $(xml).find('Jam').text() +"</br>");
-        $( "#gempaterkini" ).append( "Lokasi : " + $(xml).find('Wilayah1').text() +"</br>");
-        $( "#gempaterkini" ).append( "Koordinat : " + $(xml).find('coordinates').text() +"</br>");
-        $( "#gempaterkini" ).append( "Magnitude : " + $(xml).find('Magnitude').text() +"</br>");
-        $( "#gempaterkini" ).append( "Kedalaman : " + $(xml).find('Kedalaman').text() +"</br>");
-        $( "#gempaterkini" ).append( "Potensi : " + $(xml).find('Potensi').text() +"</br>");
-      },
-      error: function() {
-        alert("An error occurred while processing XML file.");
-      }
+      $.getJSON('http://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/autogempa.xml&callback=?', function(data){
+        $('#gempaterkini').html(data.contents);
       });
 });
 		
