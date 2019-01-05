@@ -90,7 +90,17 @@ $(document).ready(function(){
       date_time_hijri('timepanelhijri');
       
       $.getJSON('https://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/autogempa.xml&callback=?', function(data){
-        $('#gempaterkini').html(data.contents);
+        //$('#gempaterkini').html(data.contents);
+        xmlDoc = $.parseXML( data.contents ),
+        $xml = $( xmlDoc ),
+        $tanggal = $xml.find( "Tanggal" ).text();
+        $jam = $xml.find( "Jam" ).text();
+        $lokasi = $xml.find( "Wilayah1" ).text();
+        $magnitude = $xml.find( "Magnitude" ).text();
+        $kedalaman = $xml.find( "Kedalaman" ).text();
+        $potensi = $xml.find( "Potensi" ).text();
+        $koordinat = $xml.find( "coordinates" ).text();
+        $( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
       });
 });
 		
