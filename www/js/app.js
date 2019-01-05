@@ -104,7 +104,19 @@ $(document).ready(function(){
         $lintang = $xml.find( "Lintang" ).text();
         $bujur = $xml.find( "Bujur" ).text();
         $( "#gempadirasakan" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+"</br>Koordinat : "+$lintang+ " - "+$bujur+"</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Keterangan : "+$keterangan+"</br>Dirasakan : "+$dirasakan );
+        // Create the map
+        var map = L.map('mapgempadirasakan').setView([-8.32, 116.15], 10);
+        // Set up the OSM layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+          id: 'mapbox.streets'
+        }).addTo(map);
+        L.marker([-8.32, 116.15]).addTo(map)
+          .bindPopup('Gempa bumi dirasakan')
+          .openPopup();          
       });
+    
             
       $.getJSON('https://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/autogempa.xml&callback=?', function(data){
         //$('#gempaterkini').html(data.contents);
@@ -118,6 +130,17 @@ $(document).ready(function(){
         $potensi = $xml.find( "Potensi" ).text();
         $koordinat = $xml.find( "coordinates" ).text();
         $( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
+        // Create the map
+        var map = L.map('mapgempaterkini').setView([-8.32, 116.15], 10);
+        // Set up the OSM layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+          id: 'mapbox.streets'
+        }).addTo(map);
+        L.marker([-8.32, 116.15]).addTo(map)
+          .bindPopup('Gempa bumi terkini M &ge; 5,0')
+          .openPopup();        
       });
 });
 		
