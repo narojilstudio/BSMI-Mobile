@@ -1,3 +1,6 @@
+$mapboxkey='pk.eyJ1IjoibmFyb2ppbCIsImEiOiJjanFqa3c5NGg2Y2drNDJ1bDZ5cXoyNjJkIn0.OSNBp6nQ7K1w9fHM8yc8Fw';
+$mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+$mapboxkey;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function date_time(id)
 {
 date = new Date;
@@ -156,7 +159,7 @@ function gempadirasakan()
           // Create the map
           var map = L.map('mapgempadirasakan').setView([-$lintang, $bujur], 10);
           // Set up the OSM layer
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          L.tileLayer($mapboxurl, {
             maxZoom: 18,
             attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+" | XY : -"+$lintang+ " LS , "+$bujur+" BT | M : "+$magnitude+" | Ked : "+$kedalaman+" | Ket : "+$keterangan+" | Dirasakan : "+$dirasakan,
             id: 'mapbox.streets'
@@ -190,7 +193,7 @@ function gempadirasakanfull()
           // Create the map
           var map = L.map('mapgempadirasakanfull').setView([-$lintang, $bujur], 10);
           // Set up the OSM layer
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          L.tileLayer($mapboxurl, {
             maxZoom: 18,
             attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+" | XY : -"+$lintang+ " LS , "+$bujur+" BT | M : "+$magnitude+" | Ked : "+$kedalaman+" | Ket : "+$keterangan+" | Dirasakan : "+$dirasakan,
             id: 'mapbox.streets'
@@ -225,7 +228,7 @@ function gempaterkini()
           // Create the map
           var map = L.map('mapgempaterkini').setView([$lintang, $bujur], 10);
           // Set up the OSM layer
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          L.tileLayer($mapboxurl, {
             maxZoom: 18,
             attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | XY : "+$lintang+ " LS , "+$bujur+" BT | M : "+$magnitude+" | Ked : "+$kedalaman+" | Potensi : "+$potensi,
             id: 'mapbox.streets'
@@ -260,7 +263,7 @@ function gempaterkinifull()
           // Create the map
           var map = L.map('mapgempaterkinifull').setView([$lintang, $bujur], 10);
           // Set up the OSM layer
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          L.tileLayer($mapboxurl, {
             maxZoom: 18,
             attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | XY : "+$lintang+ " LS , "+$bujur+" BT | M : "+$magnitude+" | Ked : "+$kedalaman+" | Potensi : "+$potensi,
             id: 'mapbox.streets'
