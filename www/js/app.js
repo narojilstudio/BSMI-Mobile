@@ -58,6 +58,10 @@ var infoView = app.views.create('#view-info', {
   url: '/info/'
 });
 
+var menuView = app.views.create('#view-menu', {
+  url: '/menu/'
+});
+
 // Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {
   var username = $$('#my-login-screen [name="username"]').val();
@@ -70,16 +74,20 @@ $$('#my-login-screen .login-button').on('click', function () {
   app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
 });
 
-		$(document).ready(function(){
+$(document).ready(function(){
 			
 			// Example by className
 			$(".demo").htmlfromrss(
 				limit = 10
 			);
-              $(document).on("click", "#openBrowser", function() {
-                  var url = $(this).attr('href');
-                  window.open(url, "_blank", "location=yes");
-              })
+			
+      $(document).on("click", "#openBrowser", function() {
+          var url = $(this).attr('href');
+          window.open(url, "_blank", "location=yes");
+      })
+      
+      date_time('timepanelmasehi');
+      date_time_hijri('timepanelhijri');
 
-		});
+});
 		

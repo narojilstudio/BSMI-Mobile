@@ -110,6 +110,12 @@
             <i class="icon material-icons md-only">home</i>
             <span class="tabbar-label">Home</span>
           </a>
+          <!-- <a href="#view-data" class="tab-link">
+            <i class="icon f7-icons ios-only">favorites</i>
+            <i class="icon f7-icons ios-only icon-ios-fill">favorites_fill</i>
+            <i class="icon material-icons md-only">favorites</i>
+            <span class="tabbar-label">Data</span>
+          </a> -->
           <!-- <a href="#view-catalog" class="tab-link">
             <i class="icon f7-icons ios-only">list</i>
             <i class="icon f7-icons ios-only icon-ios-fill">list_fill</i>
@@ -121,13 +127,19 @@
             <i class="icon f7-icons ios-only icon-ios-fill">settings_fill</i>
             <i class="icon material-icons md-only">settings</i>
             <span class="tabbar-label">Settings</span>
-          </a> 
+          </a> -->
+           <a href="#view-menu" class="tab-link">
+            <i class="icon f7-icons ios-only">list</i>
+            <i class="icon f7-icons ios-only icon-ios-fill">list_fill</i>
+            <i class="icon material-icons md-only">list</i>
+            <span class="tabbar-label">Menu</span> 
+          </a>          
            <a href="#view-info" class="tab-link">
             <i class="icon f7-icons ios-only">settings</i>
             <i class="icon f7-icons ios-only icon-ios-fill">settings_fill</i>
             <i class="icon material-icons md-only">settings</i>
             <span class="tabbar-label">Info</span> 
-          </a> -->
+          </a> 
         </div>
       </div>
       <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
@@ -156,73 +168,22 @@
 
           <!-- Scrollable page content-->
           <div class="page-content">
-            <img src="img/palu.jpg" width="100%"/>
-            <div class="menuhome block"><!-- block1 -->
-                    <div class="row">
-                      <!-- Each "cell" has col-[width in percents] class -->
-                      <div class="col-25"><a href="/donasi/" class="item-content item-link"><img src="img/128x128/heart.png" width="100%"/><b>donasi</b></a></div>
-                      <div class="col-25"><a href="/lombok/" class="item-content item-link"><img src="img/128x128/warning.png" width="100%"/><b>lombok</b></a></div>
-                      <div class="col-25"><a href="/arsip/" class="item-content item-link"><img src="img/128x128/attachment.png" width="100%"/><b>arsip</b></a></div>
-                      <div class="col-25"><a href="/majalah/" class="item-content item-link"><img src="img/128x128/full_page.png" width="100%"/><b>majalah</b></a></div>
-                      
-                    </div>
-
-                    <div class="row"> 
-                      <div class="col-25"><a href="/video/" class="item-content item-link"><img src="img/128x128/refresh.png" width="100%"/><b>video</b></a></div>
-                      <div class="col-25"><a href="/photo/" class="item-content item-link"><img src="img/128x128/folder.png" width="100%"/><b>photo</b></a></div>
-                      <div class="col-25"><a href="http://bsmi.stream/" id="openBrowser" class="item-content item-link"><img src="img/128x128/calendar_empty.png" width="100%"/><b>bsmi tv</b></a></div>
-                      <div class="col-25"><a href="/bsmiradio/" class="item-content item-link"><img src="img/128x128/rss.png" width="100%"/><b>bsmi radio</b></a></div>
-                                    
-                    </div>
-            
-              <div class="accordion-list">
-                <div class="accordion-item">
-                  <div class="accordion-item-toggle"><button class="col button button-fill color-blue">MORE</button></div>
-                  <div class="accordion-item-content">
-                  
-                  
-                    <div class="row">
-                    <div class="col-25"><a href="/profile/" class="item-content item-link"><img src="img/128x128/user.png" width="100%"/><b>profile</b></a></div>
-                    <div class="col-25"><a href="/about/" class="item-content item-link"><img src="img/128x128/info.png" width="100%"/><b>about</b></a></div>
-                    <div class="col-25"><a href="//" class="item-content item-link"><img src="img/128x128/comments.png" width="100%"/><b>chat</b></a></div>
-                    <div class="col-25"><a href="//" class="item-content item-link"><img src="img/128x128/users.png" width="100%"/><b>relawan</b></a></div>
-                    </div>
-                    
-
-                    <!--<div class="row"> 
-                    <div class="col-25"><a href="/bsmitv/" class="item-content item-link"><img src="img/128x128/calendar_empty.png" width="100%"/><b>bsmi tv</b></a></div>               
-                    <div class="col-25"><a href="//" class="item-content item-link"><img src="img/128x128/comments.png" width="100%"/><b>chat</b></a></div>
-                    <div class="col-25"><a href="//" class="item-content item-link"><img src="img/128x128/tag_blue.png" width="100%"/><b>store</b></a></div>
-                    <div class="col-25"><a href="//" class="item-content item-link"><img src="img/128x128/users.png" width="100%"/><b>relawan</b></a></div>
-                    
-                    <div class="col-25"><a href="//" class="item-content item-link"><img src="img/128x128/mail.png" width="100%"/><b>inbox</b></a></div>
-                    </div>-->
-                  </div>
+            <div class="block">
+              <!-- <img src="img/palu.jpg" width="100%"/> -->
+              <div class="chip">
+                <div class="chip-label">
+                  <span id="timepanelmasehi"></span>
+                  /
+                  <span id="timepanelhijri"></span> 
                 </div>
-                <!-- <div class="accordion-item">
-                  <div class="accordion-item-toggle">
-                  <button class="col button button-fill color-blue">DONASI GEMPA LOMBOK</button>
-                  </div>
-                  <div class="accordion-item-content">
-                    <div class="card home-card-header-pic">
-                      <div style="background-image:url(img/gempa-lombok.jpg)" class="card-header align-items-flex-end">DARURAT GEMPA LOMBOK</div>
-                      <div class="card-content card-content-padding">
-                        <p class="date">Mulai dengan donasi 10.000 lakukan langkah kebaikan anda</p>
-                        <p>Minggu (5/8) pukul 18.46 WIB, gempa 7.0 (SR) kembali mengguncang Lombok! Saudara Kita di Lombok Butuh Bantuan Anda!</p>
-                      </div>
-                      <div class="card-footer"><a href="https://api.whatsapp.com/send?phone=6289656858371&text=Assalamualaikum%20!%20Pak%20Saya%20ingin%20berdonasi%20untuk%20korban%20gempa%20Lombok.%20Kemana%20saya%20harus%20transfer%20%3F%20Wassalamualaikum" id="openBrowser">Klik untuk <button class="col button button-fill color-green">Donasi via WA</button></a><center><a href="#" >Terkumpul<br>Rp 719.794.582</a><center></div>
-                      <div class="card-footer"><a href="https://kitabisa.com/gempalombokdarurat" id="openBrowser">Klik untuk <button class="col button button-fill color-blue">Donasi via KITABISA</button></a><center><a href="#" >Terkumpul<br>Rp 902.766</a><center></div>
-                    </div>                  
-                  </div>
-                </div><!-- accordion-item --> 
-              </div> <!-- accordion-list -->
-
-            </div><!-- block1 -->
-                
-                   
-            <!-- <div class="demo" data-htmlfromrss="http://www.bsmijatim.org/feeds/posts/default?alt=rss"></div> -->
-
-          </div>
+              </div>
+              <div class="card">
+                <div class="card-content card-content-padding"><b>Assalamu'alaikum</b></br>Selamat datang di BSMI Mobile</br></br>Nikmati aplikasi BSMI Mobile sebagai pendamping dalam keseharianmu. Tebarkan kebaikan setiap saat ke seluruh penjuru alam semesta. Selamatkan satu jiwa sambung seribu asa. Care for life.</div>
+              </div>     
+                     
+              <!-- <div class="demo" data-htmlfromrss="http://www.bsmijatim.org/feeds/posts/default?alt=rss"></div> -->
+            </div> <!-- block -->
+          </div> <!-- class page-content -->
         </div>
       </div>
 
@@ -234,6 +195,9 @@
       <!-- Settings View -->
       <div id="view-settings" class="view tab">
         <!-- Settings page will be loaded here dynamically from /settings/ route -->
+      </div>
+      <div id="view-menu" class="view tab">
+        <!-- info page will be loaded here dynamically from /settings/ route -->
       </div>
       <div id="view-info" class="view tab">
         <!-- info page will be loaded here dynamically from /settings/ route -->
@@ -328,5 +292,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
 
   <!-- Your custom app scripts -->
   <script src="js/app.js"></script>
+  <script src="js/custom.js"></script>
 </body>
 </html>

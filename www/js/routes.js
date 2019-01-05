@@ -182,6 +182,10 @@ routes = [
     url: './pages/settings.html',
   },
   {
+    path: '/menu/',
+    url: './pages/menu.html',
+  },
+  {
     path: '/info/',
     url: './pages/info.html',
       on: {
