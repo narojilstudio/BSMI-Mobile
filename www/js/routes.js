@@ -186,6 +186,30 @@ routes = [
     url: './pages/menu.html',
   },
   {
+    path: '/gempadirasakan/',
+    url: './pages/gempadirasakan.html',
+    on: {
+      pageAfterIn: function (e, page) {
+        gempadirasakanfull();
+      },
+      pageInit: function (e, page) {
+        
+      },
+    }
+  },
+  {
+    path: '/gempaterkini/',
+    url: './pages/gempaterkini.html',
+    on: {
+      pageAfterIn: function (e, page) {
+        gempaterkinifull();
+      },
+      pageInit: function (e, page) {
+        
+      },
+    }
+  },
+  {
     path: '/info/',
     url: './pages/info.html',
       on: {
