@@ -34,6 +34,7 @@
             $description = el.find("description").text();
             $('.htmlfromrss ul#htmlfromrss' + i).append("<div class='card'><div class='card-header'><a class='openBrowser' target='_blank' href='"+$link+"' >"+$title+"</a></div><div class='card-footer'>"+relative_time($pubDate)+"</div><div class='card-content card-content-padding'>"+$description+"</div></div>");
             //$('.htmlfromrss ul#htmlfromrss' + i).html(s)
+            $('.htmlfromrss ul#htmlfromrss' + i).find('img').each(function(n,image){var image = $(image); image.attr('width','80%');image.attr('height','auto');});
           });
       
 
