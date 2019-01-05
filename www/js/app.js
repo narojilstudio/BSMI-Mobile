@@ -107,13 +107,13 @@ $(document).ready(function(){
           $dirasakan = $xml.find( "Dirasakan" ).text();
           $lintang = $xml.find( "Lintang" ).text();$lintang = $lintang.split(" ");$lintang = $lintang[0];
           $bujur = $xml.find( "Bujur" ).text();$bujur = $bujur.split(" ");$bujur = $bujur[0];
-          $( "#gempadirasakan" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+"</br>Koordinat : "+$lintang+ "LS - "+$bujur+" BT</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Keterangan : "+$keterangan+"</br>Dirasakan : "+$dirasakan );
+          //$( "#gempadirasakan" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+"</br>Koordinat : "+$lintang+ "LS - "+$bujur+" BT</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Keterangan : "+$keterangan+"</br>Dirasakan : "+$dirasakan );
           // Create the map
           var map = L.map('mapgempadirasakan').setView([-$lintang, $bujur], 10);
           // Set up the OSM layer
           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+" | XY : "+$lintang+ "LS - "+$bujur+" BT | M : "+$magnitude+" | Ked : "+$kedalaman+" | Ket : "+$keterangan+" | Dirasakan : "+$dirasakan,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
@@ -139,13 +139,13 @@ $(document).ready(function(){
           $koordinat = $xml.find( "coordinates" ).text();
           $lintang = $koordinat.split(",");$lintang = $lintang[1];
           $bujur = $koordinat.split(",");$bujur = $bujur[0];
-          $( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
+          //$( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
           // Create the map
           var map = L.map('mapgempaterkini').setView([$lintang, $bujur], 10);
           // Set up the OSM layer
           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | XY : "+$koordinat+ " | M : "+$magnitude+" | Ked : "+$kedalaman+" | Potensi : "+$potensi,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
