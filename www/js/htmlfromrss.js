@@ -1,13 +1,8 @@
-/*********************************************************************
- * #### jQuery htmlfromrss.js V.0.001 ####
- * Coded by Ican Bachors 2016.
- * http://ibacor.com/labs/htmlfromrssjs
- * Updates will be posted to this site.
- *********************************************************************/
+
  
  $.fn.htmlfromrss = function(f) {
     $(this).each(function(i, a) {
-        $(this).html('<div class="htmlfromrss"><ul id="htmlfromrss' + i + '"></ul></div>');
+        $(this).html('<div class="htmlfromrss"><ul id="htmlfromrss' + i + '"></ul></div><div class="htmlfromrssloading' + i + '">Loading ...</div>');
         rsstohtml($(this).data('htmlfromrss'), i)
     });
 
@@ -20,20 +15,14 @@
         success:function(data) {
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),
-          //$("#div1").append($xml.text());
-          $($xml).find("item").each(function () { // or "item" or whatever suits your feed
+          $($xml).find("item").each(function () { 
             var el = $(this);
-            //console.log("------------------------");
-            //console.log("title      : " + el.find("title").text());
-            //console.log("link       : " + el.find("link").text());
-            //console.log("date       : " + el.find("pubDate").text());
-            //console.log("description: " + el.find("description").text());
             $title = el.find("title").text();
             $link = el.find("link").text();
             $pubDate = el.find("pubDate").text();
             $description = el.find("description").text();
             $('.htmlfromrss ul#htmlfromrss' + i).append("<div class='card'><div class='card-header'><a class='openBrowser' target='_blank' href='"+$link+"' >"+$title+"</a></div><div class='card-footer'>"+relative_time($pubDate)+"</div><div class='card-content card-content-padding'>"+$description+"</div></div>");
-            //$('.htmlfromrss ul#htmlfromrss' + i).html(s)
+            $('.htmlfromrssloading' + i).html('');
             $('.htmlfromrss ul#htmlfromrss' + i).find('img').each(function(n,image){var image = $(image); image.attr('width','80%');image.attr('height','auto');});
           });
       
@@ -61,15 +50,15 @@
         if (d < 60) {
             r = 'Baru saja dipublikasikan'
         } else if (d < 120) {
-            r = 'a min'
+            r = '1 menit yang lalu'
         } else if (d < (45 * 60)) {
             r = (parseInt(d / 60, 10)).toString() + ' menit yang lalu'
         } else if (d < (2 * 60 * 60)) {
-            r = 'an hr'
+            r = '1 jam yang lalu'
         } else if (d < (24 * 60 * 60)) {
             r = '' + (parseInt(d / 3600, 10)).toString() + ' jam yang lalu'
         } else if (d < (48 * 60 * 60)) {
-            r = 'a day'
+            r = '1 hari yang lalu'
         } else {
             r = (parseInt(d / 86400, 10)).toString() + ' hari yang lalu'
         }
