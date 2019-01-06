@@ -131,7 +131,7 @@ routes = [
                   limit = 10
                 );
                 
-                openBrowser2();
+                openBrowser();
               });
          
         },
