@@ -157,7 +157,7 @@ function gempadirasakan()
           $bujur = $xml.find( "Bujur" ).text();$bujur = $bujur.split(" ");$bujur = $bujur[0];
           //$( "#gempadirasakan" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+"</br>Koordinat : "+$lintang+ "LS - "+$bujur+" BT</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Keterangan : "+$keterangan+"</br>Dirasakan : "+$dirasakan );
           // Create the map
-          var map = L.map('mapgempadirasakan').setView([-$lintang, $bujur], 10);
+          var map = L.map('mapgempadirasakan').setView([-$lintang, $bujur], 7);
           // Set up the OSM layer
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
@@ -226,7 +226,7 @@ function gempaterkini()
           $bujur = $koordinat.split(",");$bujur = $bujur[0];
           //$( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
           // Create the map
-          var map = L.map('mapgempaterkini').setView([$lintang, $bujur], 10);
+          var map = L.map('mapgempaterkini').setView([$lintang, $bujur], 7);
           // Set up the OSM layer
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
@@ -275,7 +275,63 @@ function gempaterkinifull()
       });     
 }
 ////////////////////////////////////////////////////////
-function test1()
+function test()
 {
-alert();
+alert('test');
+}
+////////////////////////////////////////////////////
+function openBrowser()
+{
+                $(document).on("click", ".openBrowser", function() {
+                    var url = $(this).attr('href');
+                    window.open(url, "_blank", "location=yes");
+                })
+}
+/////////////////////////////////////////////////////////
+function openBrowser1()
+{ 
+    // Open dynamic popup
+    $(document).on("click", ".openBrowser", function() {
+      var url = $(this).attr('href');
+      var dynamicPopup = app.popup.create({
+        content: '<div class="popup"><div class="block"><p><a href="#" class="link popup-close">Close me</a></p></div>'+
+                    '<iframe src="'+url+'" width="100%" height="100%"></iframe>'+
+                      '<p>Popup created dynamically.'+url+'</p>'+
+                      ''+
+                    ''+
+                  '</div>',
+        // Events
+
+      });      
+      dynamicPopup.open();
+    });
+}
+///////////////////////////////////////////////////////////
+function openBrowser2()
+{ 
+    // Open dynamic popup
+    $(document).on("click", ".openBrowser", function() {
+      var url = $(this).attr('href');
+      var dynamicPopup = app.popup.create({
+        content: '<div class="popup"><div class="block"><p><a href="#" class="link popup-close">Close me</a></p></div>'+
+                    '<div class="page-content"><div id="datapopup"><center>Loading ...</center></div></div>'+
+                      '<p>Popup created dynamically.'+url+'</p>'+
+                      ''+
+                    ''+
+                  '</div>',
+        // Events
+
+      });      
+      dynamicPopup.open();
+      
+      var feed = "https://api.allorigins.ml/get?url="+url;
+	
+      $.ajax(feed, {
+        dataType:"json",
+        success:function(data) {
+          $("#datapopup").html(data.contents);
+        }	
+      });
+	      
+    });
 }
