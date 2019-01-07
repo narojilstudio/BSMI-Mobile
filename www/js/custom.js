@@ -224,7 +224,7 @@ function gempadirasakanfull()
           $bujur = $xml.find( "Bujur" ).text();$bujur = $bujur.split(" ");$bujur = $bujur[0];
           //$( "#gempadirasakan" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+"</br>Koordinat : "+$lintang+ "LS - "+$bujur+" BT</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Keterangan : "+$keterangan+"</br>Dirasakan : "+$dirasakan );
           // Create the map
-          var map = L.map('mapgempadirasakanfull').setView([-$lintang, $bujur], 10);
+          var map = L.map('mapgempadirasakanfull').setView([-$lintang, $bujur], 7);
           // Set up the OSM layer
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
@@ -294,7 +294,7 @@ function gempaterkinifull()
           $bujur = $koordinat.split(",");$bujur = $bujur[0];
           //$( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
           // Create the map
-          var map = L.map('mapgempaterkinifull').setView([$lintang, $bujur], 10);
+          var map = L.map('mapgempaterkinifull').setView([$lintang, $bujur], 7);
           // Set up the OSM layer
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
