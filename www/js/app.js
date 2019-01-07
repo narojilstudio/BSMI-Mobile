@@ -75,25 +75,17 @@ $$('#my-login-screen .login-button').on('click', function () {
 });
 
 $(document).ready(function(){
-       $.ajaxSetup({ cache: false });
-			
-			// Example by className
-			$(".demo").htmlfromrss(
-				limit = 10
-			);
-			
-      $(document).on("click", "#openBrowser", function() {
-          var url = $(this).attr('href');
-          window.open(url, "_blank", "location=yes");
-      })
-      
+       $.ajaxSetup({ cache: false });						      
       date_time('timepanelmasehi');
       date_time_hijri('timepanelhijri');
-
       
       gempadirasakan();
     
       gempaterkini();
+      
+      beritaterbaru();
+      
+      openBrowser();
 
 });
 		

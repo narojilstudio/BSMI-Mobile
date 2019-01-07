@@ -1,6 +1,39 @@
 $mapboxkey='pk.eyJ1IjoibmFyb2ppbCIsImEiOiJjanFqa3c5NGg2Y2drNDJ1bDZ5cXoyNjJkIn0.OSNBp6nQ7K1w9fHM8yc8Fw';
 $mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+$mapboxkey;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function relative_time(x) {
+        if (!x) {
+            return
+        }
+        var a = x;
+        a = $.trim(a);
+        a = a.replace(/\.\d\d\d+/, "");
+        a = a.replace(/-/, "/").replace(/-/, "/");
+        a = a.replace(/T/, " ").replace(/Z/, " UTC");
+        a = a.replace(/([\+\-]\d\d)\:?(\d\d)/, " $1$2");
+        var b = new Date(a);
+        var c = (arguments.length > 1) ? arguments[1] : new Date();
+        var d = parseInt((c.getTime() - b) / 1000);
+        d = (d < 2) ? 2 : d;
+        var r = '';
+        if (d < 60) {
+            r = 'Baru saja dipublikasikan'
+        } else if (d < 120) {
+            r = '1 menit yang lalu'
+        } else if (d < (45 * 60)) {
+            r = (parseInt(d / 60, 10)).toString() + ' menit yang lalu'
+        } else if (d < (2 * 60 * 60)) {
+            r = '1 jam yang lalu'
+        } else if (d < (24 * 60 * 60)) {
+            r = '' + (parseInt(d / 3600, 10)).toString() + ' jam yang lalu'
+        } else if (d < (48 * 60 * 60)) {
+            r = '1 hari yang lalu'
+        } else {
+            r = (parseInt(d / 86400, 10)).toString() + ' hari yang lalu'
+        }
+        return (r.match('NaN') ? x : r)
+    }
+////////////////////////////////////////
 function date_time(id)
 {
 date = new Date;
@@ -334,4 +367,19 @@ function openBrowser2()
       });
 	      
     });
+}
+///////////////////////////////////////////////////////////
+function beritaterbaru()
+{
+	var feed = "https://script.google.com/macros/s/AKfycbyMwyyuZbB-FDd9jyEwrJVe0cB8AT5fblIHiYRQTfVXS_nQzkAb/exec";	
+	$.ajax(feed, {
+		dataType:"json",
+		success:function(data) {
+      console.log(data);
+      for (var i = data.length - 1; i > 0; i--) {
+        if (i === data.length - 11) {break;}
+        $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+data[i].timestamp+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'</div></div>');
+      } 
+		}	
+	});
 }
