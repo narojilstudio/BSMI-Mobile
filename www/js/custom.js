@@ -390,7 +390,7 @@ function openBrowser2()
       var url = $(this).attr('href');
       var dynamicPopup = app.popup.create({
         content: '<div class="popup"><div class="block"><p><a href="#" class="link popup-close">Close me</a></p></div>'+
-                    '<div class="page-content"><div id="datapopup"><center>Loading ...</center></div></div>'+
+                    '<div class="page-content"><div class="block"><div id="datapopup"><center>Loading ...</center></div></div></div>'+
                       '<p>Popup created dynamically.'+url+'</p>'+
                       ''+
                     ''+
@@ -422,10 +422,40 @@ function beritaterbaru()
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
       for (var i = data.length - 1; i > 0; i--) {
         if (i === data.length - 11) {break;}
-        $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'</div></div>');
+        s=data[i].description;
+        a=s.indexOf("<img");   
+        b=s.indexOf("src=\"",a);
+        c=s.indexOf("\"",b+5);   
+        d=s.substr(b+5,c-b-5);img ="";
+        if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
+        $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
       } 
 		}	
 	});
 }
 //////////////////////////////////////////////////////////////
+function openPreview()
+{ 
+    // Open dynamic popup
+    $(document).on("click", ".openPreview", function() {
+      var url = $(this).attr('href');
+      var dynamicPopup = app.popup.create({
+        content: '<div class="popup"><div class="block"><p><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a></p></div>'+
+                    '<div class="page-content"><div class="block"><div id="datapopup"><center>Loading ...</center></div></div></div>'+
+                  '</div>',
+        // Events
 
+      });      
+      dynamicPopup.open();
+      
+      var feed = "https://script.google.com/macros/s/AKfycbwca_nP1bfrJFXCZwAyNkRDPhfegruRI27uNNSfWnD0VHFpotwZ/exec?url="+url;
+	
+      $.ajax(feed, {
+        dataType:"json",
+        success:function(data) {
+          $("#datapopup").html(data.contents);
+        }	
+      });
+	      
+    });
+}

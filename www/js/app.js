@@ -86,6 +86,8 @@ $(document).ready(function(){
       beritaterbaru();
       
       openBrowser();
+      
+      openPreview();
 
 });
 		
