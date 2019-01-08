@@ -1,7 +1,22 @@
 $mapboxkey='pk.eyJ1IjoibmFyb2ppbCIsImEiOiJjanFqa3c5NGg2Y2drNDJ1bDZ5cXoyNjJkIn0.OSNBp6nQ7K1w9fHM8yc8Fw';
 $mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+$mapboxkey;
+$fetchapi='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url='; //https://api.allorigins.ml/get?url=
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function relative_time(x) {
+function standard_time(x) {
+        if (!x) {
+            return
+        }
+        var a = x;
+        //a = $.trim(a);
+        a = a.replace(/\.\d\d\d+/, "");
+        a = a.replace(/-/, "/").replace(/-/, "/");
+        a = a.replace(/T/, " ").replace(/Z/, " UTC");
+        a = a.replace(/([\+\-]\d\d)\:?(\d\d)/, " $1$2");
+        var b = new Date(a);
+        return b;
+    }
+///////////////////////////////////////////////////////////////    
+function relative_time(x) {
         if (!x) {
             return
         }
@@ -32,7 +47,7 @@ $mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+
             r = (parseInt(d / 86400, 10)).toString() + ' hari yang lalu'
         }
         return (r.match('NaN') ? x : r)
-    }
+}
 ////////////////////////////////////////
 function date_time(id)
 {
@@ -376,10 +391,13 @@ function beritaterbaru()
 		dataType:"json",
 		success:function(data) {
       console.log(data);
+      data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
       for (var i = data.length - 1; i > 0; i--) {
         if (i === data.length - 11) {break;}
-        $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+data[i].timestamp+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'</div></div>');
+        $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+standard_time(data[i].timestamp).toUTCString()+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'</div></div>');
       } 
 		}	
 	});
 }
+//////////////////////////////////////////////////////////////
+
