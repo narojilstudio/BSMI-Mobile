@@ -449,11 +449,37 @@ function openPreview()
       dynamicPopup.open();
       
       var feed = "https://script.google.com/macros/s/AKfycbwca_nP1bfrJFXCZwAyNkRDPhfegruRI27uNNSfWnD0VHFpotwZ/exec?url="+url;
-	
       $.ajax(feed, {
         dataType:"json",
         success:function(data) {
-          $("#datapopup").html(data.contents);
+          $("#datapopup").html(data.contents+"</br></br></br></br></br></br></br>");
+        }	
+      });
+	      
+    });
+}
+///////////////////////////////////////////////////////////////
+function openPreview2()
+{ 
+    // Open dynamic popup
+    $(document).on("click", ".openPreview", function() {
+      var url = $(this).attr('href');
+      var dynamicPopup = app.popup.create({
+        content: '<div class="popup"><div class="block"><p><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a></p></div>'+
+                    '<div class="page-content"><div class="block"><div id="datapopup"><center>Loading ...</center></div></div></div>'+
+                  '</div>',
+        // Events
+
+      });      
+      dynamicPopup.open();
+      
+      var feed = "https://script.google.com/macros/s/AKfycbz7nyKpxG7aiEeMl98UIfMSjwEk8muKFIaF24Vemh1gb2CKb-mN/exec?url="+url;
+      $.ajax(feed, {
+        dataType:"json",
+        success:function(data) { //console.log(data);
+          var hasil = JSON.parse(data.contents);//console.log(hasil);
+          var berita = hasil.content;
+          $("#datapopup").html("<h3><b>"+hasil.title+"</b></h3></br>"+hasil.content+"</br></br></br></br></br></br></br>");
         }	
       });
 	      
