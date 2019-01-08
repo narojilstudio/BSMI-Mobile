@@ -48,7 +48,35 @@ function relative_time(x) {
         }
         return (r.match('NaN') ? x : r)
 }
-////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+function date_indo(data)
+{
+date = new Date(data);
+year = date.getFullYear();
+month = date.getMonth();
+months = new Array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+d = date.getDate();
+day = date.getDay();
+days = new Array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu');
+h = date.getHours();
+if(h<10)
+{
+        h = "0"+h;
+}
+m = date.getMinutes();
+if(m<10)
+{
+        m = "0"+m;
+}
+s = date.getSeconds();
+if(s<10)
+{
+        s = "0"+s;
+}
+result = ''+days[day]+', '+d+' '+months[month]+' '+year+' '+h+':'+m+':'+s;
+return result;
+}
+//////////////////////////////////////////////////////////////////////////////
 function date_time(id)
 {
 date = new Date;
@@ -394,7 +422,7 @@ function beritaterbaru()
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
       for (var i = data.length - 1; i > 0; i--) {
         if (i === data.length - 11) {break;}
-        $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+standard_time(data[i].timestamp).toUTCString()+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'</div></div>');
+        $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'</div></div>');
       } 
 		}	
 	});
