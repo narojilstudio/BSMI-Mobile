@@ -217,7 +217,7 @@ function gempadirasakan()
 {
       $.ajax({
         dataType: "json",
-        url: 'https://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/lastgempadirasakan.xml&callback=?',
+        url: $fetchapi+'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         type:'GET',
         error: function(){$("#gempadirasakandiv").hide();},
         success: function(data) {
@@ -251,7 +251,7 @@ function gempadirasakanfull()
 {
       $.ajax({
         dataType: "json",
-        url: 'https://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/lastgempadirasakan.xml&callback=?',
+        url: $fetchapi+'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         type:'GET',
         //error: function(){$("#gempadirasakandiv").hide();},
         success: function(data) {
@@ -285,7 +285,7 @@ function gempaterkini()
 {
       $.ajax({
         dataType: "json",
-        url: 'https://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/autogempa.xml&callback=?',
+        url: $fetchapi+'http%3A//data.bmkg.go.id/autogempa.xml',
         type:'GET',
         error: function(){$("#gempaterkinidiv").hide();},
         success: function(data) {
@@ -320,7 +320,7 @@ function gempaterkinifull()
 {
       $.ajax({
         dataType: "json",
-        url: 'https://api.allorigins.ml/get?url=http%3A//data.bmkg.go.id/autogempa.xml&callback=?',
+        url: $fetchapi+'http%3A//data.bmkg.go.id/autogempa.xml',
         type:'GET',
         //error: function(){$("#gempaterkinidiv").hide();},
         success: function(data) {
@@ -421,7 +421,7 @@ function beritaterbaru()
       console.log(data);
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
       for (var i = data.length - 1; i > 0; i--) {
-        if (i === data.length - 11) {break;}
+        if (i === data.length - 16) {break;}
         s=data[i].description;
         a=s.indexOf("<img");   
         b=s.indexOf("src=\"",a);
@@ -470,7 +470,7 @@ function openPreview2()
                   '</div>',
         // Events
 
-      });      
+      });     
       dynamicPopup.open();
       
       var feed = "https://script.google.com/macros/s/AKfycbz7nyKpxG7aiEeMl98UIfMSjwEk8muKFIaF24Vemh1gb2CKb-mN/exec?url="+url;
@@ -485,3 +485,4 @@ function openPreview2()
 	      
     });
 }
+///////////////////////////////////////////////////

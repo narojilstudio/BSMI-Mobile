@@ -118,7 +118,7 @@ routes = [
     templateUrl: './pages/arsipload.html',
   },
   {
-    path: '/cabang/:cabangssl/:cabangid/:feedid/',
+    path: '/cabang/:cabangssl/:cabangid/:feedid/:namacabang/',
     templateUrl: './pages/cabang.html',
       on: {
         pageAfterIn: function test (e, page) {
@@ -130,13 +130,16 @@ routes = [
                 $(".demo").htmlfromrss(
                   limit = 10
                 );
+                //openPreview2();
+                //openBrowser();
                 
-                openBrowser();
-              });
+                
+              });  
          
         },
         pageInit: function (e, page) {
           // do something when page initialized
+        
         },
       }
   },
