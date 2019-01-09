@@ -234,16 +234,17 @@ function gempadirasakan()
           $bujur = $xml.find( "Bujur" ).text();$bujur = $bujur.split(" ");$bujur = $bujur[0];
           //$( "#gempadirasakan" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+"</br>Koordinat : "+$lintang+ "LS - "+$bujur+" BT</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Keterangan : "+$keterangan+"</br>Dirasakan : "+$dirasakan );
           // Create the map
-          var map = L.map('mapgempadirasakan').setView([-$lintang, $bujur], 7);
+          var map = L.map('mapgempadirasakan', {attributionControl: true}).setView([-$lintang, $bujur], 7);
           // Set up the OSM layer
+          map.attributionControl.setPrefix('');
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
-            attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+" | XY : -"+$lintang+ " LS , "+$bujur+" BT | M : "+$magnitude+" | Ked : "+$kedalaman+" | Ket : "+$keterangan+" | Dirasakan : "+$dirasakan,
+            attribution: "Tanggal : "+$tanggal +" | Jam : "+$jam+" | Koordinat : -"+$lintang+ " LS , "+$bujur+" BT | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Keterangan : "+$keterangan+" | Dirasakan : "+$dirasakan,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
             .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(standard_time($tanggaljam)))
-            .openPopup();  
+            .openPopup(); 
         }
       });
 }
@@ -271,9 +272,10 @@ function gempadirasakanfull()
           // Create the map
           var map = L.map('mapgempadirasakanfull').setView([-$lintang, $bujur], 7);
           // Set up the OSM layer
+          map.attributionControl.setPrefix('');
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
-            attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+" | XY : -"+$lintang+ " LS , "+$bujur+" BT | M : "+$magnitude+" | Ked : "+$kedalaman+" | Ket : "+$keterangan+" | Dirasakan : "+$dirasakan,
+            attribution: "Tanggal : "+$tanggal +" | Jam : "+$jam+" | Koordinat : -"+$lintang+ " LS , "+$bujur+" BT | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Keterangan : "+$keterangan+" | Dirasakan : "+$dirasakan,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
@@ -306,10 +308,11 @@ function gempaterkini()
           //$( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
           // Create the map
           var map = L.map('mapgempaterkini').setView([$lintang, $bujur], 7);
+          map.attributionControl.setPrefix('');
           // Set up the OSM layer
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
-            attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | XY : "+$lintang+ " LS , "+$bujur+" BT | M : "+$magnitude+" | Ked : "+$kedalaman+" | Potensi : "+$potensi,
+            attribution: "Tanggal : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | Koordinat : "+$lintang+ " LS , "+$bujur+" BT | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Potensi : "+$potensi,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
@@ -342,10 +345,11 @@ function gempaterkinifull()
           //$( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
           // Create the map
           var map = L.map('mapgempaterkinifull').setView([$lintang, $bujur], 7);
+          map.attributionControl.setPrefix('');
           // Set up the OSM layer
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
-            attribution: "BMKG | Tgl : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | XY : "+$lintang+ " LS , "+$bujur+" BT | M : "+$magnitude+" | Ked : "+$kedalaman+" | Potensi : "+$potensi,
+            attribution: "Tanggal : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | Koordinat : "+$lintang+ " LS , "+$bujur+" BT | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Potensi : "+$potensi,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
