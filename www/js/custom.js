@@ -225,6 +225,7 @@ function gempadirasakan()
           $xml = $( xmlDoc ),
           $tanggal = $xml.find( "Tanggal" ).text();
           $jam = $xml.find( "Jam" ).text();
+          $tanggaljam = $tanggal.split('/');$tanggaljam = $tanggaljam[1]+'/'+$tanggaljam[0]+'/'+$tanggaljam[2]+' '+$jam.replace('WIB','');
           $keterangan = $xml.find( "Keterangan" ).text();
           $magnitude = $xml.find( "Magnitude" ).text();
           $kedalaman = $xml.find( "Kedalaman" ).text();
@@ -241,7 +242,7 @@ function gempadirasakan()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi dirasakan')
+            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(standard_time($tanggaljam)))
             .openPopup();  
         }
       });
@@ -259,6 +260,7 @@ function gempadirasakanfull()
           $xml = $( xmlDoc ),
           $tanggal = $xml.find( "Tanggal" ).text();
           $jam = $xml.find( "Jam" ).text();
+          $tanggaljam = $tanggal.split('/');$tanggaljam = $tanggaljam[1]+'/'+$tanggaljam[0]+'/'+$tanggaljam[2]+' '+$jam.replace('WIB','');
           $keterangan = $xml.find( "Keterangan" ).text();
           $magnitude = $xml.find( "Magnitude" ).text();
           $kedalaman = $xml.find( "Kedalaman" ).text();
@@ -275,7 +277,7 @@ function gempadirasakanfull()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi dirasakan')
+            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(standard_time($tanggaljam)))
             .openPopup();  
         }
       });
@@ -293,6 +295,7 @@ function gempaterkini()
           $xml = $( xmlDoc ),
           $tanggal = $xml.find( "Tanggal" ).text();
           $jam = $xml.find( "Jam" ).text();
+          $tanggaljam = $tanggal.split('-');$tanggaljam = $tanggaljam[0]+' '+$tanggaljam[1]+' '+$tanggaljam[2]+' '+$jam.replace('WIB','');
           $lokasi = $xml.find( "Wilayah1" ).text();
           $magnitude = $xml.find( "Magnitude" ).text();
           $kedalaman = $xml.find( "Kedalaman" ).text();
@@ -310,7 +313,7 @@ function gempaterkini()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi terkini M &ge; 5,0')
+            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(standard_time($tanggaljam)))
             .openPopup();
         }
       });
@@ -328,6 +331,7 @@ function gempaterkinifull()
           $xml = $( xmlDoc ),
           $tanggal = $xml.find( "Tanggal" ).text();
           $jam = $xml.find( "Jam" ).text();
+          $tanggaljam = $tanggal.split('-');$tanggaljam = $tanggaljam[0]+' '+$tanggaljam[1]+' '+$tanggaljam[2]+' '+$jam.replace('WIB','');
           $lokasi = $xml.find( "Wilayah1" ).text();
           $magnitude = $xml.find( "Magnitude" ).text();
           $kedalaman = $xml.find( "Kedalaman" ).text();
@@ -345,7 +349,7 @@ function gempaterkinifull()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi terkini M &ge; 5,0')
+            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(standard_time($tanggaljam)))
             .openPopup();
         }
       });     

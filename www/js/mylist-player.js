@@ -212,7 +212,7 @@ function doAjaxCallStuff(n) {
 
 		        var videoID = val.snippet.resourceId.videoId;
 
-		        var thumb = "http://img.youtube.com/vi/"+ videoID +"/default.jpg";
+		        var thumb = "https://img.youtube.com/vi/"+ videoID +"/default.jpg";
 
 	
 
