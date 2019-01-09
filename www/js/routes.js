@@ -185,6 +185,10 @@ routes = [
     url: './pages/menu.html',
   },
   {
+    path: '/explore/',
+    url: './pages/explore.html',
+  },
+  {
     path: '/gempadirasakan/',
     url: './pages/gempadirasakan.html',
     on: {

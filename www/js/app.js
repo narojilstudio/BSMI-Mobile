@@ -4,8 +4,8 @@ var $$ = Dom7;
 // Framework7 App main instance
 var app  = new Framework7({
   root: '#app', // App root element
-  id: 'io.framework7.testapp', // App bundle ID
-  name: 'Framework7', // App name
+  id: 'net.sourceforge.bsmi', // App bundle ID
+  name: 'BSMI Mobile', // App name
   theme: 'auto', // Automatic theme detection
   // App root data
   data: function () {
@@ -62,6 +62,10 @@ var menuView = app.views.create('#view-menu', {
   url: '/menu/'
 });
 
+var exploreView = app.views.create('#view-explore', {
+  url: '/explore/'
+});
+
 // Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {
   var username = $$('#my-login-screen [name="username"]').val();
@@ -89,5 +93,6 @@ $(document).ready(function(){
       
       openPreview2();
 
+      explorenews();
 });
 		

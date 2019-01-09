@@ -2,6 +2,8 @@ $mapboxkey='pk.eyJ1IjoibmFyb2ppbCIsImEiOiJjanFqa3c5NGg2Y2drNDJ1bDZ5cXoyNjJkIn0.O
 $mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+$mapboxkey;
 $fetchapi='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url='; //https://api.allorigins.ml/get?url=
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 function standard_time(x) {
         if (!x) {
             return
@@ -15,6 +17,13 @@ function standard_time(x) {
         var b = new Date(a);
         return b;
     }
+//////////////////////////////////////////
+function dateString(data)
+{
+var m = standard_time(data);
+var dateString = m.getFullYear() +"/"+ (m.getMonth()+1) +"/"+ m.getDate() + " " + m.getHours() + ":" + m.getMinutes() + ":" + m.getSeconds();
+return dateString;
+}
 ///////////////////////////////////////////////////////////////    
 function relative_time(x) {
         if (!x) {
@@ -243,7 +252,7 @@ function gempadirasakan()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(standard_time($tanggaljam)))
+            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(dateString($tanggaljam)))
             .openPopup(); 
         }
       });
@@ -279,7 +288,7 @@ function gempadirasakanfull()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(standard_time($tanggaljam)))
+            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(dateString($tanggaljam)))
             .openPopup();  
         }
       });
@@ -316,7 +325,7 @@ function gempaterkini()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(standard_time($tanggaljam)))
+            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(dateString($tanggaljam)))
             .openPopup();
         }
       });
@@ -353,7 +362,7 @@ function gempaterkinifull()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(standard_time($tanggaljam)))
+            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(dateString($tanggaljam)))
             .openPopup();
         }
       });     
@@ -425,6 +434,7 @@ function beritaterbaru()
 	var feed = "https://script.google.com/macros/s/AKfycbyMwyyuZbB-FDd9jyEwrJVe0cB8AT5fblIHiYRQTfVXS_nQzkAb/exec";	
 	$.ajax(feed, {
 		dataType:"json",
+		//error: function(){},
 		success:function(data) {
       console.log(data);
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
@@ -484,6 +494,7 @@ function openPreview2()
       var feed = "https://script.google.com/macros/s/AKfycbz7nyKpxG7aiEeMl98UIfMSjwEk8muKFIaF24Vemh1gb2CKb-mN/exec?url="+url;
       $.ajax(feed, {
         dataType:"json",
+        //error: function(){$("#datapopup").html("Ops , terjadi kesalahan mohon diulangi")},
         success:function(data) { //console.log(data);
           var hasil = JSON.parse(data.contents);//console.log(hasil);
           var berita = hasil.content;
@@ -494,3 +505,26 @@ function openPreview2()
     });
 }
 ///////////////////////////////////////////////////
+function explorenews()
+{
+	var feed = "https://script.google.com/macros/s/AKfycbyMwyyuZbB-FDd9jyEwrJVe0cB8AT5fblIHiYRQTfVXS_nQzkAb/exec";	
+	$.ajax(feed, {
+		dataType:"json",
+		//error: function(){},
+		success:function(data) {
+      console.log(data);
+      data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
+      for (var i = data.length - 1; i > 0; i--) {
+        //if (i === data.length - 16) {break;}
+        s=data[i].description;
+        a=s.indexOf("<img");   
+        b=s.indexOf("src=\"",a);
+        c=s.indexOf("\"",b+5);   
+        d=s.substr(b+5,c-b-5);img ="";
+        if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
+        $("#explorenews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+      } 
+		}	
+	});
+}
+//////////////////////////////////////////////////////////
