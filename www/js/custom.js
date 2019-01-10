@@ -582,3 +582,61 @@ function openLiveTV2()
 	      
     });
 }
+///////////////////////////////////////////////////////////////////////////
+function exploreigdetail(data)
+{
+          //for (var i = 0 ; i < data.graphql.hashtag.edge_hashtag_to_media.edges.length ; i++) {
+          for (var i = 0 ; i < 6 ; i++) {
+
+
+							$.ajax({
+								dataType: "json",
+								url: 'https://www.instagram.com/p/'+data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.shortcode+'/?__a=1',
+								type:'GET',
+								success: function(dataq) { //console.log(dataq);
+                    var displayurl = dataq.graphql.shortcode_media.display_url;
+                    var caption = dataq.graphql.shortcode_media.edge_media_to_caption.edges[0].node.text;
+                    var id = dataq.graphql.shortcode_media.id;
+                    var owner_full_name = dataq.graphql.shortcode_media.owner.full_name;
+                    var owner_id = dataq.graphql.shortcode_media.owner.id;
+                    var owner_profile_pic = dataq.graphql.shortcode_media.owner.profile_pic_url;
+                    var owner_username = dataq.graphql.shortcode_media.owner.username;
+                    var shortcode = dataq.graphql.shortcode_media.shortcode;
+                    var timestamp = dataq.graphql.shortcode_media.taken_at_timestamp;
+                    
+										//$( "#content" ).append(displayurl+'</br>'+caption+'</br>'+id+'</br>'+owner_full_name+'</br>'+owner_id+'</br>'+owner_profile_pic+'</br>'+owner_username+'</br>'+shortcode+'</br>'+timestamp+'</br></br></br>');
+                    //$( "#content" ).append('<div style="width:40%;border:solid 5px #0000; padding:5px 5px;float:left;"><p>'+owner_username+'</p><p>'+owner_full_name+'</p><img width="100%" src="'+displayurl+'"/></div>');
+                    $( "#exploreig" ).append('<div class="col-50"><p>'+owner_username+'</p><p>'+owner_full_name+'</p><img width="100%" src="'+displayurl+'"/></div>');
+								}
+							});  
+           
+          }
+}
+
+function exploreig()
+{
+//https://www.instagram.com/p/Bsao9S2hDrd/?__a=1
+//https://www.instagram.com/explore/tags/bsmi/?__a=1      
+      $.ajax({
+        dataType: "json",
+        url: 'https://www.instagram.com/explore/tags/bsmi/?__a=1',
+        type:'GET',
+        success: function(data) { //console.log(data);
+          //console.log(data.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);
+          for (var i = 0 ; i < 4 ; i++) {
+          var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
+            $( "#exploretopig" ).append('<div class="col-50"><a href="'+display_url+'" class="exploreig"><img width="100%" src="'+display_url+'"/></a></div>');
+          }
+          for (var i = 0 ; i < 30 ; i++) {
+          var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
+            $( "#exploreig" ).append('<div class="col-50"><a href="'+display_url+'" class="exploreig"><img width="100%" src="'+display_url+'"/></a></div>');
+          }
+        }
+      }); 
+      
+            $(".exploreig").fancybox({
+              openEffect : 'fade',
+              closeEffect : 'fade'
+            });    
+}
+//////////////////////////////////////////////////////////////////
