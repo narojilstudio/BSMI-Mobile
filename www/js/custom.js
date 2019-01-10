@@ -2,7 +2,13 @@ $mapboxkey='pk.eyJ1IjoibmFyb2ppbCIsImEiOiJjanFqa3c5NGg2Y2drNDJ1bDZ5cXoyNjJkIn0.O
 $mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+$mapboxkey;
 $fetchapi='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url='; //https://api.allorigins.ml/get?url=
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+function extractData(data, startStr, endStr)
+{
+subStrStart = data.indexOf(startStr) + startStr.length
+return data.substring(subStrStart,
+subStrStart + data.substring(subStrStart).indexOf(endStr));
+}
+///////////////////////////////////////////////////////////////////////
 
 function standard_time(x) {
         if (!x) {
@@ -436,7 +442,7 @@ function beritaterbaru()
 		dataType:"json",
 		//error: function(){},
 		success:function(data) {
-      console.log(data);
+      //console.log(data);
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
       for (var i = data.length - 1; i > 0; i--) {
         if (i === data.length - 16) {break;}
@@ -512,7 +518,7 @@ function explorenews()
 		dataType:"json",
 		//error: function(){},
 		success:function(data) {
-      console.log(data);
+      //console.log(data);
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
       for (var i = data.length - 1; i > 0; i--) {
         //if (i === data.length - 16) {break;}
@@ -528,3 +534,32 @@ function explorenews()
 	});
 }
 //////////////////////////////////////////////////////////
+function openLiveTV()
+{ 
+    // Open dynamic popup
+    $(document).on("click", ".openLiveTV", function() {
+      var url = $(this).attr('href');
+      var dynamicPopup = app.popup.create({
+        content: '<div class="popup"><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
+                    '<div id="datapopup" style="height:100%"><center>Loading ...</center></div>'+
+                  '</div>',
+        // Events
+
+      });     
+      dynamicPopup.open();
+      
+      var feed = $fetchapi+url;
+      $.ajax(feed, {
+        dataType:"json",
+        //error: function(){$("#datapopup").html("Ops , terjadi kesalahan mohon diulangi")},
+        success:function(data) { 
+          var hasil = data.contents;
+          var urlstreaming = extractData(hasil, '<source src="', '" type="application/x-mpegURL">');
+          //http://www.convertstring.com/id/EncodeDecode/HtmlEncode
+          var htmliframe = '&lt;html&gt; &lt;head&gt;       &lt;link href=&quot;https://unpkg.com/video.js/dist/video-js.css&quot; rel=&quot;stylesheet&quot;&gt;     &lt;script src=&quot;https://unpkg.com/video.js/dist/video.js&quot;&gt;&lt;/script&gt;     &lt;script src=&quot;https://unpkg.com/videojs-flash/dist/videojs-flash.js&quot;&gt;&lt;/script&gt;     &lt;script src=&quot;https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js&quot;&gt;&lt;/script&gt;  &lt;/head&gt; &lt;body style=&quot;padding:0px 0px;margin:0px 0px;&quot;&gt; &lt;video id=&quot;video-player&quot;  style=&quot;width:100%;height:100%&quot; class=&quot;embed-responsive-item video-js vjs-default-skin vjs-big-play-centered&quot; controls&gt; &lt;source src=&quot;'+urlstreaming+'&quot; type=&quot;application/x-mpegURL&quot;&gt; &lt;/video&gt; &lt;script&gt; var video = videojs(&quot;video-player&quot;, {autoplay: &quot;play&quot;}); &lt;/script&gt; &lt;/body&gt; &lt;/html&gt;'; //muted or play
+          $("#datapopup").html('<iframe width="100%" height="100%" src="data:text/html;charset=utf-8,'+htmliframe+'"></iframe>');
+        }	
+      });
+	      
+    });
+}

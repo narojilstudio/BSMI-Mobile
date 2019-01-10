@@ -91,3 +91,12 @@ margin-left:10px;
 .demo-facebook-card .card-content-padding .likes {
   color: #8e8e93;
 }
+
+.tv-close {
+  position: fixed;
+  padding: 0;
+  right: 5px;
+  top: 5px;
+  z-index:999;
+  cursor: pointer;
+}
