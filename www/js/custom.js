@@ -578,7 +578,7 @@ function openLiveTV2()
 
       });     
       dynamicPopup.open();
-      $("#datapopup").html('<iframe width="100%" height="100%" style="border:0px;" src="app/tv/tvone.html"></iframe>');
+      $("#datapopup").html('<iframe width="100%" height="100%" style="border:0px;" src="'+url+'"></iframe>');
 	      
     });
 }
