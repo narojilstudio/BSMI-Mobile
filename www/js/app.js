@@ -95,6 +95,6 @@ $(document).ready(function(){
 
       explorenews();
       
-      openLiveTV();
+      openLiveTV2();
 });
 		

@@ -563,3 +563,22 @@ function openLiveTV()
 	      
     });
 }
+
+////////////////////////////////////////////////////////////////
+function openLiveTV2()
+{ 
+    // Open dynamic popup
+    $(document).on("click", ".openLiveTV", function() {
+      var url = $(this).attr('href');
+      var dynamicPopup = app.popup.create({
+        content: '<div class="popup"><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
+                    '<div id="datapopup" style="height:100%"><center>Loading ...</center></div>'+
+                  '</div>',
+        // Events
+
+      });     
+      dynamicPopup.open();
+      $("#datapopup").html('<iframe width="100%" height="100%" style="border:0px;" src="app/tv/tvone.html"></iframe>');
+	      
+    });
+}

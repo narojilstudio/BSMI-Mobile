@@ -1,0 +1,47 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+<script src="https://unpkg.com/video.js/dist/video.js"></script>
+<script src="https://unpkg.com/videojs-flash/dist/videojs-flash.js"></script>
+<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+</head>
+<body style="padding:0px 0px;margin:0px 0px;">
+<div id="datapopup"></div>
+
+       <video id=example-video style="width:100%;height:100%" class="video-js vjs-default-skin" controls>
+
+        </video>
+        
+<script>
+function extractData(data, startStr, endStr)
+{
+subStrStart = data.indexOf(startStr) + startStr.length
+return data.substring(subStrStart,
+subStrStart + data.substring(subStrStart).indexOf(endStr));
+}
+
+$fetchapi='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url='; 
+
+$(document).ready(function() {
+      var url = 'https://www.useetv.com/livetv/tvone';
+      var feed = $fetchapi+url;
+      $.ajax(feed, {
+        dataType:"json",
+        //error: function(){$("#datapopup").html("Ops , terjadi kesalahan mohon diulangi")},
+        success:function(data) { 
+          var hasil = data.contents;
+          var urlstreaming = extractData(hasil, '<source src="', '" type="application/x-mpegURL">');//urlstreaming.replace('&','&amp;');console.log(urlstreaming);
+          var player = window.player = videojs('example-video', {autoplay:'play'});
+          player.src({
+            src: urlstreaming,
+            type: 'application/x-mpegURL'
+          });
+          player.play();
+        }	
+      });
+      
+});
+</script>
+</body>
+</html>
