@@ -154,7 +154,7 @@ function onYouTubeIframeAPIReady() {
 
       width: '1280',
 
-      playerVars: { 'html5': 1, 'showinfo': showVideoInfo, 'autoplay': 0, 'rel': showRelatedVideos, 'controls': showPlayerControls, 'playsinline': 1, 'vq': 'hd1080' },
+      playerVars: { 'html5': 1, 'showinfo': showVideoInfo, 'autoplay': 0, 'rel': showRelatedVideos, 'controls': showPlayerControls, 'playsinline': 1, 'vq': 'hd1080'},
 
       //videoId: vidIDs[n][0],
 
@@ -164,7 +164,9 @@ function onYouTubeIframeAPIReady() {
 
         'onStateChange': onPlayerStateChange
 
-      }
+      },
+      origin: "https://www.youtube.com",
+      widget_referrer: "https://www.youtube.com"
 
     });
 
@@ -186,7 +188,7 @@ function doAjaxCallStuff(n) {
 
 	var m = n+1;
 
-	console.log("m: "+m);
+	//console.log("m: "+m);
 
 
 
@@ -382,7 +384,7 @@ function onPlayerStateChange(event) {
 
 
 
-	console.log("pNum: "+pNum);
+	//console.log("pNum: "+pNum);
 
 
 
@@ -420,7 +422,7 @@ function onPlayerStateChange(event) {
 
 	        if (nextVid >= listLength[y]) {
 
-	        	console.log("greater");
+	        	//console.log("greater");
 
 	        	nextVid = 0;
 
@@ -442,7 +444,7 @@ function onPlayerStateChange(event) {
 
 
 
-		        console.log("left: "+xPos);
+		        //console.log("left: "+xPos);
 
 		        //jQuery("#player-container"+y+">div.mlvp-list-container").css('left', 100);
 
@@ -604,7 +606,7 @@ function setScrollAmt(n) {
 
     var w = jQuery('#player-container'+m).width();
 
-    console.log("container width: "+w);
+    //console.log("container width: "+w);
 
 
 

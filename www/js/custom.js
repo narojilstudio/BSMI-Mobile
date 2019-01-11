@@ -500,8 +500,9 @@ function openPreview2()
       var feed = "https://script.google.com/macros/s/AKfycbz7nyKpxG7aiEeMl98UIfMSjwEk8muKFIaF24Vemh1gb2CKb-mN/exec?url="+url;
       $.ajax(feed, {
         dataType:"json",
-        //error: function(){$("#datapopup").html("Ops , terjadi kesalahan mohon diulangi")},
+        error: function(xhr, textStatus, errorThrown){console.log('error openpreview2 :'+textStatus);if (textStatus == 'parsererror') {$.ajax(this); return;}},
         success:function(data) { //console.log(data);
+          if (data.contents == '') {$.ajax(this); return;}
           var hasil = JSON.parse(data.contents);//console.log(hasil);
           var berita = hasil.content;
           $("#datapopup").html("<h3><b>"+hasil.title+"</b></h3></br>"+hasil.content+"</br></br></br></br></br></br></br>");
@@ -620,6 +621,7 @@ function exploreig()
 //https://www.instagram.com/explore/tags/bsmi/?__a=1      
       $.ajax({
         dataType: "json",
+        error: function(xhr, textStatus, errorThrown){if (textStatus == 'parsererror') {$.ajax(this); return;}},
         url: $fetchapi+'https://www.instagram.com/explore/tags/bsmi/?__a=1',
         type:'GET',
         success: function(dataq) { //console.log(dataq.contents);
