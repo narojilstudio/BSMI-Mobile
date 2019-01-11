@@ -98,5 +98,7 @@ $(document).ready(function(){
       openLiveTV2();
       
       exploreig();
+      
+      onYouTubeIframeAPIReady() ;
 });
 		

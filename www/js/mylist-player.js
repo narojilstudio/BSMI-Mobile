@@ -1,4 +1,10 @@
-
+        var playListID = ["PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs"];
+        var apiKey = "AIzaSyBMRyIdlgyAKIoKe9ptUZgejHZQB3RWumY";
+        var autoPlayNext = 1;
+        var showPlayerControls = 1;
+        var showVideoInfo = 0;
+        var showRelatedVideos = 0;
+        var showTitlesInList = 1;
 
 // LOAD YOUTUBE API
 

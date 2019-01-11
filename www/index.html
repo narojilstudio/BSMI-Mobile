@@ -34,13 +34,7 @@
   <link href="css/mylist-player.css" rel="stylesheet">
   <script src="js/mylist-player.js" defer></script>
      <script type="text/javascript">
-        var playListID = ["PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs"];
-        var apiKey = "AIzaSyBMRyIdlgyAKIoKe9ptUZgejHZQB3RWumY";
-        var autoPlayNext = 1;
-        var showPlayerControls = 1;
-        var showVideoInfo = 0;
-        var showRelatedVideos = 0;
-        var showTitlesInList = 1;
+
     </script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
@@ -102,6 +96,13 @@
       </div>
     </div>
 
+
+            <!-- THE YOUTUBE PLAYER -->
+            <div class="mlvp-container">            
+                <div class="mlvp-close"><img src="img/fancy_close.png" onClick="hide_mlvp();" alt="Stop video and close"></div>
+                <div id="vid_frame"></div>           
+            </div>
+            
     <!-- Views/Tabs container -->
     <div class="views tabs ios-edges">
       <!-- Tabbar for switching views-tabs -->

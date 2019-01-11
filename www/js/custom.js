@@ -628,7 +628,7 @@ function exploreig()
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
             $( "#exploretopig" ).append('<div class="col-50"><a href="'+display_url+'" class="exploreig"><img width="100%" src="'+display_url+'"/></a></div>');
           }
-          for (var i = 0 ; i < 30 ; i++) {
+          for (var i = 0 ; i < data.graphql.hashtag.edge_hashtag_to_media.edges.length ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
             $( "#exploreig" ).append('<div class="col-50"><a href="'+display_url+'" class="exploreig"><img width="100%" src="'+display_url+'"/></a></div>');
           }

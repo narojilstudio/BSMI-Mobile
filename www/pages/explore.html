@@ -6,11 +6,12 @@
       <div class="title slidding">BSMI Mobile</div>
     </div>
   </div>
-  <div class="toolbar tabbar">
+  <div class="toolbar tabbar tabbar-scrollable">
     <div class="toolbar-inner">
       <a href="#tab-top" class="tab-link tab-link-active">Top</a>
-      <a href="#tab-news" class="tab-link">News</a>
       <a href="#tab-instagram" class="tab-link">Instagram</a>
+      <a href="#tab-youtube" class="tab-link">Youtube</a>
+      <a href="#tab-news" class="tab-link">News</a>
       <a href="#tab-tv" class="tab-link">TV</a>
     </div>
   </div>
@@ -19,17 +20,16 @@
       <div id="tab-top" class="page-content tab tab-active">
         <div class="block">
           <p><a href="#tab-tv" class="tab-link">Top Live TV</a></p>
-          <a href="app/tv/bsmitv.html" class="openLiveTV"><img width="45%" src="img/tv/bsmitv.jpg"/></a>
-          <a href="app/tv/tvone.html" class="openLiveTV"><img width="45%" src="img/tv/tvone-tv-stream-60883f.jpg"/></a>          
+          <div class="row">
+          <div class="col-50"><a href="app/tv/bsmitv.html" class="openLiveTV"><img width="100%" src="img/tv/bsmitv.jpg"/></a></div>
+          <div class="col-50"><a href="app/tv/tvone.html" class="openLiveTV"><img width="100%" src="img/tv/tvone-tv-stream-60883f.jpg"/></a></div>
+          </div>          
           <p><a href="#tab-instagram" class="tab-link">Top Instagram</a></p>
           <div class="row" id="exploretopig"></div>
+          <p><a href="#tab-youtube" class="tab-link">Top Youtube</a></p>
+          <iframe width="100%" height="300" src="https://www.youtube.com/embed?listType=search&list=%23bsmi" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           <p><a href="#tab-news" class="tab-link">Top News</a></p>
           <div id="exploretopnews"></div>
-        </div>
-      </div>
-      <div id="tab-news" class="page-content tab">
-        <div class="block">
-          <div id="explorenews"></div>
         </div>
       </div>
       <div id="tab-instagram" class="page-content tab">
@@ -38,19 +38,41 @@
             </div>
         </div>
       </div>
+      <div id="tab-youtube" class="page-content tab">
+        <div class="block">
+          <p>Top Youtube</p>
+          <iframe width="100%" height="300" src="https://www.youtube.com/embed?listType=search&list=%23bsmi" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <p>Youtube BSMI</p>
+            <div id="player-container1" class="player-container">
+                <div class="mlvp-arrows">
+                    <div class="mlvp-arrow-left"><i class="demo-icon icon-left-open"></i></div>
+                    <div class="mlvp-arrow-right"><i class="demo-icon icon-right-open"></i></div>
+                </div>
+                <div class="mlvp-list-container">
+                    <div class="mlvp-list noselect" ></div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div id="tab-news" class="page-content tab">
+        <div class="block">
+          <div id="explorenews"></div>
+        </div>
+      </div>
       <div id="tab-tv" class="page-content tab">
         <div class="block">
-            <a href="app/tv/bsmitv.html" class="openLiveTV"><img width="45%" src="img/tv/bsmitv.jpg"/></a>
-            <a href="app/tv/tvone.html" class="openLiveTV"><img width="45%" src="img/tv/tvone-tv-stream-60883f.jpg"/></a>
-            <a href="app/tv/kompastv.html" class="openLiveTV"><img width="45%" src="img/tv/kompas-tv-stream-00b917.jpg"/></a>
-            <a href="app/tv/antv.html" class="openLiveTV"><img width="45%" src="img/tv/antv-tv-stream-b6cca5.jpg"/></a>
-            <a href="app/tv/indosiar.html" class="openLiveTV"><img width="45%" src="img/tv/indosiar-tv-stream-766265.jpg"/></a>
-            <a href="app/tv/metrotv.html" class="openLiveTV"><img width="45%" src="img/tv/metro-tv-stream-842c50.jpg"/></a>
-            <a href="app/tv/sctv.html" class="openLiveTV"><img width="45%" src="img/tv/sctv-tv-stream-df7096.jpg"/></a>
-            <a href="app/tv/sctv.html" class="openLiveTV"><img width="45%" src="img/tv/berita-satu-tv-stream-7a9d2b.jpg"/></a>
-            <a href="app/tv/trans7.html" class="openLiveTV"><img width="45%" src="img/tv/trans7-tv-stream-b793ab.jpg"/></a>
-            <a href="app/tv/transtv.html" class="openLiveTV"><img width="45%" src="img/tv/trans-tv-stream-7ab79a.jpg"/></a>
-            
+          <div class="row">
+            <div class="col-50"><a href="app/tv/bsmitv.html" class="openLiveTV"><img width="100%" src="img/tv/bsmitv.jpg"/></a></div>
+            <div class="col-50"><a href="app/tv/tvone.html" class="openLiveTV"><img width="100%" src="img/tv/tvone-tv-stream-60883f.jpg"/></a></div>
+            <div class="col-50"><a href="app/tv/kompastv.html" class="openLiveTV"><img width="100%" src="img/tv/kompas-tv-stream-00b917.jpg"/></a></div>
+            <div class="col-50"><a href="app/tv/antv.html" class="openLiveTV"><img width="100%" src="img/tv/antv-tv-stream-b6cca5.jpg"/></a></div>
+            <div class="col-50"><a href="app/tv/indosiar.html" class="openLiveTV"><img width="100%" src="img/tv/indosiar-tv-stream-766265.jpg"/></a></div>
+            <div class="col-50"><a href="app/tv/metrotv.html" class="openLiveTV"><img width="100%" src="img/tv/metro-tv-stream-842c50.jpg"/></a></div>
+            <div class="col-50"><a href="app/tv/sctv.html" class="openLiveTV"><img width="100%" src="img/tv/sctv-tv-stream-df7096.jpg"/></a></div>
+            <div class="col-50"><a href="app/tv/sctv.html" class="openLiveTV"><img width="100%" src="img/tv/berita-satu-tv-stream-7a9d2b.jpg"/></a></div>
+            <div class="col-50"><a href="app/tv/trans7.html" class="openLiveTV"><img width="100%" src="img/tv/trans7-tv-stream-b793ab.jpg"/></a></div>
+            <div class="col-50"><a href="app/tv/transtv.html" class="openLiveTV"><img width="100%" src="img/tv/trans-tv-stream-7ab79a.jpg"/></a></div>
+          </div>  
         </div>
       </div>
     </div>
