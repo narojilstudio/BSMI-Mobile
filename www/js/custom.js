@@ -506,7 +506,7 @@ function openPreview2()
           if (data.contents == '') {$.ajax(this); return;}
           var hasil = JSON.parse(data.contents);//console.log(hasil);
           var berita = hasil.content;
-          $("#datapopup").html("<h3><b>"+hasil.title+"</b></h3></br>"+hasil.content+"</br></br></br></br></br></br></br>");
+          $("#datapopup").html("<h3><b>"+title+"</b></h3></br>"+hasil.content+"</br></br></br></br></br></br></br>");
         }	
       });
 	      
