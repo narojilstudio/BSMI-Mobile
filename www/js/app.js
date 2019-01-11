@@ -99,6 +99,5 @@ $(document).ready(function(){
       
       exploreig();
       
-      onYouTubeIframeAPIReady() ;
 });
 		

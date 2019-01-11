@@ -620,9 +620,10 @@ function exploreig()
 //https://www.instagram.com/explore/tags/bsmi/?__a=1      
       $.ajax({
         dataType: "json",
-        url: 'https://www.instagram.com/explore/tags/bsmi/?__a=1',
+        url: $fetchapi+'https://www.instagram.com/explore/tags/bsmi/?__a=1',
         type:'GET',
-        success: function(data) { //console.log(data);
+        success: function(dataq) { //console.log(dataq.contents);
+        var data = JSON.parse(dataq.contents);//console.log(data);
           //console.log(data.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);
           for (var i = 0 ; i < 4 ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;

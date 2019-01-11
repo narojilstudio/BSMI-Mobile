@@ -5,7 +5,6 @@ routes = [
       on: {
         pageAfterIn: function test (e, page) {
           // do something after page gets into the view
-          onYouTubeIframeAPIReady() ;
 
               $(document).ready(function(){
                 
@@ -88,8 +87,6 @@ routes = [
       on: {
         pageAfterIn: function test (e, page) {
           // do something after page gets into the view
-
-        onYouTubeIframeAPIReady() ;
 
          
         },
