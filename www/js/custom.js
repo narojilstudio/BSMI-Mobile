@@ -440,7 +440,7 @@ function beritaterbaru()
 	var feed = "https://script.google.com/macros/s/AKfycbyMwyyuZbB-FDd9jyEwrJVe0cB8AT5fblIHiYRQTfVXS_nQzkAb/exec";	
 	$.ajax(feed, {
 		dataType:"json",
-		//error: function(){},
+		error: function(xhr, textStatus, errorThrown){$.ajax(this); return;},
 		success:function(data) {
       //console.log(data);
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
@@ -488,8 +488,9 @@ function openPreview2()
     // Open dynamic popup
     $(document).on("click", ".openPreview", function() {
       var url = $(this).attr('href');
+      var title = $(this).attr('title');
       var dynamicPopup = app.popup.create({
-        content: '<div class="popup"><div class="block"><p><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a></p></div>'+
+        content: '<div class="popup"><div class="block"><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a><a href="#" class="actions-open" data-actions=".ac-preview" style="float:right"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(title+" "+url)+'" class="openBrowser link">Share link ke WhatsApp</a></br></br><a href="'+url+'" class="openBrowser link">Buka link di Browser</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div></div>'+
                     '<div class="page-content"><div class="block"><div id="datapopup"><center>Loading ...</center></div></div></div>'+
                   '</div>',
         // Events
@@ -500,7 +501,7 @@ function openPreview2()
       var feed = "https://script.google.com/macros/s/AKfycbz7nyKpxG7aiEeMl98UIfMSjwEk8muKFIaF24Vemh1gb2CKb-mN/exec?url="+url;
       $.ajax(feed, {
         dataType:"json",
-        error: function(xhr, textStatus, errorThrown){console.log('error openpreview2 :'+textStatus);if (textStatus == 'parsererror') {$.ajax(this); return;}},
+        error: function(xhr, textStatus, errorThrown){console.log('error openpreview2 :'+textStatus);if (textStatus == 'parsererror') {$.ajax(this); return;} else $.ajax(this); return;},
         success:function(data) { //console.log(data);
           if (data.contents == '') {$.ajax(this); return;}
           var hasil = JSON.parse(data.contents);//console.log(hasil);
@@ -517,7 +518,7 @@ function explorenews()
 	var feed = "https://script.google.com/macros/s/AKfycbyMwyyuZbB-FDd9jyEwrJVe0cB8AT5fblIHiYRQTfVXS_nQzkAb/exec";	
 	$.ajax(feed, {
 		dataType:"json",
-		//error: function(){},
+		error: function(xhr, textStatus, errorThrown){$.ajax(this); return;},
 		success:function(data) {
       //console.log(data);
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
@@ -529,9 +530,19 @@ function explorenews()
         c=s.indexOf("\"",b+5);   
         d=s.substr(b+5,c-b-5);img ="";
         if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
-        $("#explorenews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
-        if (i === data.length - 1) $("#exploretopnews").html('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" class="openBrowser">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+        $("#explorenews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+        if (i === data.length - 1) $("#exploretopnews").html('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
       } 
+      for (var i = data.length - 1; i > 0; i--) {
+        if (i === data.length - 16) {break;}
+        s=data[i].description;
+        a=s.indexOf("<img");   
+        b=s.indexOf("src=\"",a);
+        c=s.indexOf("\"",b+5);   
+        d=s.substr(b+5,c-b-5);img ="";
+        if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
+        $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+      }
 		}	
 	});
 }
@@ -621,7 +632,7 @@ function exploreig()
 //https://www.instagram.com/explore/tags/bsmi/?__a=1      
       $.ajax({
         dataType: "json",
-        error: function(xhr, textStatus, errorThrown){if (textStatus == 'parsererror') {$.ajax(this); return;}},
+        error: function(xhr, textStatus, errorThrown){if (textStatus == 'parsererror') {$.ajax(this); return;} else {$.ajax(this); return;}},
         url: $fetchapi+'https://www.instagram.com/explore/tags/bsmi/?__a=1',
         type:'GET',
         success: function(dataq) { //console.log(dataq.contents);
