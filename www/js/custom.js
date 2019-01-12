@@ -603,16 +603,14 @@ function openBsmiTV()
     $(document).on("click", ".openBsmiTV", function() {
       var url = $(this).attr('href');
       var dynamicPopup = app.popup.create({
-        content: '<div class="popup"><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
+        content: '<div class="popup" style="background:#000000"><div class="tv-banner"></div><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
                     '<div id="datapopup" style="height:100%"><center>Loading ...</center></div>'+
                   '</div>',
         // Events
 
       });     
       dynamicPopup.open();
-      var ind = Math.floor(Math.random() * 30);
-      var start = Math.floor(Math.random() * 60);
-      $("#datapopup").html("<iframe width='100%' height='100%' src='https://www.youtube.com/embed/videoseries?list=PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs&loop=1&modestbranding=1&autoplay=1&mute=1&start="+start+"&index="+ind+"' frameborder='0' allow='autoplay; encrypted-media'  allowfullscreen></iframe>");
+      $("#datapopup").html('<iframe width="100%" height="100%" style="border:0px;" src="'+url+'" allow="autoplay; encrypted-media"  allowfullscreen></iframe>');
 	      
     });
 }
