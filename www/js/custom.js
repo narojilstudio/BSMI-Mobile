@@ -603,7 +603,7 @@ function openBsmiTV()
     $(document).on("click", ".openBsmiTV", function() {
       var url = $(this).attr('href');
       var dynamicPopup = app.popup.create({
-        content: '<div class="popup" style="background:#000000"><div class="tv-banner"></div><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
+        content: '<div class="popup" style="background:#000000"><div class="tv-banner"><div class="live-online" style="background:#ffffff;width:50px;height:17px;"><img width="50px" src="img/live-online.gif"/></div></div><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
                     '<div id="datapopup" style="height:100%"><center>Loading ...</center></div>'+
                   '</div>',
         // Events
