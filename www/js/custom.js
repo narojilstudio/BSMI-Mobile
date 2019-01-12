@@ -521,6 +521,7 @@ function explorenews()
 		error: function(xhr, textStatus, errorThrown){$.ajax(this); return;},
 		success:function(data) {
       //console.log(data);
+      $("#beritaterbaru").html('');
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
       var top = Math.floor(Math.random() * 10)+1;
       for (var i = data.length - 1; i > 0; i--) {
@@ -655,7 +656,9 @@ function exploreig()
         url: $fetchapi+'https://www.instagram.com/explore/tags/bsmi/?__a=1',
         type:'GET',
         success: function(dataq) { //console.log(dataq.contents);
-        var data = JSON.parse(dataq.contents);//console.log(data);
+          $("#exploreig").html('');
+          $("#exploretopig").html('');
+          var data = JSON.parse(dataq.contents);//console.log(data);
           //console.log(data.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);
           for (var i = 0 ; i < 4 ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
