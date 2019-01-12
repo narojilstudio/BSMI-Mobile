@@ -1,10 +1,10 @@
-        var playListID = ["PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs"];
-        var apiKey = "AIzaSyBMRyIdlgyAKIoKe9ptUZgejHZQB3RWumY";
-        var autoPlayNext = 1;
-        var showPlayerControls = 1;
-        var showVideoInfo = 0;
-        var showRelatedVideos = 0;
-        var showTitlesInList = 1;
+var playListID = ["PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs"];
+var apiKey = "AIzaSyBMRyIdlgyAKIoKe9ptUZgejHZQB3RWumY";
+var autoPlayNext = 1;
+var showPlayerControls = 1;
+var showVideoInfo = 0;
+var showRelatedVideos = 0;
+var showTitlesInList = 1;
 
 // LOAD YOUTUBE API
 
@@ -15,9 +15,6 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
-
 
 
 // TOUCHSWIPE JS
@@ -165,8 +162,8 @@ function onYouTubeIframeAPIReady() {
         'onStateChange': onPlayerStateChange
 
       },
-      origin: "https://www.youtube.com",
-      widget_referrer: "https://www.youtube.com"
+      //origin: "https://www.youtube.com",
+      //host: "https://localhost:3000/"
 
     });
 

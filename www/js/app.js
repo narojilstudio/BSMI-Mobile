@@ -97,6 +97,8 @@ $(document).ready(function(){
       
       openLiveTV2();
       
+      openBsmiTV();
+      
       exploreig();
       
 });
