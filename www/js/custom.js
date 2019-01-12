@@ -522,6 +522,7 @@ function explorenews()
 		success:function(data) {
       //console.log(data);
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
+      var top = Math.floor(Math.random() * 10)+1;
       for (var i = data.length - 1; i > 0; i--) {
         //if (i === data.length - 16) {break;}
         s=data[i].description;
@@ -531,7 +532,7 @@ function explorenews()
         d=s.substr(b+5,c-b-5);img ="";
         if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
         $("#explorenews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
-        if (i === data.length - 1) $("#exploretopnews").html('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+        if (i === data.length - top) $("#exploretopnews").html('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
       } 
       for (var i = data.length - 1; i > 0; i--) {
         if (i === data.length - 16) {break;}
@@ -611,7 +612,7 @@ function openBsmiTV()
       dynamicPopup.open();
       var ind = Math.floor(Math.random() * 30);
       var start = Math.floor(Math.random() * 60);
-      $("#datapopup").html("<iframe width='100%' height='100%' src='https://www.youtube.com/embed/videoseries?list=PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs&loop=1&modestbranding=1&autoplay=1&mute=0&start="+start+"&index="+ind+"' frameborder='0' allow='autoplay; encrypted-media'  allowfullscreen></iframe>");
+      $("#datapopup").html("<iframe width='100%' height='100%' src='https://www.youtube.com/embed/videoseries?list=PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs&loop=1&modestbranding=1&autoplay=1&mute=1&start="+start+"&index="+ind+"' frameborder='0' allow='autoplay; encrypted-media'  allowfullscreen></iframe>");
 	      
     });
 }
