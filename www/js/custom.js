@@ -507,6 +507,8 @@ function openPreview2()
           var hasil = JSON.parse(data.contents);//console.log(hasil);
           var berita = hasil.content;
           $("#datapopup").html("<h3><b>"+title+"</b></h3></br>"+hasil.content+"</br></br></br></br></br></br></br>");
+          $("#datapopup").find('img').each(function(n,image){var image = $(image); image.attr('width','100%');image.attr('height','auto');});
+          $("#datapopup").find('iframe').each(function(n,iframe){var iframe = $(iframe); iframe.attr('width','100%');iframe.attr('height','auto');});
         }	
       });
 	      
