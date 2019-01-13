@@ -234,8 +234,11 @@ function gempadirasakan()
         dataType: "json",
         url: $fetchapi+'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         type:'GET',
-        error: function(){$("#gempadirasakandiv").hide();},
+        tryCount : 0,
+        retryLimit : 5,
+        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
+          $("#gempadirasakandiv").html('<div class="card-header">Gempa Bumi Dirasakan</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempadirasakan" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempadirasakan/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),
           $tanggal = $xml.find( "Tanggal" ).text();
@@ -270,7 +273,9 @@ function gempadirasakanfull()
         dataType: "json",
         url: $fetchapi+'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         type:'GET',
-        //error: function(){$("#gempadirasakandiv").hide();},
+        tryCount : 0,
+        retryLimit : 5,
+        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),
@@ -306,8 +311,11 @@ function gempaterkini()
         dataType: "json",
         url: $fetchapi+'http%3A//data.bmkg.go.id/autogempa.xml',
         type:'GET',
-        error: function(){$("#gempaterkinidiv").hide();},
+        tryCount : 0,
+        retryLimit : 5,
+        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
+          $("#gempaterkinidiv").html('<div class="card-header">Gempa Bumi M &ge; 5,0</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempaterkini" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempaterkini/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),
           $tanggal = $xml.find( "Tanggal" ).text();
@@ -343,7 +351,9 @@ function gempaterkinifull()
         dataType: "json",
         url: $fetchapi+'http%3A//data.bmkg.go.id/autogempa.xml',
         type:'GET',
-        //error: function(){$("#gempaterkinidiv").hide();},
+        tryCount : 0,
+        retryLimit : 5,
+        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),
@@ -387,6 +397,7 @@ function openBrowser()
                 })
 }
 /////////////////////////////////////////////////////////
+/*
 function openBrowser1()
 { 
     // Open dynamic popup
@@ -405,7 +416,9 @@ function openBrowser1()
       dynamicPopup.open();
     });
 }
+*/
 ///////////////////////////////////////////////////////////
+/*
 function openBrowser2()
 { 
     // Open dynamic popup
@@ -434,7 +447,9 @@ function openBrowser2()
 	      
     });
 }
+*/
 ///////////////////////////////////////////////////////////
+/*
 function beritaterbaru()
 {
 	var feed = "https://script.google.com/macros/s/AKfycbyMwyyuZbB-FDd9jyEwrJVe0cB8AT5fblIHiYRQTfVXS_nQzkAb/exec";	
@@ -457,7 +472,9 @@ function beritaterbaru()
 		}	
 	});
 }
+*/
 //////////////////////////////////////////////////////////////
+/*
 function openPreview()
 { 
     // Open dynamic popup
@@ -482,6 +499,7 @@ function openPreview()
 	      
     });
 }
+*/
 ///////////////////////////////////////////////////////////////
 function openPreview2()
 { 
@@ -501,7 +519,9 @@ function openPreview2()
       var feed = "https://script.google.com/macros/s/AKfycbz7nyKpxG7aiEeMl98UIfMSjwEk8muKFIaF24Vemh1gb2CKb-mN/exec?url="+url;
       $.ajax(feed, {
         dataType:"json",
-        error: function(xhr, textStatus, errorThrown){console.log('error openpreview2 :'+textStatus);if (textStatus == 'parsererror') {$.ajax(this); return;} else $.ajax(this); return;},
+        tryCount : 0,
+        retryLimit : 5,
+        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success:function(data) { //console.log(data);
           if (data.contents == '') {$.ajax(this); return;}
           var hasil = JSON.parse(data.contents);//console.log(hasil);
@@ -520,10 +540,13 @@ function explorenews()
 	var feed = "https://script.google.com/macros/s/AKfycbyMwyyuZbB-FDd9jyEwrJVe0cB8AT5fblIHiYRQTfVXS_nQzkAb/exec";	
 	$.ajax(feed, {
 		dataType:"json",
-		error: function(xhr, textStatus, errorThrown){$.ajax(this); return;},
+        tryCount : 0,
+        retryLimit : 5,
+        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
 		success:function(data) {
       //console.log(data);
       $("#beritaterbaru").html('');
+      $("#exploretopnews").html('');
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
       var top = Math.floor(Math.random() * 10)+1;
       for (var i = data.length - 1; i > 0; i--) {
@@ -535,7 +558,8 @@ function explorenews()
         d=s.substr(b+5,c-b-5);img ="";
         if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
         $("#explorenews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
-        if (i === data.length - top) $("#exploretopnews").html('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+        if (i === data.length - top) $("#exploretopnews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+        if (i === data.length - 1) $("#exploretopnews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
       } 
       for (var i = data.length - 1; i > 0; i--) {
         if (i === data.length - 16) {break;}
@@ -551,6 +575,7 @@ function explorenews()
 	});
 }
 //////////////////////////////////////////////////////////
+/*
 function openLiveTV()
 { 
     // Open dynamic popup
@@ -580,7 +605,7 @@ function openLiveTV()
 	      
     });
 }
-
+*/
 ////////////////////////////////////////////////////////////////
 function openLiveTV2()
 { 
@@ -618,6 +643,7 @@ function openBsmiTV()
     });
 }
 ///////////////////////////////////////////////////////////////////////////
+/*
 function exploreigdetail(data)
 {
           //for (var i = 0 ; i < data.graphql.hashtag.edge_hashtag_to_media.edges.length ; i++) {
@@ -647,14 +673,17 @@ function exploreigdetail(data)
            
           }
 }
-
+*/
+////////////////////////////////////////////////////////////////////////////////////
 function exploreig()
 {
 //https://www.instagram.com/p/Bsao9S2hDrd/?__a=1
 //https://www.instagram.com/explore/tags/bsmi/?__a=1      
       $.ajax({
         dataType: "json",
-        error: function(xhr, textStatus, errorThrown){if (textStatus == 'parsererror') {$.ajax(this); return;} else {$.ajax(this); return;}},
+        tryCount : 0,
+        retryLimit : 5,
+        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         url: $fetchapi+'https://www.instagram.com/explore/tags/bsmi/?__a=1',
         type:'GET',
         success: function(dataq) { //console.log(dataq.contents);
