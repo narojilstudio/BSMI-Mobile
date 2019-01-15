@@ -1,4 +1,4 @@
-var playListID = ["PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs"];
+var playListID = ["PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs","PLIHPpPM0jhtlzpqGYIfd2YWD2hVKDYsDs"];
 var apiKey = "AIzaSyBMRyIdlgyAKIoKe9ptUZgejHZQB3RWumY";
 var autoPlayNext = 1;
 var showPlayerControls = 1;
@@ -131,9 +131,10 @@ for (var n=0;n<numPlaylists;n++) {
 
 	vidIDs[n] = [];
 
-	videosURL[n] = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId="+playListID[n]+"&key="+apiKey+"&fields=items&part=snippet&maxResults=50&vq=hd1080";
-
-
+	//videosURL[n] = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId="+playListID[n]+"&key="+apiKey+"&fields=items&part=snippet&maxResults=50&vq=hd1080";
+	
+	videosURL[0] = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId="+playListID[n]+"&key="+apiKey+"&fields=items&part=snippet&maxResults=2&vq=hd1080";	
+	videosURL[1] = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId="+playListID[n]+"&key="+apiKey+"&fields=items&part=snippet&maxResults=50&vq=hd1080";
 
 }
 
@@ -162,8 +163,8 @@ function onYouTubeIframeAPIReady() {
         'onStateChange': onPlayerStateChange
 
       },
-      //origin: "https://www.youtube.com",
-      //host: "https://localhost:3000/"
+      //origin: "",
+      //host: ""
 
     });
 

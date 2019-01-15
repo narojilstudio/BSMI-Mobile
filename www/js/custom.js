@@ -693,18 +693,23 @@ function exploreig()
           //console.log(data.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);
           for (var i = 0 ; i < 4 ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
-            $( "#exploretopig" ).append('<div class="col-50"><a href="'+display_url+'" class="exploreig"><img width="100%" src="'+display_url+'"/></a></div>');
+            $( "#exploretopig" ).append('<div class="col-50"><a href="'+display_url+'" class="fancybox"  rel="galleryig1"><img width="100%" src="'+display_url+'"/></a></div>');
           }
           for (var i = 0 ; i < data.graphql.hashtag.edge_hashtag_to_media.edges.length ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
-            $( "#exploreig" ).append('<div class="col-50"><a href="'+display_url+'" class="exploreig"><img width="100%" src="'+display_url+'"/></a></div>');
+            $( "#exploreig" ).append('<div class="col-50"><a href="'+display_url+'" class="fancybox"  rel="galleryig2"><img width="100%" src="'+display_url+'"/></a></div>');
           }
         }
       }); 
       
-            $(".exploreig").fancybox({
-              openEffect : 'fade',
-              closeEffect : 'fade'
-            });    
+
+
 }
 //////////////////////////////////////////////////////////////////
+function fancyboxinstall()
+{
+            $(".fancybox").fancybox({
+              openEffect : 'fade',
+              closeEffect : 'fade'
+           }); 
+}
