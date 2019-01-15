@@ -508,14 +508,14 @@ function openPreview2()
       var url = $(this).attr('href');
       var title = $(this).attr('title');
       var dynamicPopup = app.popup.create({
-        content: '<div class="popup"><div class="block"><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a><a href="#" class="actions-open" data-actions=".ac-preview" style="float:right"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(title+" "+url)+'" class="openBrowser link">Share link ke WhatsApp</a></br></br><a href="'+url+'" class="openBrowser link">Buka link di Browser</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div></div>'+
+        content: '<div class="popup"><div class="block"><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a><a href="#" class="actions-open" data-actions=".ac-preview" style="float:right"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(title+" "+url)+'" class="openBrowser link">Share link ke WhatsApp</a></br></br><a href="'+url+'" class="openBrowser link">Buka link di Browser</a></br></br><a data-clipboard-text="'+url+'" class="copytoclipboard link actions-close popup-close" href="#">Copy To Clipboard</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div></div>'+
                     '<div class="page-content"><div class="block"><div id="datapopup"><center>Loading ...</center></div></div></div>'+
                   '</div>',
         // Events
 
       });     
       dynamicPopup.open();
-      
+     
       var feed = "https://script.google.com/macros/s/AKfycbz7nyKpxG7aiEeMl98UIfMSjwEk8muKFIaF24Vemh1gb2CKb-mN/exec?url="+url;
       $.ajax(feed, {
         dataType:"json",
@@ -529,6 +529,7 @@ function openPreview2()
           $("#datapopup").html("<h3><b>"+title+"</b></h3></br>"+hasil.content+"</br></br></br></br></br></br></br>");
           $("#datapopup").find('img').each(function(n,image){var image = $(image); image.attr('width','100%');image.attr('height','auto');});
           $("#datapopup").find('iframe').each(function(n,iframe){var iframe = $(iframe); iframe.attr('width','100%');iframe.attr('height','auto');});
+          
         }	
       });
 	      

@@ -102,5 +102,7 @@ $(document).ready(function(){
       exploreig();
      
       fancyboxinstall();
+      
+      new ClipboardJS('.copytoclipboard');
 });
 		
