@@ -6,7 +6,7 @@ routes = [
         pageAfterIn: function test (e, page) {
           // do something after page gets into the view
 
-              $(document).ready(function(){
+              /* $(document).ready(function(){
                 
                 // Example by className
                 $(".demo").htmlfromrss(
@@ -18,7 +18,7 @@ routes = [
                   window.open(url, "_blank", "location=yes");
               })
           
-              });
+              }); */
 
 
          

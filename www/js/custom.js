@@ -261,7 +261,7 @@ function gempadirasakan()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(dateString($tanggaljam)))
+            .bindPopup('<center>Gempa bumi M '+$magnitude+'</br>'+$tanggal+' '+$jam+'</br>'+relative_time(dateString($tanggaljam))+'</center>')
             .openPopup(); 
         }
       });
@@ -299,7 +299,7 @@ function gempadirasakanfull()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(dateString($tanggaljam)))
+            .bindPopup('<center>Gempa bumi M '+$magnitude+'</br>'+$tanggal+' '+$jam+'</br>'+relative_time(dateString($tanggaljam))+'</center>')
             .openPopup();  
         }
       });
@@ -339,7 +339,7 @@ function gempaterkini()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(dateString($tanggaljam)))
+            .bindPopup('<center>Gempa bumi M '+$magnitude+'</br>'+$tanggal+' '+$jam+'</br>'+relative_time(dateString($tanggaljam))+'</center>')
             .openPopup();
         }
       });
@@ -378,7 +378,7 @@ function gempaterkinifull()
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
-            .bindPopup('Gempa bumi M '+$magnitude+'</br>'+relative_time(dateString($tanggaljam)))
+            .bindPopup('<center>Gempa bumi M '+$magnitude+'</br>'+$tanggal+' '+$jam+'</br>'+relative_time(dateString($tanggaljam))+'</center>')
             .openPopup();
         }
       });     
@@ -718,5 +718,14 @@ function fancyboxinstall()
 function copytoclipboard()
 {
   var clipboard = new ClipboardJS('.copytoclipboard');
-  //clipboard.destroy();
+  $(document).on("click", ".copytoclipboard", function() {
+    //var clipboard = new ClipboardJS('.copytoclipboard');
+    //clipboard.destroy();
+    var toastCenter = app.toast.create({
+      text: 'Disalin',
+      position: 'center',
+      closeTimeout: 2000,
+    })
+    toastCenter.open();
+  });
 }
