@@ -12,6 +12,9 @@
 	
       $.ajax(feed, {
         dataType:"json",
+        tryCount : 0,
+        retryLimit : 10,
+        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},        
         success:function(data) {
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),

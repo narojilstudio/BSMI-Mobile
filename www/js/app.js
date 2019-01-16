@@ -79,15 +79,15 @@ $$('#my-login-screen .login-button').on('click', function () {
 });
 
 $(document).ready(function(){
-       $.ajaxSetup({ cache: false });						      
+      $.ajaxSetup({ cache: false });
+      						      
       date_time('timepanelmasehi');
+      
       date_time_hijri('timepanelhijri');
       
       gempadirasakan();
     
       gempaterkini();
-      
-      //beritaterbaru();
       
       openBrowser();
       
@@ -103,6 +103,6 @@ $(document).ready(function(){
      
       fancyboxinstall();
       
-      new ClipboardJS('.copytoclipboard');
+      copytoclipboard();
 });
 		

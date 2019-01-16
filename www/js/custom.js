@@ -235,7 +235,7 @@ function gempadirasakan()
         url: $fetchapi+'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         type:'GET',
         tryCount : 0,
-        retryLimit : 5,
+        retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           $("#gempadirasakandiv").html('<div class="card-header">Gempa Bumi Dirasakan</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempadirasakan" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempadirasakan/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
@@ -274,7 +274,7 @@ function gempadirasakanfull()
         url: $fetchapi+'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         type:'GET',
         tryCount : 0,
-        retryLimit : 5,
+        retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           xmlDoc = $.parseXML( data.contents ),
@@ -312,7 +312,7 @@ function gempaterkini()
         url: $fetchapi+'http%3A//data.bmkg.go.id/autogempa.xml',
         type:'GET',
         tryCount : 0,
-        retryLimit : 5,
+        retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           $("#gempaterkinidiv").html('<div class="card-header">Gempa Bumi M &ge; 5,0</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempaterkini" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempaterkini/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
@@ -352,7 +352,7 @@ function gempaterkinifull()
         url: $fetchapi+'http%3A//data.bmkg.go.id/autogempa.xml',
         type:'GET',
         tryCount : 0,
-        retryLimit : 5,
+        retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           xmlDoc = $.parseXML( data.contents ),
@@ -508,7 +508,7 @@ function openPreview2()
       var url = $(this).attr('href');
       var title = $(this).attr('title');
       var dynamicPopup = app.popup.create({
-        content: '<div class="popup"><div class="block"><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a><a href="#" class="actions-open" data-actions=".ac-preview" style="float:right"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(title+" "+url)+'" class="openBrowser link">Share link ke WhatsApp</a></br></br><a href="'+url+'" class="openBrowser link">Buka link di Browser</a></br></br><a data-clipboard-text="'+url+'" class="copytoclipboard link actions-close popup-close" href="#">Copy To Clipboard</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div></div>'+
+        content: '<div class="popup"><div class="block"><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a><a href="#" class="actions-open" data-actions=".ac-preview" style="float:right"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(title+" "+url)+'" class="openBrowser link">Share link ke WhatsApp</a></br></br><a href="'+url+'" class="openBrowser link">Buka link di Browser</a></br></br><a data-clipboard-text="'+url+'" class="copytoclipboard link actions-close" href="#">Copy To Clipboard</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div></div>'+
                     '<div class="page-content"><div class="block"><div id="datapopup"><center>Loading ...</center></div></div></div>'+
                   '</div>',
         // Events
@@ -520,7 +520,7 @@ function openPreview2()
       $.ajax(feed, {
         dataType:"json",
         tryCount : 0,
-        retryLimit : 5,
+        retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success:function(data) { //console.log(data);
           if (data.contents == '') {$.ajax(this); return;}
@@ -542,7 +542,7 @@ function explorenews()
 	$.ajax(feed, {
 		dataType:"json",
         tryCount : 0,
-        retryLimit : 5,
+        retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
 		success:function(data) {
       //console.log(data);
@@ -683,7 +683,7 @@ function exploreig()
       $.ajax({
         dataType: "json",
         tryCount : 0,
-        retryLimit : 5,
+        retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         url: $fetchapi+'https://www.instagram.com/explore/tags/bsmi/?__a=1',
         type:'GET',
@@ -713,4 +713,10 @@ function fancyboxinstall()
               openEffect : 'fade',
               closeEffect : 'fade'
            }); 
+}
+///////////////////////////////////////////////
+function copytoclipboard()
+{
+  var clipboard = new ClipboardJS('.copytoclipboard');
+  //clipboard.destroy();
 }
