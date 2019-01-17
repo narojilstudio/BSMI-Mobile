@@ -1,6 +1,7 @@
 $mapboxkey='pk.eyJ1IjoibmFyb2ppbCIsImEiOiJjanFqa3c5NGg2Y2drNDJ1bDZ5cXoyNjJkIn0.OSNBp6nQ7K1w9fHM8yc8Fw';
 $mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+$mapboxkey;
-$fetchapi='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url='; //https://api.allorigins.ml/get?url=
+$fetchapigs='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url=';
+$fetchapi= 'https://api.allorigins.ml/get?url=';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function extractData(data, startStr, endStr)
 {
@@ -232,11 +233,12 @@ function gempadirasakan()
 {
       $.ajax({
         dataType: "json",
+        sourceurl:'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         url: $fetchapi+'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         type:'GET',
         tryCount : 0,
         retryLimit : 10,
-        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
+        error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           $("#gempadirasakandiv").html('<div class="card-header">Gempa Bumi Dirasakan</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempadirasakan" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempadirasakan/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
           xmlDoc = $.parseXML( data.contents ),
@@ -271,11 +273,12 @@ function gempadirasakanfull()
 {
       $.ajax({
         dataType: "json",
+        sourceurl:'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         url: $fetchapi+'http%3A//data.bmkg.go.id/lastgempadirasakan.xml',
         type:'GET',
         tryCount : 0,
         retryLimit : 10,
-        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
+        error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),
@@ -309,11 +312,12 @@ function gempaterkini()
 {
       $.ajax({
         dataType: "json",
+        sourceurl:'http%3A//data.bmkg.go.id/autogempa.xml',
         url: $fetchapi+'http%3A//data.bmkg.go.id/autogempa.xml',
         type:'GET',
         tryCount : 0,
         retryLimit : 10,
-        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
+        error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           $("#gempaterkinidiv").html('<div class="card-header">Gempa Bumi M &ge; 5,0</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempaterkini" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempaterkini/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
           xmlDoc = $.parseXML( data.contents ),
@@ -349,11 +353,12 @@ function gempaterkinifull()
 {
       $.ajax({
         dataType: "json",
+        sourceurl:'http%3A//data.bmkg.go.id/autogempa.xml',
         url: $fetchapi+'http%3A//data.bmkg.go.id/autogempa.xml',
         type:'GET',
         tryCount : 0,
         retryLimit : 10,
-        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
+        error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),
@@ -391,10 +396,10 @@ alert('test');
 ////////////////////////////////////////////////////
 function openBrowser()
 {
-                $(document).on("click", ".openBrowser", function() {
-                    var url = $(this).attr('href');
-                    window.open(url, "_blank", "location=yes");
-                })
+  $(document).on("click", ".openBrowser", function() {
+      var url = $(this).attr('href');
+      window.open(url, "_blank", "location=yes");
+  })
 }
 /////////////////////////////////////////////////////////
 /*
@@ -682,9 +687,10 @@ function exploreig()
 //https://www.instagram.com/explore/tags/bsmi/?__a=1      
       $.ajax({
         dataType: "json",
+        sourceurl:'https://www.instagram.com/explore/tags/bsmi/?__a=1',
         tryCount : 0,
         retryLimit : 10,
-        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
+        error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         url: $fetchapi+'https://www.instagram.com/explore/tags/bsmi/?__a=1',
         type:'GET',
         success: function(dataq) { //console.log(dataq.contents);
@@ -709,10 +715,10 @@ function exploreig()
 //////////////////////////////////////////////////////////////////
 function fancyboxinstall()
 {
-            $(".fancybox").fancybox({
-              openEffect : 'fade',
-              closeEffect : 'fade'
-           }); 
+    $(".fancybox").fancybox({
+      openEffect : 'fade',
+      closeEffect : 'fade'
+   }); 
 }
 ///////////////////////////////////////////////
 function copytoclipboard()

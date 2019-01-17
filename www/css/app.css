@@ -120,3 +120,8 @@ height:0px;
 left:5px;
 top:5px;
 }
+
+.page {
+  background: url("blue-gradient-background.png") no-repeat center center fixed !important;
+  background-size: cover !important;
+}

@@ -238,7 +238,7 @@ function doAjaxCallStuff(n) {
 
 		        	}
 
-		        	list_data += '<div class=\"thumb\"><img class=\"current-vid\" src="'+ thumb +'"></div><img class="play-btn" src="img/mlvp-play.svg">\n';
+		        	list_data += '<div class=\"thumb\"><img class=\"current-vid\" src="'+ thumb +'"></div><!--<img class="play-btn" src="img/mlvp-play.svg">-->\n';
 
 			        if (showTitlesInList === 1) {
 
@@ -260,7 +260,7 @@ function doAjaxCallStuff(n) {
 
 		        	}
 
-			        list_data += '<div class=\"thumb\"><img src="'+ thumb +'"></div><img class="play-btn" src="img/mlvp-play.svg">\n';
+			        list_data += '<div class=\"thumb\"><img src="'+ thumb +'"></div><!--<img class="play-btn" src="img/mlvp-play.svg">-->\n';
 
 			        if (showTitlesInList === 1) {
 
