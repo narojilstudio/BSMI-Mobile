@@ -554,7 +554,8 @@ function explorenews()
       $("#beritaterbaru").html('');
       $("#exploretopnews").html('');
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
-      var top = Math.floor(Math.random() * 10)+1;
+      var top1 = Math.floor(Math.random() * data.length);
+      var top2 = Math.floor(Math.random() * data.length);
       for (var i = data.length - 1; i > 0; i--) {
         //if (i === data.length - 16) {break;}
         s=data[i].description;
@@ -564,8 +565,10 @@ function explorenews()
         d=s.substr(b+5,c-b-5);img ="";
         if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
         $("#explorenews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
-        if (i === data.length - top) $("#exploretopnews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
-        if (i === data.length - 1) $("#exploretopnews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+        
+        if (i === data.length - top1) $("#exploretopnews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+        
+        if (i === data.length - top2) $("#exploretopnews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
       } 
       for (var i = data.length - 1; i > 0; i--) {
         if (i === data.length - 16) {break;}
@@ -700,11 +703,13 @@ function exploreig()
           //console.log(data.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);
           for (var i = 0 ; i < 4 ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
-            $( "#exploretopig" ).append('<div class="col-50"><a href="'+display_url+'" class="fancybox"  rel="galleryig1"><img width="100%" src="'+display_url+'"/></a></div>');
+          var caption = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.edge_media_to_caption.edges[0].node.text;          
+            $( "#exploretopig" ).append('<div class="col-50"><a href="'+display_url+'" title="'+caption+'" class="fancybox"  rel="galleryig1"><img width="100%" src="'+display_url+'"/></a></div>');
           }
           for (var i = 0 ; i < data.graphql.hashtag.edge_hashtag_to_media.edges.length ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
-            $( "#exploreig" ).append('<div class="col-50"><a href="'+display_url+'" class="fancybox"  rel="galleryig2"><img width="100%" src="'+display_url+'"/></a></div>');
+          var caption = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.edge_media_to_caption.edges[0].node.text;  
+            $( "#exploreig" ).append('<div class="col-50"><a href="'+display_url+'" title="'+caption+'" class="fancybox"  rel="galleryig2"><img width="100%" src="'+display_url+'"/></a></div>');
           }
         }
       }); 
@@ -721,14 +726,14 @@ function fancyboxinstall()
    }); */
   $(".fancybox").fancybox({
     afterShow: function(){
-      $(".fancybox-wrap").swipe( {
+      $(".fancybox-overlay").swipe( {
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
           if(direction == "left"){
             $.fancybox.prev(direction);
           }else{
             $.fancybox.prev(direction);
           }
-        }
+        },threshold:0
       });
     } // afterShow
   });   
