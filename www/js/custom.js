@@ -254,7 +254,7 @@ function gempadirasakan()
           $bujur = $xml.find( "Bujur" ).text();$bujur = $bujur.split(" ");$bujur = $bujur[0];
           // Create the map
           var atribusi = "Tanggal : "+$tanggal +" | Jam : "+$jam+" | Koordinat : "+$lintang+ " , "+$bujur+" | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Keterangan : "+$keterangan+" | Dirasakan : "+$dirasakan;
-          var map = L.map('mapgempadirasakan', {attributionControl: true}).setView([$lintang, $bujur], 7);
+          var map = L.map('mapgempadirasakan', {attributionControl: true}).setView([-$lintang, $bujur], 7);
           // Set up the OSM layer
           map.attributionControl.setPrefix('');
           L.tileLayer($mapboxurl, {
@@ -703,17 +703,17 @@ function exploreig()
         success: function(dataq) { //console.log(dataq.contents);
           $("#exploreig").html('');
           $("#exploretopig").html('');
-          var data = JSON.parse(dataq.contents);//console.log(data);
+          try {var data = JSON.parse(dataq.contents);}catch{$.ajax(this); return;}
           //console.log(data.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);
           for (var i = 0 ; i < 4 ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
           var caption = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.edge_media_to_caption.edges[0].node.text;          
-            $( "#exploretopig" ).append('<div class="col-50"><a href="'+display_url+'" title="'+caption+'" class="fancybox"  rel="galleryig1"><img width="100%" src="'+display_url+'"/></a></div>');
+            $( "#exploretopig" ).append('<div class="col-50"><a href="'+display_url+'" title="'+caption+'" class="fancybox" data-fancybox rel="galleryig1"><img width="100%" src="'+display_url+'"/></a></div>');
           }
           for (var i = 0 ; i < data.graphql.hashtag.edge_hashtag_to_media.edges.length ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
           var caption = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.edge_media_to_caption.edges[0].node.text;  
-            $( "#exploreig" ).append('<div class="col-50"><a href="'+display_url+'" title="'+caption+'" class="fancybox"  rel="galleryig2"><img width="100%" src="'+display_url+'"/></a></div>');
+            $( "#exploreig" ).append('<div class="col-50"><a href="'+display_url+'" title="'+caption+'" class="fancybox" data-fancybox rel="galleryig2"><img width="100%" src="'+display_url+'"/></a></div>');
           }
         }
       }); 
@@ -733,14 +733,15 @@ function fancyboxinstall()
       $(".fancybox-overlay").swipe( {
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
           if(direction == "left"){
-            $.fancybox.prev(direction);
+            $.fancybox.next(direction);
           }else{
             $.fancybox.prev(direction);
           }
-        },threshold:0
+        },threshold:5
       });
     } // afterShow
-  });   
+  });
+   
 }
 ///////////////////////////////////////////////
 function copytoclipboard()
