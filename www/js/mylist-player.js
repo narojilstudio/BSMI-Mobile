@@ -10,7 +10,7 @@ var showTitlesInList = 1;
 
 var tag = document.createElement('script');
 
-tag.src = "https://www.youtube.com/iframe_api";
+tag.src = "js/youtube.js";
 
 var firstScriptTag = document.getElementsByTagName('script')[0];
 

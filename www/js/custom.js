@@ -252,14 +252,14 @@ function gempadirasakan()
           $dirasakan = $xml.find( "Dirasakan" ).text();
           $lintang = $xml.find( "Lintang" ).text();$lintang = $lintang.split(" ");$lintang = $lintang[0];
           $bujur = $xml.find( "Bujur" ).text();$bujur = $bujur.split(" ");$bujur = $bujur[0];
-          //$( "#gempadirasakan" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+"</br>Koordinat : "+$lintang+ "LS - "+$bujur+" BT</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Keterangan : "+$keterangan+"</br>Dirasakan : "+$dirasakan );
           // Create the map
-          var map = L.map('mapgempadirasakan', {attributionControl: true}).setView([-$lintang, $bujur], 7);
+          var atribusi = "Tanggal : "+$tanggal +" | Jam : "+$jam+" | Koordinat : "+$lintang+ " , "+$bujur+" | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Keterangan : "+$keterangan+" | Dirasakan : "+$dirasakan;
+          var map = L.map('mapgempadirasakan', {attributionControl: true}).setView([$lintang, $bujur], 7);
           // Set up the OSM layer
           map.attributionControl.setPrefix('');
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
-            attribution: "Tanggal : "+$tanggal +" | Jam : "+$jam+" | Koordinat : -"+$lintang+ " LS , "+$bujur+" BT | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Keterangan : "+$keterangan+" | Dirasakan : "+$dirasakan,
+            attribution: atribusi,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
@@ -293,17 +293,20 @@ function gempadirasakanfull()
           $bujur = $xml.find( "Bujur" ).text();$bujur = $bujur.split(" ");$bujur = $bujur[0];
           //$( "#gempadirasakan" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+"</br>Koordinat : "+$lintang+ "LS - "+$bujur+" BT</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Keterangan : "+$keterangan+"</br>Dirasakan : "+$dirasakan );
           // Create the map
-          var map = L.map('mapgempadirasakanfull').setView([-$lintang, $bujur], 7);
+          var atribusi = "Tanggal : "+$tanggal +" | Jam : "+$jam+" | Koordinat : "+$lintang+ " , "+$bujur+" | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Keterangan : "+$keterangan+" | Dirasakan : "+$dirasakan;
+          var map = L.map('mapgempadirasakanfull').setView([$lintang, $bujur], 7);
           // Set up the OSM layer
           map.attributionControl.setPrefix('');
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
-            attribution: "Tanggal : "+$tanggal +" | Jam : "+$jam+" | Koordinat : -"+$lintang+ " LS , "+$bujur+" BT | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Keterangan : "+$keterangan+" | Dirasakan : "+$dirasakan,
+            attribution: atribusi,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([-$lintang, $bujur]).addTo(map)
             .bindPopup('<center>Gempa bumi M '+$magnitude+'</br>'+$tanggal+' '+$jam+'</br>'+relative_time(dateString($tanggaljam))+'</center>')
-            .openPopup();  
+            .openPopup();
+          var url = 'INFO GEMPA | '+atribusi+' | http://bit.ly/bsmimobile';
+          $( ".gempadirasakan .navbar-inner" ).append('<a href="#" class="actions-open right" data-actions=".ac-preview" style="float:right"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(url)+'" class="openBrowser link">Share link ke WhatsApp</a></br></br><a data-clipboard-text="'+url+'" class="copytoclipboard link actions-close" href="#">Copy To Clipboard</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div>');  
         }
       });
 }
@@ -332,14 +335,14 @@ function gempaterkini()
           $koordinat = $xml.find( "coordinates" ).text();
           $lintang = $koordinat.split(",");$lintang = $lintang[1];
           $bujur = $koordinat.split(",");$bujur = $bujur[0];
-          //$( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
           // Create the map
+          var atribusi = "Tanggal : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | Koordinat : "+$lintang+ " , "+$bujur+" | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Potensi : "+$potensi;
           var map = L.map('mapgempaterkini').setView([$lintang, $bujur], 7);
           map.attributionControl.setPrefix('');
           // Set up the OSM layer
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
-            attribution: "Tanggal : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | Koordinat : "+$lintang+ " LS , "+$bujur+" BT | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Potensi : "+$potensi,
+            attribution: atribusi,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
@@ -372,19 +375,21 @@ function gempaterkinifull()
           $koordinat = $xml.find( "coordinates" ).text();
           $lintang = $koordinat.split(",");$lintang = $lintang[1];
           $bujur = $koordinat.split(",");$bujur = $bujur[0];
-          //$( "#gempaterkini" ).append("Tanggal : "+$tanggal +"</br>Jam : "+$jam+ "</br>Lokasi : "+$lokasi+ "</br>Koordinat : "+$koordinat+ "</br>Magnitude : "+$magnitude+"</br>Kedalaman : "+$kedalaman+"</br>Potensi : "+$potensi );
           // Create the map
+          var atribusi = "Tanggal : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | Koordinat : "+$lintang+ " , "+$bujur+" | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Potensi : "+$potensi;
           var map = L.map('mapgempaterkinifull').setView([$lintang, $bujur], 7);
           map.attributionControl.setPrefix('');
           // Set up the OSM layer
           L.tileLayer($mapboxurl, {
             maxZoom: 18,
-            attribution: "Tanggal : "+$tanggal +" | Jam : "+$jam+ " | Lokasi : "+$lokasi+ " | Koordinat : "+$lintang+ " LS , "+$bujur+" BT | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Potensi : "+$potensi,
+            attribution: atribusi,
             id: 'mapbox.streets'
           }).addTo(map);
           L.marker([$lintang, $bujur]).addTo(map)
             .bindPopup('<center>Gempa bumi M '+$magnitude+'</br>'+$tanggal+' '+$jam+'</br>'+relative_time(dateString($tanggaljam))+'</center>')
             .openPopup();
+          var url = 'INFO GEMPA | '+atribusi+' | http://bit.ly/bsmimobile';
+          $( ".gempaterkini .navbar-inner" ).append('<a href="#" class="actions-open right" data-actions=".ac-preview" style="float:right"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(url)+'" class="openBrowser link">Share link ke WhatsApp</a></br></br><a data-clipboard-text="'+url+'" class="copytoclipboard link actions-close" href="#">Copy To Clipboard</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div>');
         }
       });     
 }
