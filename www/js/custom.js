@@ -293,7 +293,7 @@ function gempadirasakanfull()
           $bujur = $xml.find( "Bujur" ).text();$bujur = $bujur.split(" ");$bujur = $bujur[0];
           // Create the map
           var atribusi = "Tanggal : "+$tanggal +" | Jam : "+$jam+" | Koordinat : "+$lintang+ " , "+$bujur+" | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Keterangan : "+$keterangan+" | Dirasakan : "+$dirasakan;
-          var map = L.map('mapgempadirasakanfull').setView([$lintang, $bujur], 7);
+          var map = L.map('mapgempadirasakanfull').setView([-$lintang, $bujur], 7);
           // Set up the OSM layer
           map.attributionControl.setPrefix('');
           L.tileLayer($mapboxurl, {
@@ -304,7 +304,7 @@ function gempadirasakanfull()
           L.marker([-$lintang, $bujur]).addTo(map)
             .bindPopup('<center>Gempa bumi M '+$magnitude+'</br>'+$tanggal+' '+$jam+'</br>'+relative_time(dateString($tanggaljam))+'</center>')
             .openPopup();
-          var url = 'INFO GEMPA | '+atribusi+' | BSMI MOBILE http://bit.ly/2OckUJI ';
+          var url = 'INFO GEMPA | '+atribusi+' | << BSMI-Mobile bit.ly/2OckUJI >> ';
           $( ".gempadirasakan .navbar-inner" ).append('<a href="#" class="actions-open right" data-actions=".ac-preview" style="float:right;margin-right:10px"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(url)+'" class="openBrowser link">Share ke WhatsApp</a></br></br><a data-clipboard-text="'+url+'" class="copytoclipboard link actions-close" href="#">Copy To Clipboard</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div>');  
         }
       });
@@ -387,7 +387,7 @@ function gempaterkinifull()
           L.marker([$lintang, $bujur]).addTo(map)
             .bindPopup('<center>Gempa bumi M '+$magnitude+'</br>'+$tanggal+' '+$jam+'</br>'+relative_time(dateString($tanggaljam))+'</center>')
             .openPopup();
-          var url = 'INFO GEMPA | '+atribusi+' | BSMI MOBILE http://bit.ly/2OckUJI ';
+          var url = 'INFO GEMPA | '+atribusi+' | << BSMI-Mobile bit.ly/2OckUJI >> ';
           $( ".gempaterkini .navbar-inner" ).append('<a href="#" class="actions-open right" data-actions=".ac-preview" style="float:right;margin-right:10px"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(url)+'" class="openBrowser link">Share ke WhatsApp</a></br></br><a data-clipboard-text="'+url+'" class="copytoclipboard link actions-close" href="#">Copy To Clipboard</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div>');
         }
       });     
@@ -517,7 +517,7 @@ function openPreview2()
       var url = $(this).attr('href');
       var title = $(this).attr('title');
       var dynamicPopup = app.popup.create({
-        content: '<div class="popup"><div class="block"><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a><a href="#" class="actions-open" data-actions=".ac-preview" style="float:right"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(title+" "+url)+'" class="openBrowser link">Share link ke WhatsApp</a></br></br><a href="'+url+'" class="openBrowser link">Buka link di Browser</a></br></br><a data-clipboard-text="'+url+'" class="copytoclipboard link actions-close" href="#">Copy To Clipboard</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div></div>'+
+        content: '<div class="popup"><div class="block"><a href="#" class="link popup-close"><button class="col button button-fill color-red">Keluar</button></a><a href="#" class="actions-open" data-actions=".ac-preview" style="float:right"><i class="icon material-icons md-only">menu</i></a><div class="actions-modal ac-preview"><div class="block"><a href="https://api.whatsapp.com/send?text='+ encodeURIComponent(title+" "+url)+'" class="openBrowser link">Share link ke WhatsApp</a></br></br><a href="'+url+'" class="openBrowser link">Buka link di Browser</a></br></br><a data-clipboard-text="'+title+' '+url+'" class="copytoclipboard link actions-close" href="#">Copy To Clipboard</a></br></br><a href="#" class="actions-close popup-close link" data-actions=".ac-preview">Keluar</a></div></div></div>'+
                     '<div class="page-content"><div class="block"><div id="datapopup"><center>Loading ...</center></div></div></div>'+
                   '</div>',
         // Events
