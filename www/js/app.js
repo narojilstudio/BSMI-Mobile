@@ -93,7 +93,7 @@ $(document).ready(function(){
       
       openPreview2();
 
-      explorenews();
+      explorenews2();
       
       openLiveTV2();
       

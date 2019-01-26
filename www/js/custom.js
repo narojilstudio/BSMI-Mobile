@@ -545,7 +545,8 @@ function openPreview2()
     });
 }
 ///////////////////////////////////////////////////
-function explorenews()
+/*
+function explorenews() //work
 {
 	var feed = "https://script.google.com/macros/s/AKfycbyMwyyuZbB-FDd9jyEwrJVe0cB8AT5fblIHiYRQTfVXS_nQzkAb/exec";	
 	$.ajax(feed, {
@@ -586,6 +587,95 @@ function explorenews()
       }
 		}	
 	});
+}
+*/
+//////////////////////////////////////////////////////////
+function explorenews2()
+{
+  var RSS = [
+    //{feedname:"", feedurl:"http://feeds.feedburner.com/"},
+    {feedname:"DPN BSMI", feedurl:"http://feeds.feedburner.com/bsmipusat"},
+    {feedname:"BSMI Bali", feedurl:"http://feeds.feedburner.com/BsmiBali"},
+    {feedname:"BSMI Banten", feedurl:"http://feeds.feedburner.com/BsmiBanten"},
+    {feedname:"BSMI DKI Jakarta", feedurl:"http://feeds.feedburner.com/BsmiDkiJakarta"},
+    {feedname:"BSMI Jawa Barat", feedurl:"http://feeds.feedburner.com/BsmiJawaBarat"},
+    {feedname:"BSMI Jawa Tengah", feedurl:"http://feeds.feedburner.com/BsmiJawaTengah"},
+    {feedname:"BSMI Jawa Timur", feedurl:"http://feeds.feedburner.com/bsmijawatimur"},
+    {feedname:"BSMI Kalimantan Timur", feedurl:"http://feeds.feedburner.com/BSMIKalimantanTimur"},
+    {feedname:"BSMI NTB", feedurl:"http://feeds.feedburner.com/BsmiNtb"},
+    {feedname:"BSMI Sulawesi Selatan", feedurl:"http://feeds.feedburner.com/BsmiSulawesiselatan"},
+    {feedname:"BSMI Sumatera Utara", feedurl:"http://feeds.feedburner.com/bsmisumut"},
+    {feedname:"BSMI Sumatera Barat", feedurl:"http://feeds.feedburner.com/BsmiSumateraBarat"},
+    {feedname:"BSMI Papua", feedurl:"http://feeds.feedburner.com/BsmiPapua"},
+  ];
+
+  var myj = [];
+  var data = [];
+
+  for (var j = 0; j < RSS.length; j++) {
+     myj[j] = $.ajax({ 
+      dataType: "json",
+      sourceurl: RSS[j].feedurl,
+      tryCount : 0,
+      retryLimit : 10,
+      error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
+      url: $fetchapi+RSS[j].feedurl,
+      async: true,
+      success: function(result) {}                     
+    });
+  }
+  $.when( myj[0],myj[1],myj[2],myj[3],myj[4],myj[5],myj[6],myj[7],myj[8],myj[9],myj[10],myj[11],myj[12] ).done(function( dj0,dj1,dj2,dj3,dj4,dj5,dj6,dj7,dj8,dj9,dj10,dj11,dj12 ) { //console.log('done');
+
+    $("#beritaterbaru").html('');
+    $("#exploretopnews").html('');
+    var dj = [dj0[0],dj1[0],dj2[0],dj3[0],dj4[0],dj5[0],dj6[0],dj7[0],dj8[0],dj9[0],dj10[0],dj11[0],dj12[0]];
+    for (var j = 0; j < dj.length; j++) {
+      try{
+      var dataq = dj[ j ];
+      xmlDoc = $.parseXML( dataq.contents ),
+      $xml = $( xmlDoc ),
+      $($xml).find("item").each(function () { 
+        let el = $(this);
+        var item = {
+          feedtitle : RSS[j].feedname,
+          title : el.find("title").text(),
+          link : el.find("link").text(),
+          timestamp : el.find("pubDate").text(),
+          description : el.find("description").text()
+        }
+        data.push(item);
+      });
+      }
+      catch(e){}
+    }
+    data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
+      var top1 = Math.floor(Math.random() * data.length);
+      var top2 = Math.floor(Math.random() * data.length);
+      for (var i = data.length - 1; i > 0; i--) {
+        //if (i === data.length - 16) {break;}
+        s=data[i].description;
+        a=s.indexOf("<img");   
+        b=s.indexOf("src=\"",a);
+        c=s.indexOf("\"",b+5);   
+        d=s.substr(b+5,c-b-5);img ="";
+        if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
+        $("#explorenews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+        
+        if (i === data.length - top1) $("#exploretopnews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+        
+        if (i === data.length - top2) $("#exploretopnews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+      } 
+      for (var i = data.length - 1; i > 0; i--) {
+        if (i === data.length - 16) {break;}
+        s=data[i].description;
+        a=s.indexOf("<img");   
+        b=s.indexOf("src=\"",a);
+        c=s.indexOf("\"",b+5);   
+        d=s.substr(b+5,c-b-5);img ="";
+        if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
+        $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
+      }
+  });
 }
 //////////////////////////////////////////////////////////
 /*
