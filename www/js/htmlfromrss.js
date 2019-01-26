@@ -7,14 +7,14 @@
     });
 
     function rsstohtml(d, i,j) {
-	//feed to parse
-      var feed = "https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url="+d;
 	
-      $.ajax(feed, {
+      $.ajax({
         dataType:"json",
+        sourceurl:d,
         tryCount : 0,
         retryLimit : 10,
-        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},        
+        error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
+        url: $fetchapi+d,       
         success:function(data) {
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),

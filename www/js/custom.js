@@ -545,7 +545,7 @@ function openPreview2()
     });
 }
 ///////////////////////////////////////////////////
-/*
+
 function explorenews() //work
 {
 	var feed = "https://script.google.com/macros/s/AKfycbyMwyyuZbB-FDd9jyEwrJVe0cB8AT5fblIHiYRQTfVXS_nQzkAb/exec";	
@@ -555,7 +555,7 @@ function explorenews() //work
         retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
 		success:function(data) {
-      //console.log(data);
+      console.log('done : explorenews');
       $("#beritaterbaru").html('');
       $("#exploretopnews").html('');
       data.sort(function(a, b){return new Date(a.timestamp) - new Date(b.timestamp)});
@@ -588,7 +588,7 @@ function explorenews() //work
 		}	
 	});
 }
-*/
+
 //////////////////////////////////////////////////////////
 function explorenews2()
 {
@@ -615,23 +615,19 @@ function explorenews2()
   for (var j = 0; j < RSS.length; j++) {
      myj[j] = $.ajax({ 
       dataType: "json",
-      sourceurl: RSS[j].feedurl,
-      tryCount : 0,
-      retryLimit : 10,
-      error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
       url: $fetchapi+RSS[j].feedurl,
       async: true,
       success: function(result) {}                     
     });
   }
-  $.when( myj[0],myj[1],myj[2],myj[3],myj[4],myj[5],myj[6],myj[7],myj[8],myj[9],myj[10],myj[11],myj[12] ).done(function( dj0,dj1,dj2,dj3,dj4,dj5,dj6,dj7,dj8,dj9,dj10,dj11,dj12 ) { //console.log('done');
+  $.when.apply( $,myj ).then(function( ) { console.log('done : explorenews2');
 
     $("#beritaterbaru").html('');
     $("#exploretopnews").html('');
-    var dj = [dj0[0],dj1[0],dj2[0],dj3[0],dj4[0],dj5[0],dj6[0],dj7[0],dj8[0],dj9[0],dj10[0],dj11[0],dj12[0]];
-    for (var j = 0; j < dj.length; j++) {
+    
+    for (var j = 0; j < arguments.length; j++) {
       try{
-      var dataq = dj[ j ];
+      var dataq = arguments[ j ][0];
       xmlDoc = $.parseXML( dataq.contents ),
       $xml = $( xmlDoc ),
       $($xml).find("item").each(function () { 
@@ -675,7 +671,7 @@ function explorenews2()
         if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
         $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
       }
-  });
+  },function(e){explorenews();});
 }
 //////////////////////////////////////////////////////////
 /*
