@@ -240,7 +240,7 @@ function gempadirasakan()
         retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
-          $("#gempadirasakandiv").html('<div class="card-header">Gempa Bumi Dirasakan</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempadirasakan" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempadirasakan/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
+          $("#gempadirasakandiv").html('<div class="card-header">Info Gempa Bumi Dirasakan</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempadirasakan" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempadirasakan/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),
           $tanggal = $xml.find( "Tanggal" ).text();
@@ -321,7 +321,7 @@ function gempaterkini()
         retryLimit : 10,
         error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success: function(data) {
-          $("#gempaterkinidiv").html('<div class="card-header">Gempa Bumi M &ge; 5,0</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempaterkini" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempaterkini/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
+          $("#gempaterkinidiv").html('<div class="card-header">Info Gempa Bumi M &ge; 5,0</div> <div class="card-content card-content-padding"><div tabindex="650" id="mapgempaterkini" style="width: 100%; height: 250px;"></div></div> <div class="card-footer"><i class="material-icons color-red">book</i><a href="/gempaterkini/" class="item-content item-link"><button class="col button button-fill color-red">Buka</button></a></div>');
           xmlDoc = $.parseXML( data.contents ),
           $xml = $( xmlDoc ),
           $tanggal = $xml.find( "Tanggal" ).text();
