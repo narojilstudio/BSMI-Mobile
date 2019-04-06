@@ -1,7 +1,8 @@
 $mapboxkey='pk.eyJ1IjoibmFyb2ppbCIsImEiOiJjanFqa3c5NGg2Y2drNDJ1bDZ5cXoyNjJkIn0.OSNBp6nQ7K1w9fHM8yc8Fw';
 $mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+$mapboxkey;
 $fetchapigs='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url=';
-$fetchapi= 'https://api.allorigins.ml/get?url=';
+//$fetchapi= 'https://api.allorigins.ml/get?url=';
+$fetchapi= 'https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url=';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function extractData(data, startStr, endStr)
 {
