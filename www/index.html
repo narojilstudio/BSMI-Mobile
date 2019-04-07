@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="css/app.css">
   <link href="css/mylist-player.css" rel="stylesheet">
   <script src="js/swipe.js"></script>
+  <script src="js/intercooler-1.2.1.min.js"></script>
   
      <script type="text/javascript">
 
@@ -146,13 +147,19 @@
             <i class="icon f7-icons ios-only">list</i>
             <i class="icon f7-icons ios-only icon-ios-fill">list_fill</i>
             <i class="icon material-icons md-only">list</i>
-            <span class="tabbar-label">Menu</span>--> 
-          </a>          
-           <a href="#view-info" class="tab-link">
+            <span class="tabbar-label">Menu</span> 
+          </a>-->          
+          <!-- <a href="#view-info" class="tab-link">
             <i class="icon f7-icons ios-only">settings</i>
             <i class="icon f7-icons ios-only icon-ios-fill">settings_fill</i>
             <i class="icon material-icons md-only">settings</i>
             <span class="tabbar-label">Info</span> 
+          </a> --> 
+           <a href="#view-akun" class="tab-link">
+            <i class="icon f7-icons ios-only">settings</i>
+            <i class="icon f7-icons ios-only icon-ios-fill">settings_fill</i>
+            <i class="icon material-icons md-only">settings</i>
+            <span class="tabbar-label">Akun</span> 
           </a> 
         </div>
       </div>
@@ -225,19 +232,17 @@
       <div id="view-catalog" class="view tab">
         <!-- Catalog page will be loaded here dynamically from /catalog/ route -->
       </div>
-
       <!-- Settings View -->
       <div id="view-settings" class="view tab">
         <!-- Settings page will be loaded here dynamically from /settings/ route -->
       </div>
       <div id="view-explore" class="view tab">
-        <!-- info page will be loaded here dynamically from /settings/ route -->
       </div>
       <div id="view-menu" class="view tab">
-        <!-- info page will be loaded here dynamically from /settings/ route -->
       </div>
       <div id="view-info" class="view tab">
-        <!-- info page will be loaded here dynamically from /settings/ route -->
+      </div>
+      <div id="view-akun" class="view tab">
       </div>
     </div>
 
@@ -262,7 +267,89 @@
       </div>
     </div>
 
-  
+    <!-- Login Screen -->
+    <form class="login-screen" id="my-login-screen">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">Login</div>
+            <div class="list">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Username</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="username" placeholder="Your username" pattern="[a-zA-Z0-9]{3,15}" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Password</div>
+                    <div class="item-input-wrap">
+                      <input type="password" name="password" placeholder="Your password" minlength="3" required validate>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list">
+              <div class="block-footer"><a href="#" class="button button-raised button-fill login-button">Sign In</a><p>Don't have an account? <a href="#" class="login-screen-open" data-login-screen="#my-register-screen">Sign up now</a>.</p><a href="#" class="item-link list-button close-login-button">Cancel</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>  
+
+    <!-- Register Screen -->
+    <form class="login-screen" id="my-register-screen">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">Register</div>
+            <div class="list">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Full Name</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="fullname" placeholder="Your full name" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Username</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="username" placeholder="Your username" pattern="[a-zA-Z0-9]{3,15}" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Email</div>
+                    <div class="item-input-wrap">
+                      <input type="email" name="email" placeholder="Your email" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Password</div>
+                    <div class="item-input-wrap">
+                      <input type="password" name="password" placeholder="Your password" minlength="3" required validate>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list">
+              <div class="block-footer"><a href="#" class="button button-raised button-fill register-button">Submit</a><a href="#" class="item-link list-button close-login-button">Cancel</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
 
    <!-- Histats.com  START  (aync)-->
 <script type="text/javascript">var _Hasync= _Hasync|| [];

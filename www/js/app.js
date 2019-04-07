@@ -66,17 +66,99 @@ var exploreView = app.views.create('#view-explore', {
   url: '/explore/'
 });
 
+var akunView = app.views.create('#view-akun', {
+  url: '/akun/'
+});
+
 // Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {
+
+  if (!$$('#my-login-screen')[0].checkValidity()) {
+        //console.log('Check Validity!');
+        return;
+  }
   var username = $$('#my-login-screen [name="username"]').val();
-  var password = $$('#my-login-screen [name="password"]').val();
+  var password = $$('#my-login-screen [name="password"]').val(); 
+  
+            $.ajax({
+                type: "POST",
+                data : { login: 'yes', usr: username, pw: password },
+                url: "http://localhost/project/bsmi/login/loginapi.php",
+                error: function(jqXHR, textStatus, errorThrown) {app.dialog.alert('Error');},
+                success: function(data, textStatus, jqXHR) 
+                  {
+                    //console.log(data);
+                    window.localStorage["auth"] = 'yes';
+                    window.localStorage["token"] = data; 
+                    app.loginScreen.close('#my-login-screen');
+                    checkPreAuth();
+                  }
+            }).done(function (data) {
+                //console.log(data);
+                //$('#4').html('JQUERY AJAX : '+data);
+                            /*$.ajax({
+                                headers: {'Authorization' : 'Bearer '+data},
+                                //xhrFields: {withCredentials: true},
+                                //beforeSend: function(xhr) { xhr.setRequestHeader('Authorization' , 'hook '+data); },
+                                type: "GET",
+                                host : 'http://localhost/',
+                                url: "http://localhost/demo/cors/5corsjwt.php"
+                            }).done(function (data) {
+                                console.log(data);
+                                //$('#4').html('JQUERY AJAX : '+data);
+                                //alert("Data: " + data );
+                            }); */
+            });
 
   // Close login screen
-  app.loginScreen.close('#my-login-screen');
+  //app.loginScreen.close('#my-login-screen');
 
   // Alert username and password
-  app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
+  //app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
 });
+
+$$('#my-register-screen .register-button').on('click', function () {
+  
+  if (!$$('#my-register-screen')[0].checkValidity()) {
+        //console.log('Check Validity!');
+        return;
+  }
+
+  var fullname = $$('#my-register-screen [name="fullname"]').val();
+  var username = $$('#my-register-screen [name="username"]').val();
+  var email = $$('#my-register-screen [name="email"]').val();
+  var password = $$('#my-register-screen [name="password"]').val();
+
+            $.ajax({
+                type: "POST",
+                data : { register: 'yes', name: fullname, username: username, email: email,password: password },
+                url: "http://localhost/project/bsmi/login/registerapi.php",
+                error: function(jqXHR, textStatus, errorThrown) {app.dialog.alert('Error');},
+                success: function(data, textStatus, jqXHR) 
+                  {
+                    //console.log(data);
+                    window.localStorage["auth"] = 'yes';
+                    window.localStorage["token"] = data; 
+                    app.loginScreen.close('#my-register-screen');
+                    checkPreAuth();
+                    app.dialog.alert('Register Success');
+                  }
+            }).done(function (data) {
+            });
+
+});
+
+$$('#my-register-screen .close-login-button').on('click', function () {
+app.loginScreen.close('#my-register-screen');
+app.loginScreen.close('#my-login-screen');
+});
+
+$$('#my-login-screen .close-login-button').on('click', function () {
+app.loginScreen.close('#my-login-screen');
+app.loginScreen.close('#my-register-screen');
+});
+
+
 
 $(document).ready(function(){
       $.ajaxSetup({ cache: false });

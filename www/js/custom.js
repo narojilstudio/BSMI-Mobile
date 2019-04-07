@@ -3,6 +3,10 @@ $mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+
 $fetchapigs='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url=';
 //$fetchapi= 'https://api.allorigins.ml/get?url=';
 $fetchapi= 'https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url=';
+$needauth = 'yes';
+var datatoken = '';
+var datauserid = '';
+var serverhost = 'http://localhost/project/bsmi/login/';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function extractData(data, startStr, endStr)
 {
@@ -844,4 +848,57 @@ function copytoclipboard()
     })
     toastCenter.open();
   });
+}
+
+////////////////////////////////////
+function checkPreAuth() 
+{
+  window.localStorage["auth"] = 'no';
+  datatoken = window.localStorage["token"]; //console.log('token :'+data);
+  $('#successauth').hide();
+    $.ajax({
+        headers: {'Authorization' : 'Bearer '+datatoken},
+        //xhrFields: {withCredentials: true},
+        //beforeSend: function(xhr) { xhr.setRequestHeader('Authorization' , 'hook '+data); },
+        type: "GET",
+        url: "http://localhost/project/bsmi/login/loginapi.php",
+        error: function(jqXHR, textStatus, errorThrown) 
+          {
+          //app.dialog.alert('Error pre auth');
+            $('#successauth').hide();
+            $('#failedauth').show();
+          },
+        success: function(data, textStatus, jqXHR) 
+          {
+          //app.dialog.alert('Success pre auth');
+          window.localStorage["auth"] = 'yes';
+          $('#successauth').show();
+          $('#failedauth').hide();
+          
+          datauserid = data;
+          executeakun();
+          }
+    }).done(function (data) {
+        $('#my-register-screen')[0].reset();
+        $('#my-login-screen')[0].reset();
+        //console.log(data);
+        //$('#4').html('JQUERY AJAX : '+data);
+        //alert("Data: " + data );
+    }); 
+}
+
+////////////////////////////////
+function logoutbutton()
+{
+$$('.logout-button').on('click', function () {
+                    window.localStorage["auth"] = 'no';
+                    window.localStorage["token"] = ''; 
+                    checkPreAuth();
+});
+}
+
+////////////////////////////////
+function executeakun()
+{
+Intercooler.processNodes($('.akundata'));
 }

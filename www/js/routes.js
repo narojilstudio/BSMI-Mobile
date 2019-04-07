@@ -2,7 +2,7 @@ routes = [
   {
     path: '/',
     url: './index.html',
-      on: {
+    on: {
         pageAfterIn: function test (e, page) {
           // do something after page gets into the view
 
@@ -31,6 +31,20 @@ routes = [
   {
     path: '/about/',
     url: './pages/about.html',
+  },
+  {
+    path: '/login-screen/',
+    url: './pages/login.html',
+    on: {
+        pageAfterIn: function test (e, page) {
+          // do something after page gets into the view
+          loginSubmit();
+         
+        },
+        pageInit: function (e, page) {
+          // do something when page initialized
+        },
+      }
   },
   {
     path: '/bsmiradio/',
@@ -185,6 +199,19 @@ routes = [
   {
     path: '/explore/',
     url: './pages/explore.html',
+  },
+  {
+    path: '/akun/',
+    url: './pages/akun.html',
+    on: {
+      pageAfterIn: function (e, page) {
+         
+      },
+      pageInit: function (e, page) {
+        checkPreAuth();
+        logoutbutton();
+      },
+    }
   },
   {
     path: '/gempadirasakan/',
