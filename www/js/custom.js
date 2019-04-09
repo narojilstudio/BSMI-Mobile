@@ -885,11 +885,11 @@ function checkPreAuth()
       url: serverhost+"tokenapi.php"
   }).done(function (data1) {
       //console.log(data1);
-      datatoken = dekripsi(data1);//console.log(datatoken);
+      datatoken = data1;//console.log(datatoken);
       $.ajax({
           type: "POST",
           //url: serverhost+"loginapi.php",
-          data : { token: datatoken},
+          data : { token: dekripsi(datatoken)},
           url: serverhost+"loginapi.php",
           error: function(jqXHR, textStatus, errorThrown) 
             {
@@ -928,6 +928,7 @@ function checkPreAuth()
 function logoutbutton()
 {
 $$('.logout-button').on('click', function () {
+                    app.preloader.show();
                     window.localStorage["auth"] = 'no';
                     window.localStorage["token"] = ''; 
                     checkPreAuth();
