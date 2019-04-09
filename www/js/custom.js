@@ -6,7 +6,28 @@ $fetchapi= 'https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X
 $needauth = 'yes';
 var datatoken = '';
 var datauserid = '';
-var serverhost = 'http://localhost/project/bsmi/login/';
+//var serverhost = 'http://localhost/project/bsmi/login/';
+var serverhost = 'https://bsmi.sourceforge.io/';
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function randomPassword(length) {
+    var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP1234567890";
+    var pass = "";
+    for (var x = 0; x < length; x++) {
+        var i = Math.floor(Math.random() * chars.length);
+        pass += chars.charAt(i);
+    }
+    return pass;
+}
+////////////////////////
+function enkripsi(data,password){
+var encrypted = CryptoJS.AES.encrypt(data, password);
+return encrypted.toString();
+}
+function dekripsi(data){
+var password = window.localStorage["password"];
+var decrypted = CryptoJS.AES.decrypt(data, password);
+return decrypted.toString(CryptoJS.enc.Utf8);
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function extractData(data, startStr, endStr)
 {
@@ -255,11 +276,11 @@ function gempadirasakan()
           $magnitude = $xml.find( "Magnitude" ).text();
           $kedalaman = $xml.find( "Kedalaman" ).text();
           $dirasakan = $xml.find( "Dirasakan" ).text();
-          $lintang = $xml.find( "Lintang" ).text();$lintang = $lintang.split(" ");$lintang = $lintang[0];
+          $lintang = $xml.find( "Lintang" ).text();$lintang = $lintang.split(" ");if ($lintang[1] == 'LU'){$lintang = $lintang[0]}else{$lintang = -$lintang[0]}
           $bujur = $xml.find( "Bujur" ).text();$bujur = $bujur.split(" ");$bujur = $bujur[0];
           // Create the map
           var atribusi = "Tanggal : "+$tanggal +" | Jam : "+$jam+" | Koordinat : "+$lintang+ " , "+$bujur+" | Magnitudo : "+$magnitude+" | Kedalaman : "+$kedalaman+" | Keterangan : "+$keterangan+" | Dirasakan : "+$dirasakan;
-          var map = L.map('mapgempadirasakan', {attributionControl: true}).setView([-$lintang, $bujur], 7);
+          var map = L.map('mapgempadirasakan', {attributionControl: true}).setView([$lintang, $bujur], 7);
           // Set up the OSM layer
           map.attributionControl.setPrefix('');
           L.tileLayer($mapboxurl, {
@@ -659,7 +680,7 @@ function explorenews2()
         b=s.indexOf("src=\"",a);
         c=s.indexOf("\"",b+5);   
         d=s.substr(b+5,c-b-5);img ="";
-        if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
+        if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!="")){d = d.replace('http://','https://');img='<img src="'+d+'" width="100%"/>';}
         $("#explorenews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
         
         if (i === data.length - top1) $("#exploretopnews").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
@@ -673,7 +694,7 @@ function explorenews2()
         b=s.indexOf("src=\"",a);
         c=s.indexOf("\"",b+5);   
         d=s.substr(b+5,c-b-5);img ="";
-        if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
+        if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!="")){d = d.replace('http://','https://');img='<img src="'+d+'" width="100%"/>';}
         $("#beritaterbaru").append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+data[i].feedtitle+'</div><div class="demo-facebook-date">'+date_indo(standard_time(data[i].timestamp).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview">'+data[i].title+img+'</a></div><div class="card-footer">'+relative_time(data[i].timestamp)+'<a href="'+data[i].link+'" title="'+data[i].title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');
       }
   },function(e){explorenews();});
@@ -854,37 +875,53 @@ function copytoclipboard()
 function checkPreAuth() 
 {
   window.localStorage["auth"] = 'no';
-  datatoken = window.localStorage["token"]; //console.log('token :'+data);
   $('#successauth').hide();
-    $.ajax({
-        headers: {'Authorization' : 'Bearer '+datatoken},
-        //xhrFields: {withCredentials: true},
-        //beforeSend: function(xhr) { xhr.setRequestHeader('Authorization' , 'hook '+data); },
-        type: "GET",
-        url: "http://localhost/project/bsmi/login/loginapi.php",
-        error: function(jqXHR, textStatus, errorThrown) 
-          {
-          //app.dialog.alert('Error pre auth');
-            $('#successauth').hide();
-            $('#failedauth').show();
-          },
-        success: function(data, textStatus, jqXHR) 
-          {
-          //app.dialog.alert('Success pre auth');
-          window.localStorage["auth"] = 'yes';
-          $('#successauth').show();
-          $('#failedauth').hide();
-          
-          datauserid = data;
-          executeakun();
-          }
-    }).done(function (data) {
-        $('#my-register-screen')[0].reset();
-        $('#my-login-screen')[0].reset();
-        //console.log(data);
-        //$('#4').html('JQUERY AJAX : '+data);
-        //alert("Data: " + data );
-    }); 
+  //datatoken = dekripsi(window.localStorage["token"]);
+  var token = window.localStorage["token"];
+
+  $.ajax({
+      type: "POST",
+      data : { login: 'yes', data: token},
+      url: serverhost+"tokenapi.php"
+  }).done(function (data1) {
+      //console.log(data1);
+      datatoken = dekripsi(data1);//console.log(datatoken);
+      $.ajax({
+          type: "POST",
+          //url: serverhost+"loginapi.php",
+          data : { token: datatoken},
+          url: "http://localhost/project/bsmi/login/loginapi.php",
+          error: function(jqXHR, textStatus, errorThrown) 
+            {
+            //app.dialog.alert('Error pre auth');
+              $('#successauth').hide();
+              $('#failedauth').show();
+              app.preloader.hide();
+            },
+          success: function(data, textStatus, jqXHR) 
+            {
+            //console.log(data);
+            //app.dialog.alert('Success pre auth');
+            window.localStorage["auth"] = 'yes';
+            $('#successauth').show();
+            $('#failedauth').hide();
+            app.loginScreen.close('#my-register-screen');
+            app.loginScreen.close('#my-login-screen');            
+            datauserid = data;
+            executeakun();
+            app.preloader.hide();
+            }
+      }).done(function (data) {
+          $('#my-register-screen')[0].reset();
+          $('#my-login-screen')[0].reset();
+          //console.log(data);
+          //$('#4').html('JQUERY AJAX : '+data);
+          //alert("Data: " + data );
+      });      
+  }); 
+  
+
+     
 }
 
 ////////////////////////////////

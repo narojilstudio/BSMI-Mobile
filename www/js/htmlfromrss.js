@@ -33,7 +33,7 @@
             b=s.indexOf("src=\"",a);
             c=s.indexOf("\"",b+5);   
             d=s.substr(b+5,c-b-5);img ="";
-            if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!=""))img='<img src="'+d+'" width="100%"/>';
+            if((a!=-1)&&(b!=-1)&&(c!=-1)&&(d!="")){d = d.replace('http://','https://');img='<img src="'+d+'" width="100%"/>';}
             $('.htmlfromrss ul#htmlfromrss' + i).append('<div class="card demo-facebook-card"><div class="card-header"><div class="demo-facebook-avatar"><img src="img/logo50bulat.png" width="34" height="34"/></div><div class="demo-facebook-name">'+j+'</div><div class="demo-facebook-date">'+date_indo(standard_time($pubDate).toUTCString())+'</div></div><div class="card-content card-content-padding"><a href="'+$link+'" title="'+$title+'" class="openPreview">'+$title+img+'</a></div><div class="card-footer">'+relative_time($pubDate)+'<a href="'+$link+'" title="'+$title+'" class="openPreview"><button class="col button button-fill color-red">Baca</button></a></div></div>');            
             
             

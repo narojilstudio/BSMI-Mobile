@@ -11,7 +11,8 @@
       <div id="successauth">
         <div class="card">
           <div class="card-content card-content-padding">
-            Selamat datang <a class="akundata" ic-get-from="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="xhr.setRequestHeader('Authorization','Bearer '+datatoken);settings.url = serverhost+'restapi.php/users/'+datauserid;" ic-transform-response="jsonObject = JSON.parse(content);return jsonObject.username"></a>
+            <!--Selamat datang <a class="akundata" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({token: datatoken});settings.url = serverhost+'restapi.php/users/'+datauserid;" ic-transform-response="jsonObject = JSON.parse(content);return jsonObject.username"></a> -->
+            Selamat datang <a class="akundata" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({token: datatoken});settings.url = serverhost+'restapi.php';"></a>
           </div>
         </div>
         <div class="card">
