@@ -890,7 +890,7 @@ function checkPreAuth()
           type: "POST",
           //url: serverhost+"loginapi.php",
           data : { token: datatoken},
-          url: "http://localhost/project/bsmi/login/loginapi.php",
+          url: serverhost+"loginapi.php",
           error: function(jqXHR, textStatus, errorThrown) 
             {
             //app.dialog.alert('Error pre auth');
