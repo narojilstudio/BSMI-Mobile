@@ -14,7 +14,12 @@
   border-radius:10% 10% 10% 10%;
   padding: 5px;
   margin-bottom: 15px;
-  font-size: 12px;
+  font-size: 10px;
+}
+
+.menuhome .row .col-25 .item-content .fas{
+width:100%;
+font-size:40px;
 }
 
 .donasi .row .col-50{

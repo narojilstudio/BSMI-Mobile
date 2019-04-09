@@ -172,9 +172,7 @@ app.loginScreen.close('#my-login-screen');
 app.loginScreen.close('#my-register-screen');
 });
 
-
-
-$(document).ready(function(){
+function readyapp(){
       $.ajaxSetup({ cache: false });
       						      
       date_time('timepanelmasehi');
@@ -193,6 +191,8 @@ $(document).ready(function(){
       
       openLiveTV2();
       
+      openiframe();
+      
       openBsmiTV();
       
       exploreig();
@@ -200,5 +200,9 @@ $(document).ready(function(){
       fancyboxinstall();
       
       copytoclipboard();
+}
+
+$(document).ready(function(){
+  readyapp();
 });
 		

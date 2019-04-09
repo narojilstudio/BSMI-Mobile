@@ -20,7 +20,6 @@ routes = [
           
               }); */
 
-
          
         },
         pageInit: function (e, page) {
@@ -75,6 +74,7 @@ routes = [
   {
     path: '/majalah/',
     url: './pages/majalah.html',
+    on: {pageAfterIn: function (e, page) {},}
   },
   {
     path: '/donasi/',

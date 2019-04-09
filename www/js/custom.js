@@ -144,7 +144,7 @@ if(s<10)
         s = "0"+s;
 }
 result = ''+days[day]+', '+d+' '+months[month]+' '+year+' '+h+':'+m+':'+s;
-document.getElementById(id).innerHTML = result;
+try {document.getElementById(id).innerHTML = result;}catch{}
 setTimeout('date_time("'+id+'");','1000');
 return true;
 }  
@@ -652,7 +652,7 @@ function explorenews2()
       success: function(result) {}                     
     });
   }
-  $.when.apply( $,myj ).then(function( ) { console.log('done : explorenews2');
+  $.when.apply( $,myj ).then(function( ) { //console.log('done : explorenews2');
 
     $("#beritaterbaru").html('');
     $("#exploretopnews").html('');
@@ -742,6 +742,24 @@ function openLiveTV2()
 { 
     // Open dynamic popup
     $(document).on("click", ".openLiveTV", function() {
+      var url = $(this).attr('href');
+      var dynamicPopup = app.popup.create({
+        content: '<div class="popup" style="background:#000000"><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
+                    '<div id="datapopup" style="height:100%"><center>Loading ...</center></div>'+
+                  '</div>',
+        // Events
+
+      });     
+      dynamicPopup.open();
+      $("#datapopup").html('<iframe width="100%" height="100%" style="border:0px;" src="'+url+'" allow="autoplay; encrypted-media"  allowfullscreen></iframe>');
+	      
+    });
+}
+////////////////////////
+function openiframe()
+{ 
+    // Open dynamic popup
+    $(document).on("click", ".openiframe", function() {
       var url = $(this).attr('href');
       var dynamicPopup = app.popup.create({
         content: '<div class="popup" style="background:#000000"><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
@@ -859,7 +877,7 @@ function fancyboxinstall()
       });
     } // afterShow
   });
-   
+    
 }
 ///////////////////////////////////////////////
 function copytoclipboard()
