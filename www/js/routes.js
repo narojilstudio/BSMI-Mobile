@@ -20,7 +20,7 @@ routes = [
           
               }); */
 
-         
+         date_time_hijri('timepanelhijri');
         },
         pageInit: function (e, page) {
           // do something when page initialized
