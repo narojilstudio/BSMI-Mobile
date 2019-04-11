@@ -6,8 +6,8 @@ $fetchapi= 'https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X
 $needauth = 'yes';
 var datatoken = '';
 var datauserid = '';
-var serverhost = 'http://localhost/project/bsmi/login/';
-//var serverhost = 'https://bsmi.sourceforge.io/';
+//var serverhost = 'http://localhost/project/bsmi/login/';
+var serverhost = 'https://bsmi.sourceforge.io/';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function randomPassword(length) {
     var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP1234567890";
