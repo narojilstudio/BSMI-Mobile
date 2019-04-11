@@ -991,6 +991,7 @@ else {
     header: true,
     footer: true,
     dateFormat: 'dd MM yyyy',
+    monthNames : ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus' , 'September' , 'Oktober', 'November', 'Desember'],
   });
  }
 }
