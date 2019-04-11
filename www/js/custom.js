@@ -6,8 +6,8 @@ $fetchapi= 'https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X
 $needauth = 'yes';
 var datatoken = '';
 var datauserid = '';
-//var serverhost = 'http://localhost/project/bsmi/login/';
-var serverhost = 'https://bsmi.sourceforge.io/';
+var serverhost = 'http://localhost/project/bsmi/login/';
+//var serverhost = 'https://bsmi.sourceforge.io/';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function randomPassword(length) {
     var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP1234567890";
@@ -994,4 +994,20 @@ else {
     monthNames : ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus' , 'September' , 'Oktober', 'November', 'Desember'],
   });
  }
+}
+/////////////////////////////
+function submitgfromregistrasirelawan(data) {
+      $.ajax({
+          type: "GET",
+          url: "https://docs.google.com/forms/d/e/1FAIpQLSdfmfsbXsov76XoKWVjeh9o3zeyd6hskN9xIiXimo-568awVQ/formResponse?usp=pp_url&entry.648250255="+data.namalengkap+"&entry.1934279336="+data.namapanggilan+"&entry.370360157="+data.jenisidentitas+"&entry.1751584372="+data.nomoridentitas+"&entry.1471431416="+data.alamatidentitas+"&entry.906738435="+data.jeniskelamin+"&entry.1399104223="+data.tempatlahir+"&entry.2091736584="+data.tanggallahir+"&entry.251267834="+data.agama+"&entry.1399722100="+data.statusperkawinan+"&entry.1188337323="+data.alamatdomisili+"&entry.1514912662="+data.kelurahan+"&entry.2113582374="+data.kecamatan+"&entry.2125191447="+data.kabupaten+"&entry.598212209="+data.provinsi+"&entry.717721612="+data.nohp+"&entry.1450237887="+data.email+"&entry.101384291="+data.pendidikan+"&entry.321273270="+data.pekerjaan+"&entry.2046195261="+data.facebook+"&entry.1603916932="+data.instagram+"&entry.82467949="+data.twitter+"&entry.2058821317="+data.youtube+"&entry.48940618="+data.hobi+"&entry.428575339="+data.keterangan+"&submit=Submit",
+          error: function(jqXHR, textStatus, errorThrown) 
+            {
+             //console.log(textStatus);            
+            },
+          success: function(data, textStatus, jqXHR) 
+            {
+            //console.log(data);
+            }
+      }).done(function (data) {
+      });
 }
