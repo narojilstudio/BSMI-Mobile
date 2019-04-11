@@ -6,8 +6,8 @@ $fetchapi= 'https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X
 $needauth = 'yes';
 var datatoken = '';
 var datauserid = '';
-//var serverhost = 'http://localhost/project/bsmi/login/';
-var serverhost = 'https://bsmi.sourceforge.io/';
+var serverhost = 'http://localhost/project/bsmi/login/';
+//var serverhost = 'https://bsmi.sourceforge.io/';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function randomPassword(length) {
     var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP1234567890";
@@ -935,7 +935,7 @@ function checkPreAuth()
             app.loginScreen.close('#my-register-screen');
             app.loginScreen.close('#my-login-screen');            
             datauserid = data;
-            executeakun();
+            oncheckpreauthsuccess();
             app.preloader.hide();
             }
       }).done(function (data) {
@@ -966,4 +966,31 @@ $$('.logout-button').on('click', function () {
 function executeakun()
 {
 Intercooler.processNodes($('.akundata'));
+}
+
+////////////////////////
+function oncheckpreauthsuccess() {
+executeakun();
+if (app.views.main.router.url == '/registrasi-relawan/'){registrasirelawan();}
+}
+//////////////////
+function onloginscreenclose(){
+if (app.views.main.router.url == '/registrasi-relawan/'){registrasirelawan('cancel');}
+}
+//////////////////////
+function registrasirelawan(action){
+if (action == 'cancel'){$('#registrasi-relawan-default').show();$('#registrasi-relawan-content').hide();return;}
+if (window.localStorage["auth"] == 'no') {app.loginScreen.open('#my-login-screen');}
+else {
+  $('#registrasi-relawan-default').hide();
+  $('#registrasi-relawan-content').show();
+  Intercooler.processNodes($('.akundata'));
+  var calendarModal = app.calendar.create({
+    inputEl: '#calendar',
+    openIn: 'customModal',
+    header: true,
+    footer: true,
+    dateFormat: 'dd MM yyyy',
+  });
+ }
 }

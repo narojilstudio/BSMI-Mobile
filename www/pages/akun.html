@@ -8,19 +8,25 @@
   <div class="page-content"> 
     <div class="block">
   
-      <div id="successauth">
+      <div id="successauth" style="display:none;">
         <div class="card">
           <div class="card-content card-content-padding">
             <!--Selamat datang <a class="akundata" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({token: datatoken});settings.url = serverhost+'restapi.php/users/'+datauserid;" ic-transform-response="jsonObject = JSON.parse(content);return jsonObject.username"></a> -->
-            Selamat datang <a class="akundata" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';"></a>
+            Selamat datang <a class="akundata" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({action:'getname',token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';"></a>
           </div>
         </div>
+        
+        <div id="biodatarelawan"></div>
+        <a class="akundata" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({action:'cekbiodatarelawan',token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';" ic-target="#biodatarelawan"></a>        
+        
         <div class="card">
           <div class="card-content card-content-padding">
             <a href="#" class="button button-raised button-fill logout-button">Logout</a>
           </div>
         </div>
+        
       </div>
+      
       <div id="failedauth" class="card">
                 <div class="card-content card-content-padding">
                   <center>

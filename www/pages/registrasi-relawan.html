@@ -1,0 +1,268 @@
+<div class="page" data-name="registrasi-relawan">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+        <img class="logotitle" src="img/logo50bulat.png"/>
+      <div class="title">Registrasi Relawan</div>
+    </div>
+  </div>
+  <div class="page-content"> 
+    <div class="block">
+    
+        <div id="registrasi-relawan-default" style="display:none;">
+          <center>Silahkan login terlebih dahulu agar bisa mengisi formulir pendaftaran relawan BSMI</center><div style="margin:5px 5px;"><a href="#" class="button button-raised button-fill login-screen-open" data-login-screen="#my-login-screen">Login</a></div><!--<div style="margin:5px 5px;"><a href="#" class="button button-raised button-fill login-screen-open" data-login-screen="#my-register-screen">Register</a></div>-->
+        </div>
+        
+        <div id="registrasi-relawan-content" style="display:none;">
+          <form class="form-registrasi-relawan akundata" ic-post-to="http://localhost/" ic-on-beforeSend="settings.data += '&' + $.param({action:'submitregistrasirelawan',token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';" ic-indicator="#indicator">
+            <center><p>Silahakan mengisi formulir berikut ini untuk melanjutkan pendaftaran relawan.</p></center>
+            <div class="list">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Nama Lengkap</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="namalengkap" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Nama Panggilan</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="namapanggilan" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Jenis Identitas</div>
+                    <div class="item-input-wrap">
+                                  <select name="jenisidentitas">
+                                    <option value="KTP" selected>KTP</option>
+                                  </select>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">No Identitas</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="nomoridentitas" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Alamat Sesuai Identitas</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="alamatidentitas" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Jenis Kelamin</div>
+                    <div class="item-input-wrap">
+                                  <select name="jeniskelamin">
+                                    <option value="Laki-Laki" selected>Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                  </select>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Tempat Lahir</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="tempatlahir" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Tanggal Lahir</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="tanggallahir" placeholder="" required validate id="calendar">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Agama</div>
+                    <div class="item-input-wrap">
+                                  <select name="agama">
+                                    <option value="Islam" selected>Islam</option>
+                                    <option value="Kristen">Kristen</option>
+                                    <option value="Katolik">Katolik</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Budha">Budha</option>
+                                    <option value="Konghucu">Konghucu</option>
+                                  </select>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Status Perkawinan</div>
+                    <div class="item-input-wrap">
+                                  <select name="statusperkawinan">
+                                    <option value="Belum Menikah" selected>Belum Menikah</option>
+                                    <option value="Menikah">Menikah</option>
+                                  </select>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Alamat Domisili</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="alamatdomisili" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Desa/Kelurahan</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="kelurahan" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Kecamatan</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="kecamatan" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Kota / Kabupaten</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="kabupaten" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Provinsi</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="provinsi" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">No HP</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="nohp" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Email</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="email" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Pendidikan</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="pendidikan" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Pekerjaan</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="pekerjaan" placeholder="" required validate>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Facebook</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="facebook" placeholder="">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Instagram</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="instagram" placeholder="">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Twitter</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="twitter" placeholder="">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Youtube</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="youtube" placeholder="">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Hobi</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="hobi" placeholder="">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Keterangan</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="keterangan" placeholder="">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-input-wrap">
+                      <center><input type="checkbox" name="paraf" value="yes" placeholder="" required validate>Dengan ini saya menyatakan bahwa data yang saya isikan adalah benar</center> 
+                    </div>
+                  </div>
+                </li>
+                <center><span id="indicator" style="display:none"><i class="fa fa-spinner fa-spin"></i> Menyimpan...</span></center>
+                <button class="button button-raised button-fill">Submit</button>
+                <!--<li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Full Name <span id="indicator" style="display:none"><i class="fa fa-spinner fa-spin"></i> Menyimpan...</span></div>
+                    <div class="item-input-wrap">
+                      <input class="akundata" type="text" name="search" placeholder="Begin " ic-post-to="http://localhost/" ic-on-beforeSend="settings.data += '&' + $.param({token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';" ic-trigger-on="keyup changed" ic-trigger-delay="500ms" ic-target="#target" ic-indicator="#indicator"><span id="target">dsa</span>
+                    </div>
+                  </div>
+                </li>-->  
+              </ul>
+            </div>
+          </form>  
+            
+                    
+            <a class="akundata" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({action:'cekregistrasirelawan',token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';" ic-target="#registrasi-relawan-content"></a>
+        </div>
+      
+    </div> <!-- block -->    
+  </div> <!-- page content -->
+</div>

@@ -201,6 +201,11 @@ routes = [
     url: './pages/explore.html',
   },
   {
+    path: '/registrasi-relawan/',
+    url: './pages/registrasi-relawan.html',
+    on: {pageAfterIn: function (e, page) {registrasirelawan();},}
+  },
+  {
     path: '/akun/',
     url: './pages/akun.html',
     on: {

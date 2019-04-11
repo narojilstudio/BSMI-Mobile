@@ -165,11 +165,13 @@ $$('#my-register-screen .register-button').on('click', function () {
 $$('#my-register-screen .close-login-button').on('click', function () {
 app.loginScreen.close('#my-register-screen');
 app.loginScreen.close('#my-login-screen');
+onloginscreenclose();
 });
 
 $$('#my-login-screen .close-login-button').on('click', function () {
 app.loginScreen.close('#my-login-screen');
 app.loginScreen.close('#my-register-screen');
+onloginscreenclose();
 });
 
 function readyapp(){
