@@ -20,7 +20,11 @@ routes = [
           
               }); */
 
+         $(document).ready(function(){
+         //alert(app.views.main.router.url);
          date_time_hijri('timepanelhijri');
+         date_time('timepanelmasehi');
+         });
         },
         pageInit: function (e, page) {
           // do something when page initialized

@@ -179,9 +179,9 @@ function readyapp(){
 
       $.ajaxSetup({ cache: false });
       						      
-      date_time('timepanelmasehi');
-      
+      date_time('timepanelmasehi');      
       date_time_hijri('timepanelhijri');
+      //if (app.views.main.router.url = '/'){date_time_hijri('timepanelhijri');date_time('timepanelmasehi');}
       
       gempadirasakan();
     

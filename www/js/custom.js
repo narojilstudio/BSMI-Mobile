@@ -144,7 +144,8 @@ if(s<10)
         s = "0"+s;
 }
 result = ''+days[day]+', '+d+' '+months[month]+' '+year+' '+h+':'+m+':'+s;
-document.getElementById(id).innerHTML = result;
+//document.getElementById(id).innerHTML = result;
+$('#'+id).html(result);
 setTimeout('date_time("'+id+'");','1000');
 return true;
 }  
