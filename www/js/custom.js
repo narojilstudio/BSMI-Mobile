@@ -144,7 +144,7 @@ if(s<10)
         s = "0"+s;
 }
 result = ''+days[day]+', '+d+' '+months[month]+' '+year+' '+h+':'+m+':'+s;
-try {document.getElementById(id).innerHTML = result;}catch{}
+document.getElementById(id).innerHTML = result;
 setTimeout('date_time("'+id+'");','1000');
 return true;
 }  
@@ -663,7 +663,7 @@ function explorenews2()
       xmlDoc = $.parseXML( dataq.contents ),
       $xml = $( xmlDoc ),
       $($xml).find("item").each(function () { 
-        let el = $(this);
+        var el = $(this);
         var item = {
           feedtitle : RSS[j].feedname,
           title : el.find("title").text(),
@@ -839,7 +839,7 @@ function exploreig()
         success: function(dataq) { //console.log(dataq.contents);
           $("#exploreig").html('');
           $("#exploretopig").html('');
-          try {var data = JSON.parse(dataq.contents);}catch{$.ajax(this); return;}
+          try {var data = JSON.parse(dataq.contents);}catch(e){$.ajax(this); return;}
           //console.log(data.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);
           for (var i = 0 ; i < 4 ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
@@ -911,7 +911,7 @@ function checkPreAuth()
   }).done(function (data1) {
       //console.log(data1);
       datatoken = data1;//console.log(datatoken);
-      try{ var dtoken = dekripsi(datatoken) } catch {}
+      try{ var dtoken = dekripsi(datatoken) } catch(e) {}
       $.ajax({
           type: "POST",
           //url: serverhost+"loginapi.php",

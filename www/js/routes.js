@@ -37,7 +37,7 @@ routes = [
     on: {
         pageAfterIn: function test (e, page) {
           // do something after page gets into the view
-          loginSubmit();
+          //loginSubmit();
          
         },
         pageInit: function (e, page) {
@@ -248,7 +248,7 @@ routes = [
       on: {
         pageAfterIn: function test (e, page) {
           // do something after page gets into the view
-
+/*
           $(document).on("click", "#openBrowser", function() {
               var url = $(this).attr('href');
               window.open(url, "_blank", "location=yes");
@@ -261,7 +261,7 @@ routes = [
               var url = $(this).attr('href');
               cordova.InAppBrowser.open(url, "_blank", "location=yes");
           })
-         
+*/         
         },
         pageInit: function (e, page) {
           // do something when page initialized

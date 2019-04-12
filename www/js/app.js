@@ -48,6 +48,7 @@ var app  = new Framework7({
 var homeView = app.views.create('#view-home', {
   url: '/'
 });
+/*
 var catalogView = app.views.create('#view-catalog', {
   url: '/catalog/'
 });
@@ -61,7 +62,7 @@ var infoView = app.views.create('#view-info', {
 var menuView = app.views.create('#view-menu', {
   url: '/menu/'
 });
-
+*/
 var exploreView = app.views.create('#view-explore', {
   url: '/explore/'
 });
@@ -175,6 +176,7 @@ onloginscreenclose();
 });
 
 function readyapp(){
+
       $.ajaxSetup({ cache: false });
       						      
       date_time('timepanelmasehi');
