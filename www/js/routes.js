@@ -78,7 +78,7 @@ routes = [
   {
     path: '/majalah/',
     url: './pages/majalah.html',
-    on: {pageAfterIn: function (e, page) {Intercooler.processNodes($('.datamajalah'));},}
+    on: {pageAfterIn: function (e, page) {},pageInit: function (e, page) {Intercooler.processNodes($('.datamajalah'));},}
   },
   {
     path: '/donasi/',

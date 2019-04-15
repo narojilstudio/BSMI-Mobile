@@ -175,6 +175,11 @@ app.loginScreen.close('#my-register-screen');
 onloginscreenclose();
 });
 
+$(document).on("beforeAjaxSend.ic", function (evt, settings) { 
+    delete settings.headers['X-IC-Request']; 
+    delete settings.headers['X-HTTP-Method-Override']; 
+}); 
+
 function readyapp(){
 
       $.ajaxSetup({ cache: false });
@@ -210,7 +215,3 @@ $(document).ready(function(){
   readyapp();
 });
 		
-$(document).on("beforeAjaxSend.ic", function (evt, settings) { 
-    delete settings.headers['X-IC-Request']; 
-    delete settings.headers['X-HTTP-Method-Override']; 
-}); 
