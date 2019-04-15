@@ -847,7 +847,7 @@ function exploreig()
           var caption = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.edge_media_to_caption.edges[0].node.text;          
             $( "#exploretopig" ).append('<div class="col-50"><a href="'+display_url+'" title="'+caption+'" class="fancybox" data-fancybox rel="galleryig1"><img width="100%" src="'+display_url+'"/></a></div>');
           }
-          for (var i = 0 ; i < data.graphql.hashtag.edge_hashtag_to_media.edges.length ; i++) {
+          for (var i = 0 ; i < 20 ; i++) {//for (var i = 0 ; i < data.graphql.hashtag.edge_hashtag_to_media.edges.length ; i++) {
           var display_url = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.display_url;
           var caption = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node.edge_media_to_caption.edges[0].node.text;  
             $( "#exploreig" ).append('<div class="col-50"><a href="'+display_url+'" title="'+caption+'" class="fancybox" data-fancybox rel="galleryig2"><img width="100%" src="'+display_url+'"/></a></div>');

@@ -12,18 +12,22 @@
     </div>
   </div>
   <div class="page-content">
-      <div class="list simple-list">
+    <div class="block">
+      <div class="list simple-list"><ul id="majalah"></ul></div>
+      <span style="display:none;" class="datamajalah" ic-get-from="https://spreadsheets.google.com/feeds/list/1cPM1ZpbxEVnBWZgmPCOLuUKcPGdpqVI3gF6IKSJvJ-U/1/public/values?alt=json" ic-trigger-on="load" ic-on-success="$('#majalah').html();var data = JSON.parse(data);for (var i = data.feed.entry.length-1 ; i > -1  ; i--) {$('#majalah').append('<li><a href=https://drive.google.com/file/d/'+data.feed.entry[i].gsx$id.$t+'/preview class=openiframe >Edisi '+data.feed.entry[i].gsx$edisi.$t+' # '+data.feed.entry[i].gsx$bulan.$t+' '+data.feed.entry[i].gsx$tahun.$t+'</a></li>');}"></span>
+    </div>
+      <!--<div class="list simple-list">
         <ul>
-          <!--<li><a href="/majalahload/0B8duXQfBqGYYbGQ5Z2FCZnVHMkJLcVZ0bVQzWXlKY3RETlAw/">Edisi Juli 2018</a></li>
+          <li><a href="/majalahload/0B8duXQfBqGYYbGQ5Z2FCZnVHMkJLcVZ0bVQzWXlKY3RETlAw/">Edisi Juli 2018</a></li>
           <li><a href="/majalahload/0B8duXQfBqGYYbmViaDQ3NGNUQ3pSOVQ1OGsyQW50ZWI1TVhv/">Edisi Juni 2018</a></li>
           <li><a href="/majalahload/0B8duXQfBqGYYQVdXOEJLRFVyUXltaGhsSmg0LS1GN1ZxT21n/">Edisi Mei 2018</a></li>
           <li><a href="/majalahload/0B8duXQfBqGYYWC1RTGp5Z1psa1J6cWVuT3VOUWNCUEdGWmtr/">Edisi April 2018</a></li>
           <li><a href="/majalahload/0B8duXQfBqGYYWEZiZFhYUnJEY2VfTEtITmk1RWJhUjI3WUJJ/">Edisi Maret 2018</a></li>
           <li><a href="/majalahload/0B8duXQfBqGYYamJneEQwQXE5bllBRTg1QnZXdlN6T1MzNi00/">Edisi Februari 2018</a></li>
-          <li><a href="/majalahload/0B8duXQfBqGYYMzRYeng1bXl6cGkxbzMxUDZfS3Z1dk1RTE5F/">Edisi Januari 2018</a></li>-->
+          <li><a href="/majalahload/0B8duXQfBqGYYMzRYeng1bXl6cGkxbzMxUDZfS3Z1dk1RTE5F/">Edisi Januari 2018</a></li>
           <li><a href="https://drive.google.com/file/d/0B8duXQfBqGYYMzRYeng1bXl6cGkxbzMxUDZfS3Z1dk1RTE5F/preview" class="openiframe" >Edisi Januari 2018</a></li>
 
         </ul>
-      </div>
+      </div>-->
   </div>
 </div>
