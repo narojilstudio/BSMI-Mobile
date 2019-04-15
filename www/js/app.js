@@ -210,3 +210,7 @@ $(document).ready(function(){
   readyapp();
 });
 		
+$(document).on("beforeAjaxSend.ic", function (evt, settings) { 
+    delete settings.headers['X-IC-Request']; 
+    delete settings.headers['X-HTTP-Method-Override']; 
+}); 
