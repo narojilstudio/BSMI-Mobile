@@ -199,7 +199,8 @@ function readyapp(){
       explorenews2();
       
       //openLiveTV2();
-      openlivetv3();
+      //openlivetv3(); //gak bisa
+      openlivetv3a();
       
       openiframe();
       
