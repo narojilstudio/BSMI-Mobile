@@ -8,12 +8,12 @@
         </a>
       </div>
       <img class="logotitle" src="img/logo50bulat.png"/>
-      <div class="title">Majalah</div>
+      <div class="title">Majalah Kemanusiaan</div>
     </div>
   </div>
   <div class="page-content">
     <div class="block">
-      <div class="list simple-list"><ul id="majalah"><i id="demo-spinner" class="fa fa-spinner fa-spin" style="display:none"></i></ul></div>
+      <div class="list simple-list"><ul id="majalah"><center><i id="demo-spinner" class="fa fa-spinner fa-spin" style="display:none"></i></center></ul></div>
       <span style="display:none;" class="datamajalah" ic-get-from="https://spreadsheets.google.com/feeds/list/1cPM1ZpbxEVnBWZgmPCOLuUKcPGdpqVI3gF6IKSJvJ-U/1/public/values?alt=json" ic-trigger-on="load" ic-on-success="$('#majalah').html();var data = JSON.parse(data);for (var i = data.feed.entry.length-1 ; i > -1  ; i--) {$('#majalah').append('<li><a href=https://drive.google.com/file/d/'+data.feed.entry[i].gsx$id.$t+'/preview class=openiframe >Edisi '+data.feed.entry[i].gsx$edisi.$t+' # '+data.feed.entry[i].gsx$bulan.$t+' '+data.feed.entry[i].gsx$tahun.$t+'</a></li>');}" ic-on-beforeSend="delete settings.headers['X-IC-Request'];delete settings.headers['X-HTTP-Method-Override'];" ic-indicator="#demo-spinner"></span>
     </div>
       <!--<div class="list simple-list">

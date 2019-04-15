@@ -757,6 +757,38 @@ function openLiveTV2()
     });
 }
 ////////////////////////
+function openlivetv3()
+{ 
+    // Open dynamic popup
+    $(document).on("click", ".openlivetv3", function() {
+      var url = $(this).attr('href');
+      var dynamicPopup = app.popup.create({
+        content: '<div class="popup"><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
+                    '<div id="datapopup" style="height:100%"><center>Loading ...</center></div>'+
+                  '</div>',
+        // Events
+
+      });     
+      dynamicPopup.open();
+      
+      var cors = 'https://cors-anywhere.herokuapp.com/';
+      var feed = cors+'https://www.useetv.com/livetv/'+url;
+      $.ajax(feed, {
+        headers: {"X-Requested-With": "some value"},
+        crossDomain: true,
+        error: function(){app.dialog.alert('Error');},
+        success:function(data) { 
+          var hasil = data;
+          var urlstreaming = extractData(hasil, '<source src="', '" type="application/x-mpegURL">');
+          //http://www.convertstring.com/id/EncodeDecode/HtmlEncode
+          var htmliframe = '&lt;html&gt; &lt;head&gt;       &lt;link href=&quot;https://unpkg.com/video.js/dist/video-js.css&quot; rel=&quot;stylesheet&quot;&gt;     &lt;script src=&quot;https://unpkg.com/video.js/dist/video.js&quot;&gt;&lt;/script&gt;     &lt;script src=&quot;https://unpkg.com/videojs-flash/dist/videojs-flash.js&quot;&gt;&lt;/script&gt;     &lt;script src=&quot;https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js&quot;&gt;&lt;/script&gt;  &lt;/head&gt; &lt;body style=&quot;padding:0px 0px;margin:0px 0px;&quot;&gt; &lt;video id=&quot;video-player&quot;  style=&quot;width:100%;height:100%&quot; class=&quot;embed-responsive-item video-js vjs-default-skin vjs-big-play-centered&quot; controls&gt; &lt;source src=&quot;'+urlstreaming+'&quot; type=&quot;application/x-mpegURL&quot;&gt; &lt;/video&gt; &lt;script&gt; var video = videojs(&quot;video-player&quot;, {autoplay: &quot;play&quot;}); &lt;/script&gt; &lt;/body&gt; &lt;/html&gt;'; //muted or play
+          $("#datapopup").html('<iframe width="100%" height="100%" frameborder="0" src="data:text/html;charset=utf-8,'+htmliframe+'"></iframe>');
+        }	
+      });
+	      
+    });
+}
+///////////////////////
 function openiframe()
 { 
     // Open dynamic popup
