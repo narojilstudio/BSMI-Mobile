@@ -792,7 +792,7 @@ function openlivetv3()
 function openlivetv3a()
 { 
     // Open dynamic popup
-    $(document).on("click", ".openLiveTV", function() {
+    $(document).on("click", ".openlivetv3", function() {
       var url = $(this).attr('href');
       var dynamicPopup = app.popup.create({
         content: '<div class="popup" style="background:#000000"><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
