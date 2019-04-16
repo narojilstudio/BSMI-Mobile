@@ -36,6 +36,11 @@ routes = [
     url: './pages/about.html',
   },
   {
+    path: '/berita/',
+    url: './pages/berita.html',
+    on: {pageAfterIn: function (e, page) {var data = $('#explorenews').html();$('#menu-berita').html(data);},pageInit: function (e, page) {},}
+  },
+  {
     path: '/login-screen/',
     url: './pages/login.html',
     on: {
