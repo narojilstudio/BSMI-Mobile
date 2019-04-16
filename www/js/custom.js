@@ -558,7 +558,7 @@ function openPreview2()
       });     
       dynamicPopup.open();
      
-      var feed = "https://script.google.com/macros/s/AKfycbz7nyKpxG7aiEeMl98UIfMSjwEk8muKFIaF24Vemh1gb2CKb-mN/exec?url="+url;
+      var feed = $fetchapi+url;
       $.ajax(feed, {
         dataType:"json",
         tryCount : 0,
@@ -566,9 +566,12 @@ function openPreview2()
         error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
         success:function(data) { //console.log(data);
           if (data.contents == '') {$.ajax(this); return;}
-          var hasil = JSON.parse(data.contents);//console.log(hasil);
-          var berita = hasil.content;
-          $("#datapopup").html("<h3><b>"+title+"</b></h3></br>"+hasil.content+"</br></br></br></br></br></br></br>");
+          //var hasil = JSON.parse(data.contents);//console.log(hasil);
+          //var berita = hasil.content;
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(data.contents, "text/html");
+          var hasil = new Readability(doc).parse();
+          $("#datapopup").html("<h3><b>"+title+"</b></h3></br>"+hasil.content.replace('class="page"','')+"</br></br></br></br></br></br></br>");
           $("#datapopup").find('img').each(function(n,image){var image = $(image); image.attr('width','100%');image.attr('height','auto');});
           $("#datapopup").find('iframe').each(function(n,iframe){var iframe = $(iframe); iframe.attr('width','100%');iframe.attr('height','auto');});
           
