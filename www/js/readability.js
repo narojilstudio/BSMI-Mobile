@@ -989,7 +989,7 @@ Readability.prototype = {
           while (parentOfTopCandidate.tagName !== "BODY") {
             var listsContainingThisAncestor = 0;
             for (var ancestorIndex = 0; ancestorIndex < alternativeCandidateAncestors.length && listsContainingThisAncestor < MINIMUM_TOPCANDIDATES; ancestorIndex++) {
-              listsContainingThisAncestor += Number(alternativeCandidateAncestors[ancestorIndex].includes(parentOfTopCandidate));
+              //listsContainingThisAncestor += Number(alternativeCandidateAncestors[ancestorIndex].includes(parentOfTopCandidate));
             }
             if (listsContainingThisAncestor >= MINIMUM_TOPCANDIDATES) {
               topCandidate = parentOfTopCandidate;
