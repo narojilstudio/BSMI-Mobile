@@ -200,7 +200,8 @@ function readyapp(){
       
       //openLiveTV2();
       //openlivetv3(); //gak bisa
-      openlivetv3a();
+      //openlivetv3a();
+      openlivetv3b();
       
       openiframe();
       

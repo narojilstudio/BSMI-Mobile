@@ -29,7 +29,7 @@ $(document).ready(function() {
       $.ajax(feed, {
         headers: {"X-Requested-With": "some value"},
         crossDomain: true,
-        error: function(){alert('error');},
+        error: function(){$('#datapopup').html('error');},
         success:function(data) { 
           var hasil = data;
           var urlstreaming = extractData(hasil, '<source src="', '" type="application/x-mpegURL">');//urlstreaming.replace('&','&amp;');console.log(urlstreaming);

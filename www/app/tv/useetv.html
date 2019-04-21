@@ -14,6 +14,9 @@
         </video>
         
 <script>
+var fullurl = new URL(window.location.href);
+var tv = fullurl.searchParams.get("tv");
+
 function extractData(data, startStr, endStr)
 {
 subStrStart = data.indexOf(startStr) + startStr.length
@@ -24,11 +27,11 @@ subStrStart + data.substring(subStrStart).indexOf(endStr));
 $fetchapi='https://cors-anywhere.herokuapp.com/'; 
 
 $(document).ready(function() {
-      var url = 'https://www.useetv.com/livetv/indosiar';
+      var url = 'https://www.useetv.com/livetv/'+tv;
       var feed = $fetchapi+url;
       $.ajax(feed, {
         headers: {"X-Requested-With": "some value"},
-        error: function(){alert($('#datapopup').html('error');},
+        error: function(){$('#datapopup').html('<div style="margin-top:50px;background:#red;"><center><h1>Maaf !! Gangguan Sinyal</h2></center></div>');},
         success:function(data) { 
           var hasil = data;
           var urlstreaming = extractData(hasil, '<source src="', '" type="application/x-mpegURL">');//urlstreaming.replace('&','&amp;');console.log(urlstreaming);

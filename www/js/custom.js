@@ -809,6 +809,32 @@ function openlivetv3a()
 	      
     });
 }
+
+function openlivetv3b()
+{ 
+    // Open dynamic popup
+    $(document).on("click", ".openlivetv3", function() {
+      var url = $(this).attr('href');
+      var dynamicPopup = app.popup.create({
+        content: '<div class="popup" style="background:#000000"><div class="tv-close"><img src="img/fancy_close.png" class="link popup-close"></div>'+
+                    '<div id="datapopup" style="height:100%"><center>Loading ...</center></div>'+
+                  '</div>',
+        // Events
+
+      });     
+      dynamicPopup.open();
+      $("#datapopup").html('<iframe width="100%" height="100%" style="border:0px;" src="app/tv/useetv.html?tv='+url+'" allow="autoplay; encrypted-media"  allowfullscreen></iframe>');
+	      
+    });
+}
+
+function semuatv(){
+  var tv = ["antv","idku","indosiar","jitv","kompastv","metrotv","net","rrinet","rtv","sctv","trans7","transtv","tvone","antara","balitv","bandungtv","beritasatu","celebestv","dwtv","fajartv","jaktv","jtv","mugos","muitv","mytv","paytrentv","startup","tmusic","tv9","tvedukasi","tvri","uchannel","aljazeera","alquran","dmi","mqtv","mtatv","muhammadiyahtv","rodjatv"];
+   tv.sort(function(a, b){return 0.5 - Math.random()});
+  for (var i = 0 ; i < tv.length ; i++) { //$("#semuatv2").html('halo');//console.log(i);
+    $("#semuatv").append('<div class="col-25"><a href="'+tv[i]+'" class="openlivetv3"><img width="100%" src="app/tv/img/'+tv[i]+'.png"/></a></div>');
+  }
+}
 ///////////////////////
 function openiframe()
 { 

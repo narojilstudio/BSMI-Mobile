@@ -208,6 +208,7 @@ routes = [
   {
     path: '/explore/',
     url: './pages/explore.html',
+    on: {pageAfterIn: function (e, page) {},pageInit: function (e, page) {semuatv();},}
   },
   {
     path: '/registrasi-relawan/',
