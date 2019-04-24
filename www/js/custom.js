@@ -1,8 +1,8 @@
 $mapboxkey='pk.eyJ1IjoibmFyb2ppbCIsImEiOiJjanFqa3c5NGg2Y2drNDJ1bDZ5cXoyNjJkIn0.OSNBp6nQ7K1w9fHM8yc8Fw';
 $mapboxurl='https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+$mapboxkey;
-$fetchapigs='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url=';
+$fetchapigs='https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url='; //narojil
 //$fetchapi= 'https://api.allorigins.ml/get?url=';
-$fetchapi= 'https://script.google.com/macros/s/AKfycbx4VrE_EYbxRkY67ggrOFN359E_X3sUJxB9JrZ_XXUxXqZZ9-A/exec?url=';
+$fetchapi= 'https://script.google.com/macros/s/AKfycbz6Fit6-D_2PABn3zrpzydiGb9PogiqqBdItpx6XcPqrLhFjW0/exec?url='; //bsmijatim
 $needauth = 'yes';
 var datatoken = '';
 var datauserid = '';
@@ -557,19 +557,23 @@ function openPreview2()
 
       });     
       dynamicPopup.open();
+      
+      $fetchapica='https://cors-anywhere.herokuapp.com/';
      
-      var feed = $fetchapi+url;
+      var feed = $fetchapica+url;//console.log(url);
       $.ajax(feed, {
-        dataType:"json",
+        //dataType:"json",
+        headers: {"X-Requested-With": "some value"},
+        sourceurl:url,
         tryCount : 0,
         retryLimit : 10,
-        error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
-        success:function(data) { //console.log(data);
-          if (data.contents == '') {$.ajax(this); return;}
-          //var hasil = JSON.parse(data.contents);//console.log(hasil);
-          //var berita = hasil.content;
+        //error: function(xhr, textStatus, errorThrown){this.tryCount++; if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
+        error: function(xhr, textStatus, errorThrown){this.tryCount++;if (this.tryCount == 5){this.url = $fetchapigs+this.sourceurl;this.dataType='json';} if (this.tryCount <= this.retryLimit) { $.ajax(this); return; }},
+        success:function(data) { //console.log(this.dataType);
+          if (this.dataType == 'json'){var data = data.contents;}
+          if (data == '') {$.ajax(this); return;}
           var parser = new DOMParser();
-          var doc = parser.parseFromString(data.contents, "text/html");
+          var doc = parser.parseFromString(data, "text/html");
           var hasil = new Readability(doc).parse();
           $("#datapopup").html("<h3><b>"+title+"</b></h3></br>"+hasil.content.replace('class="page"','')+"</br></br></br></br></br></br></br>");
           $("#datapopup").find('img').each(function(n,image){var image = $(image); image.attr('width','100%');image.attr('height','auto');});
