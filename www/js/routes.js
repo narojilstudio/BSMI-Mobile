@@ -41,6 +41,11 @@ routes = [
     on: {pageAfterIn: function (e, page) {var data = $('#explorenews').html();$('#menu-berita').html(data);},pageInit: function (e, page) {},}
   },
   {
+    path: '/tv/',
+    url: './pages/tv.html',
+    on: {pageAfterIn: function (e, page) {var data = $('#semuatv').html();$('#livetv').html(data);},pageInit: function (e, page) {},}
+  },
+  {
     path: '/login-screen/',
     url: './pages/login.html',
     on: {
