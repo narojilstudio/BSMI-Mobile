@@ -17,7 +17,7 @@ table.redTable td, table.redTable th {
   padding: 3px 2px;
 }
 table.redTable tbody td {
-  font-size: 13px;
+  font-size: 16px;
 }
 table.redTable tr:nth-child(even) {
   background: #E6EDF4;
@@ -37,13 +37,13 @@ table.redTable thead th:first-child {
 }
 
 table.redTable tfoot {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: bold;
   color: #FFFFFF;
   background: #A40808;
 }
 table.redTable tfoot td {
-  font-size: 13px;
+  font-size: 16px;
 }
 table.redTable tfoot .links {
   text-align: right;
@@ -81,7 +81,10 @@ $(document).ready(function() {
         error: function(){$('#datapopup').html('<div style="margin-top:50px;background:#red;"><center><h1>Maaf !! Ada Gangguan </h2></center></div>');},
         success:function(data) { 
           var hasil = data;
-          for (var i = 0 ; i < data.length  ; i++){$('#datapopup').append('<tr><td>'+hasil[i].nomor+'</br></td><td style=" text-align: right;">'+hasil[i].ar+'</br></td></tr>');}
+          for (var i = 0 ; i < data.length  ; i++){
+            //if (nosurat =! '1' && i == 0){hasil[i].ar = hasil[i].ar.replace('','')}
+            $('#datapopup').append('<tr><td>'+hasil[i].nomor+'</br></td><td style=" text-align: right;">'+hasil[i].ar+'</br></td></tr>');
+          }
         }	
       });
       

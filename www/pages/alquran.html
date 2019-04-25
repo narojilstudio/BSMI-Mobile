@@ -14,7 +14,7 @@
   <div class="page-content">
     <div class="block">
       <div class="list simple-list"><ul id="alquran"><center><i id="demo-spinner" class="fa fa-spinner fa-spin" style="display:none"></i></center></ul></div>
-      <span style="display:none;" class="dataalquran" ic-get-from="https://al-quran-8d642.firebaseio.com/data.json" ic-trigger-on="load" ic-on-success="$('#alquran').html();var data = JSON.parse(data);for (var i = 0 ; i < data.length  ; i++) {$('#alquran').append('<li><a href=app/alquran/alquran.html?data='+data[i].nomor+' class=openiframe >'+data[i].nomor+'. '+data[i].nama+' - '+data[i].asma+'</a></li>');}" ic-on-beforeSend="delete settings.headers['X-IC-Request'];delete settings.headers['X-HTTP-Method-Override'];" ic-indicator="#demo-spinner"></span>
+      <span style="display:none;" class="dataalquran" ic-get-from="https://al-quran-8d642.firebaseio.com/data.json" ic-trigger-on="load" ic-on-success="$('#alquran').html();var data = JSON.parse(data);for (var i = 0 ; i < data.length  ; i++) {$('#alquran').append('<li><a href=app/alquran/alquran.html?data='+data[i].nomor+' class=openiframe >'+data[i].nomor+'. '+data[i].nama+' - '+data[i].asma+'</a><a href='+data[i].audio+' class=openiframe ><img src=app/alquran/play.svg style=width:16px /></a></li>');}" ic-on-beforeSend="delete settings.headers['X-IC-Request'];delete settings.headers['X-HTTP-Method-Override'];" ic-indicator="#demo-spinner"></span>
     </div>
   </div>
 </div>
