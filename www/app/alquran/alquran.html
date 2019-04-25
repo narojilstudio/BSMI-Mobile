@@ -1,0 +1,91 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+table
+{
+line-height:2;
+
+}
+
+table.redTable {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.redTable td, table.redTable th {
+  padding: 3px 2px;
+}
+table.redTable tbody td {
+  font-size: 13px;
+}
+table.redTable tr:nth-child(even) {
+  background: #E6EDF4;
+}
+table.redTable thead {
+  background: #A40808;
+}
+table.redTable thead th {
+  font-size: 19px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #A40808;
+}
+table.redTable thead th:first-child {
+  border-left: none;
+}
+
+table.redTable tfoot {
+  font-size: 13px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #A40808;
+}
+table.redTable tfoot td {
+  font-size: 13px;
+}
+table.redTable tfoot .links {
+  text-align: right;
+}
+table.redTable tfoot .links a{
+  display: inline-block;
+  background: #FFFFFF;
+  color: #A40808;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+</style>
+</head>
+<body style="padding:0px 0px;margin:0px 0px;background:#fff;">
+<div style="padding:30px 30px;"><table id="datapopup" class="redTable"></div></table>
+        
+<script>
+var fullurl = new URL(window.location.href);
+var nosurat = fullurl.searchParams.get("data");
+
+function extractData(data, startStr, endStr)
+{
+subStrStart = data.indexOf(startStr) + startStr.length
+return data.substring(subStrStart,
+subStrStart + data.substring(subStrStart).indexOf(endStr));
+}
+
+$fetchapi=''; 
+
+$(document).ready(function() {
+      var url = 'https://al-quran-8d642.firebaseio.com/surat/'+nosurat+'.json';
+      var feed = $fetchapi+url;
+      $.ajax(feed, {
+        //headers: {"X-Requested-With": "some value"},
+        error: function(){$('#datapopup').html('<div style="margin-top:50px;background:#red;"><center><h1>Maaf !! Ada Gangguan </h2></center></div>');},
+        success:function(data) { 
+          var hasil = data;
+          for (var i = 0 ; i < data.length  ; i++){$('#datapopup').append('<tr><td>'+hasil[i].nomor+'</br></td><td style=" text-align: right;">'+hasil[i].ar+'</br></td></tr>');}
+        }	
+      });
+      
+});
+</script>
+</body>
+</html>
