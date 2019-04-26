@@ -96,6 +96,11 @@ routes = [
     on: {pageAfterIn: function (e, page) {},pageInit: function (e, page) {Intercooler.processNodes($('.dataalquran'));},}
   },
   {
+    path: '/jadwalsholat/',
+    url: './pages/jadwalsholat.html',
+    on: {pageAfterIn: function (e, page) {},pageInit: function (e, page) {Intercooler.processNodes($('.datajadwalsholat'));},}
+  },
+  {
     path: '/donasi/',
     url: './pages/donasi.html',
       on: {
