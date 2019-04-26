@@ -101,6 +101,11 @@ routes = [
     on: {pageAfterIn: function (e, page) {},pageInit: function (e, page) {Intercooler.processNodes($('.datajadwalsholat'));},}
   },
   {
+    path: '/dzikir/',
+    url: './pages/dzikir.html',
+    on: {pageAfterIn: function (e, page) {},pageInit: function (e, page) {Intercooler.processNodes($('.datadzikir'));},}
+  },
+  {
     path: '/donasi/',
     url: './pages/donasi.html',
       on: {
