@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'LPMQ Isep Misbah';
+  src: URL('LPMQ_IsepMisbah.ttf') format('truetype');
+}
+
 /* Your app styles here */
 .ios .tabbar-labels .tab-link:not(.tab-link-active) .icon-ios-fill {
   display: none;
@@ -168,3 +173,7 @@ input:required:valid {
     background-repeat: no-repeat;
   }
 
+.lpmq
+{
+			font-family: 'LPMQ Isep Misbah';
+}
