@@ -298,7 +298,7 @@ function writeIslamicDate(adjustment) {
 
 function date_time_hijri(id)
 {
-document.getElementById(id).innerHTML = writeIslamicDate();
+document.getElementById(id).innerHTML = writeIslamicDate(-1);
 }
 /////////////////////////////////////////////////////////////////////////////////////
 function gempadirasakan()
