@@ -197,14 +197,14 @@ input:required:valid {
 
 .input-target {
     width: 100%;
-    padding: 7.5px 7.5px 7.5px 1.9em!important;
+    padding: 15px 7.5px 7.5px 1.9em!important;
     font-weight: 700;
     border: 2px solid #56d1ff;
-    font-size: 24px!important;
+    font-size: 34px!important;
     color: #4a4a4a;
     background-color: #f2f3f4!important;
     border-color: #f2f3f4;
     text-align: right;
     padding-right: 15px;
-    height: auto;
+    height: auto!important;
 }

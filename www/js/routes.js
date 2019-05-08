@@ -121,6 +121,7 @@ routes = [
         },
         pageInit: function (e, page) {
           // do something when page initialized
+          Intercooler.processNodes($('.akundata'));
         },
       }
   },

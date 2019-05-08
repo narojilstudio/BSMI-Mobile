@@ -12,9 +12,9 @@
     </div>
   </div>
   <div class="page-content">
-    <div class="block"><!-- block -->
+    <div class="block" id="datadonasi"><!-- block -->
     
-      <form class="form-donasi-kemanusiaan akundata" ic-post-to="http://localhost/" ic-on-beforeSend="settings.data += '&' + $.param({action:'submitdonasi',token: dekripsi(datatoken)});settings.url = serverhost+'donasiapi.php';" ic-indicator="#indicator" ic-on-success="executedonasi();">
+      <form class="form-donasi-kemanusiaan akundata" ic-post-to="http://localhost/" ic-on-beforeSend="settings.data += '&' + $.param({action:'submitdonasi',token: dekripsi(datatoken)});settings.url = serverhost+'donasiapi.php';" ic-indicator="#indicator" ic-target="#datadonasi">
     
       <div class="card">
         <div class="card-content card-content-padding">
@@ -25,43 +25,43 @@
       <div class="card">
         <div class="card-content card-content-padding">
         
+          <div class="list simple-list" style="margin-bottom:20px;">
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-input-wrap">
+                <div class="input-amount">
+                  <span class="input-amount-currency">Rp</span>
+                  <input id="target-donasi" class="form-input input-target" placeholder="0" name="donasi" type="text" required validate pattern="[0-9]*"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
           
-        
-          <div class="input-amount">
-          <span class="input-amount-currency">Rp</span>
-          <input id="target-donasi" class="form-input input-target form-input--block auto-num-input js-input-donation" data-target="#targetDonasi" data-payment-method="#categoryInputTarget" placeholder="0" data-vform="targetDonationLog" data-dompet-kebaikan="21" name="Donations[amount]" type="text" required validate pattern="[0-9]*" data-error-message="Only numbers please!"> </div>
+          <center>Transfer</center>
 
           <div class="list simple-list" style="margin: 5px auto;border: 1px solid #ccc;overflow: hidden;">
           <ul>
-          <li class="item-content">
-            <!-- Pass parameters as kebab-case data attributes -->
-            <a class="item-link smart-select" data-open-in="popover">
-              <!-- select -->
-              <select name="cabang">
-                <option value="bsmijatim">BSMI Prov Jawa Timur</option>
-                <option value="bsmidkijakarta">BSMI Prov DKI Jakarta</option>
-                ...
-              </select>
-              <div class="item-content">
-                <div class="item-inner">
-                  <div class="item-title">Rekening : </div>
-                  <div class="item-after">Pilih Cabang</div>
-                </div>
-              </div>
-            </a>
+          <li class="item-content" id="daftarrekening">
+
           </li>
           </ul>
           </div>
           
-          <center><p style="margin:30px auto;"><a href="#" class="login-screen-open" data-login-screen="#my-login-screen">Masuk</a> atau lengkapi data di bawah ini</p></center>
+          
+          
           
             <div class="list">
-              <ul>          
+              <ul>
+                <div id="calondonatur">
+                <li>
+                <center><p style="margin:30px auto;"><a href="#" class="login-screen-open" data-login-screen="#my-login-screen">Masuk</a> atau lengkapi data di bawah ini</p></center>
+                </li>
                 <li class="item-content item-input">
                   <div class="item-inner">
                     <div class="item-title item-label">Nama Lengkap</div>
                     <div class="item-input-wrap">
-                      <input type="text" name="namalengkap" placeholder="" required validate>
+                      <input type="text" name="nama" placeholder="" required validate>
                     </div>
                   </div>
                 </li>
@@ -69,10 +69,11 @@
                   <div class="item-inner">
                     <div class="item-title item-label">Email</div>
                     <div class="item-input-wrap">
-                      <input type="text" name="email" placeholder="" required validate>
+                      <input type="email" name="email" placeholder="" required validate>
                     </div>
                   </div>
                 </li>
+                </div>
                 <li class="item-content item-input">
                   <div class="item-inner">
                     <div class="item-title item-label">Dukungan</div>
@@ -82,7 +83,8 @@
                   </div>
                 </li>                                
               </ul>
-            </div>          
+            </div>
+                    
 
         </div>
       </div>
@@ -93,8 +95,14 @@
                 <button class="button button-raised button-fill">Lanjut Pembayaran</button>
         </div>
       </div>
-      
+      <input id="userid" type="hidden" name="userid" value="0">
       </form>
+      
+      <a class="akundata" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({action:'cekcalondonatur',token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';" ic-target="#calondonatur"></a>
+      
+      <a class="akundata" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({action:'getdaftarrekening',token: dekripsi(datatoken)});settings.url = serverhost+'donasiapi.php';" ic-target="#daftarrekening"></a>
+      
+      <a class="akundata" style="display:none;" ic-post-to="http://localhost/" ic-trigger-on="load" ic-on-beforeSend="settings.data += '&' + $.param({action:'getuserid',token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';" ic-on-success="document.getElementById('userid').value = data;"></a>
       
     </div><!-- block -->
   </div>
