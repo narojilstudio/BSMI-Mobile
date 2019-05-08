@@ -14,7 +14,7 @@
   <div class="page-content">
     <div class="block" id="datadonasi"><!-- block -->
     
-      <form class="form-donasi-kemanusiaan akundata" ic-post-to="http://localhost/" ic-on-beforeSend="settings.data += '&' + $.param({action:'submitdonasi',token: dekripsi(datatoken)});settings.url = serverhost+'donasiapi.php';" ic-indicator="#indicator" ic-target="#datadonasi">
+      <form class="form-donasi-kemanusiaan akundata" ic-post-to="http://localhost/" ic-on-beforeSend="settings.data += '&' + $.param({action:'submitdonasi',token: dekripsi(datatoken)});settings.url = serverhost+'donasiapi.php';" ic-indicator="#indicator" ic-target="#datadonasi" ic-trigger-on="default">
     
       <div class="card">
         <div class="card-content card-content-padding">
