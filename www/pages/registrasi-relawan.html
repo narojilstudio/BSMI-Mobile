@@ -19,7 +19,7 @@
         </div>
         
         <div id="registrasi-relawan-content" style="display:none;">
-          <form class="form-registrasi-relawan akundata" ic-post-to="http://localhost/" ic-on-beforeSend="submitgfromregistrasirelawan(app.form.convertToData('.form-registrasi-relawan'));settings.data += '&' + $.param({action:'submitregistrasirelawan',token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';" ic-indicator="#indicator" ic-on-success="executeakun();">
+          <form class="form-registrasi-relawan akundata" ic-post-to="http://localhost/" ic-on-beforeSend="submitgfromregistrasirelawan(app.form.convertToData('.form-registrasi-relawan'));settings.data += '&' + $.param({action:'submitregistrasirelawan',token: dekripsi(datatoken)});settings.url = serverhost+'restapi.php';" ic-indicator="#indicator" ic-on-success="executeakun();" ic-trigger-on="default">
             <center><p>Silahakan mengisi formulir berikut ini untuk melanjutkan pendaftaran relawan.</p></center>
             <div class="list">
               <ul>
