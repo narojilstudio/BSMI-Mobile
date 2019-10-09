@@ -65,3 +65,6 @@ typings/
 
 # settings
 note.txt
+
+# hook
+.history/
