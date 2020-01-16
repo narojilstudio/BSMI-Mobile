@@ -44,6 +44,10 @@ var app  = new Framework7({
   routes: routes,
 });
 
+
+  app.dialog.alert('BSMI Mobile versi 2.00 telah tersedia di playstore dengan penambahan fitur fitur baru...segera update sekarang juga');
+
+
 // Init/Create views
 var homeView = app.views.create('#view-home', {
   url: '/'
